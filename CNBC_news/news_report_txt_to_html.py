@@ -27,11 +27,12 @@ for line in lines:
         date, title = line.split(': ', maxsplit=1)
         title = title.strip()
 
-        html_content += f'<h4>{date}</h4>'
+        # html_content += f'<h4>{date}</h4>'
         html_content += f'<h3>{title}</h3>'
 
     elif line.startswith('____'):
         html_content += '</div>'
+        html_content += "<div style='height: 20px;'></div>"
 
 
 
@@ -47,6 +48,7 @@ html = """
       padding: 20px;  
       max-width: 1000px;  
       margin: 0 auto;
+      text-align: center;
     }
     
     body {
@@ -84,11 +86,17 @@ html = """
       text-align: center;
     }
     
+    p {
+      color: black;
+      margin: 10px 0;
+    }
+    
     </style>
   </head>
   
   <header>
   <h1>Financial News Report</h1>
+  <p>2023/9/4 ~ 2023/9/10</p>
   </header>
   
   <body>

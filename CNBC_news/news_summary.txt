@@ -31,6 +31,7 @@ Company: Apple
 --2023/09/07: Stocks making the biggest moves premarket: Apple, WestRock, McDonald's and more;
 --2023/09/07: Cramer says stick with Apple despite reports of China government iPhone ban;
 --2023/09/06: Apple buying Disney would be a storybook ending for Iger, but fairy tales aren't real;
+--2023/09/08: Apple's iPhone 15 event kicks off on Tuesday. Here's what to expect;
 --2023/09/07: EU's crackdown on Apple, Meta and others is to avoid forced breakups, top official says;
 --2023/09/07: Apple shares fall after reports of China ban on iPhone use by government workers;
 --2023/09/06: Apple and Arm sign deal for chip technology that goes beyond 2040;
@@ -67,11 +68,9 @@ ________________________________________________________________________________
 
 Company: Charter
 --2023/09/07: Charter and Disney aren't budging in blackout fight as NFL season kicks off;
---2023/09/07: Charter and Disney aren't budging in blackout fight as NFL season kicks off;
 ________________________________________________________________________________
 
 Company: Comcast
---2023/09/06: Comcast, Disney move up deadline to decide Hulu future ownership;
 --2023/09/06: Comcast, Disney move up deadline to decide Hulu future ownership;
 ________________________________________________________________________________
 
@@ -98,11 +97,7 @@ Company: Disney
 --2023/09/06: Disney's wildest ride: Iger, Chapek and the making of an epic succession mess;
 --2023/09/06: Apple buying Disney would be a storybook ending for Iger, but fairy tales aren't real;
 --2023/09/06: Comcast, Disney move up deadline to decide Hulu future ownership;
---2023/09/07: Charter and Disney aren't budging in blackout fight as NFL season kicks off;
---2023/09/06: Comcast, Disney move up deadline to decide Hulu future ownership;
---2023/09/06: Disney's wildest ride: Iger, Chapek and the making of an epic succession mess;
 --2023/09/07: DeSantis board asks court to dismiss Disney's counterclaims in contract clash;
---2023/09/07: Disney drops all but free speech claim in political retaliation suit against DeSantis;
 ________________________________________________________________________________
 
 Company: DocuSign
@@ -121,7 +116,6 @@ ________________________________________________________________________________
 
 Company: FAA
 --2023/09/08: FAA orders SpaceX to take corrective actions on Starship, keeps rocket grounded;
---2023/09/08: FAA orders Musk's SpaceX to take 63 corrective actions on Starship, keeps rocket grounded;
 --2023/09/07: SpaceX is not yet cleared for another Starship Super Heavy test flight, FAA says;
 --2023/09/07: Biden will nominate a former Obama official to run the FAA;
 ________________________________________________________________________________
@@ -133,6 +127,7 @@ ________________________________________________________________________________
 Company: FTC
 --2023/09/05: FTC clears Amgen buyout of Horizon: What it means for other pharma deals;
 --2023/09/06: Amazon lawsuit from FTC expected as soon as this month — here's what's at stake;
+--2023/09/08: TurboTax maker Intuit deceived users with offers of 'free' tax products, FTC judge rules;
 ________________________________________________________________________________
 
 Company: FTX
@@ -141,8 +136,7 @@ ________________________________________________________________________________
 
 Company: Fed
 --2023/09/08: Fed's inflation fight isn't done yet despite good progress, says former Fed governor;
---2023/09/08: Fed's inflation fight isn't done yet despite good progress, says former Fed governor;
---2023/09/08: Gold firms as dollar rally cools, traders eye more Fed cues;
+--2023/09/08: Gold edges up as dollar rally cools, traders eye more Fed cues;
 --2023/09/08: CNBC's 'Halftime' traders debate the Fed's next move and market impact;
 --2023/09/05: Christie lets Fed off the hook for inflation, blames Trump and Biden spending;
 ________________________________________________________________________________
@@ -205,12 +199,15 @@ ________________________________________________________________________________
 
 Company: Hulu
 --2023/09/06: Comcast, Disney move up deadline to decide Hulu future ownership;
---2023/09/06: Comcast, Disney move up deadline to decide Hulu future ownership;
 ________________________________________________________________________________
 
 Company: Illumina
 --2023/09/07: Carl Icahn supports new Illumina CEO Jacob Thaysen months after proxy fight;
 --2023/09/05: Illumina names new CEO months after Carl Icahn proxy fight over Grail deal;
+________________________________________________________________________________
+
+Company: Intuit
+--2023/09/08: TurboTax maker Intuit deceived users with offers of 'free' tax products, FTC judge rules;
 ________________________________________________________________________________
 
 Company: JPMorgan
@@ -261,8 +258,6 @@ Company: NFL
 --2023/09/07: Charter and Disney aren't budging in blackout fight as NFL season kicks off;
 --2023/09/06: A record 73 million Americans plan to bet on the NFL this season, survey says;
 --2023/09/06: Are you ready to stream football? NFL games are shifting away from regular TV;
---2023/09/07: Charter and Disney aren't budging in blackout fight as NFL season kicks off;
---2023/09/06: Are you ready to stream football? NFL games are shifting away from regular TV;
 ________________________________________________________________________________
 
 Company: NY AG
@@ -303,7 +298,6 @@ ________________________________________________________________________________
 
 Company: Roku
 --2023/09/06: Roku stock jumps after company says it will lay off 10% of workforce;
---2023/09/06: Roku stock jumps after company says it will lay off 10% of workforce;
 ________________________________________________________________________________
 
 Company: Seagate
@@ -329,7 +323,6 @@ ________________________________________________________________________________
 
 Company: SpaceX
 --2023/09/08: FAA orders SpaceX to take corrective actions on Starship, keeps rocket grounded;
---2023/09/08: FAA orders Musk's SpaceX to take 63 corrective actions on Starship, keeps rocket grounded;
 --2023/09/07: SpaceX is not yet cleared for another Starship Super Heavy test flight, FAA says;
 ________________________________________________________________________________
 
@@ -338,7 +331,6 @@ Company: Starfield
 ________________________________________________________________________________
 
 Company: Starlink
---2023/09/07: Ukraine rips Musk for disrupting sneak attack on Russian fleet with Starlink cutoff;
 --2023/09/07: Ukraine rips Musk for disrupting sneak attack on Russian fleet with Starlink cutoff;
 ________________________________________________________________________________
 
@@ -362,12 +354,16 @@ Company: Tesla
 --2023/09/07: Tesla to install charging stations at 2,000 Hiltons in North America;
 ________________________________________________________________________________
 
+Company: Treasury
+--2023/09/08: 2-year Treasury yield inches higher as investors consider interest rate policy path;
+________________________________________________________________________________
+
 Company: Trump
 --2023/09/07: Former Trump aide Peter Navarro guilty of two counts of contempt of Congress;
 ________________________________________________________________________________
 
-Company: U.S. Treasury
---2023/09/08: U.S. Treasury yields are little changed as investors consider interest rate policy path;
+Company: TurboTax
+--2023/09/08: TurboTax maker Intuit deceived users with offers of 'free' tax products, FTC judge rules;
 ________________________________________________________________________________
 
 Company: UAW
@@ -391,7 +387,6 @@ Company: Warner Bros Discovery
 ________________________________________________________________________________
 
 Company: Warner Bros. Discovery
---2023/09/06: Warner Bros. Discovery CEO says writers, actors strikes need to end;
 --2023/09/06: Warner Bros. Discovery CEO says writers, actors strikes need to end;
 ________________________________________________________________________________
 
