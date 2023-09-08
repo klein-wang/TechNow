@@ -59,6 +59,7 @@ def extract_cnbc_articles(url,section):
     for i, article in enumerate(article_list):
         # Extract the title of the article 提取文章标题
         title = article.find("a").text.strip()
+        title = title + ';' # add ending mark
 
         # Extract the href of the article 提取文章链接
         href = article.find("a")["href"]
