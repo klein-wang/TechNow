@@ -1,4 +1,14 @@
 import os
+from datetime import datetime
+
+
+def get_current_date():
+    now = datetime.now()
+    return now.strftime("%Y%m%d")
+
+today = get_current_date()
+
+
 
 html_content = ''
 
@@ -24,11 +34,17 @@ for line in lines:
 
     elif line.startswith('--'):
 
-        date, title = line.split(': ', maxsplit=1)
-        title = title.strip()
+        if line.startswith('--20'):
+            date, title = line.split(': ', maxsplit=1)
+            title = title.strip()
 
-        # html_content += f'<h4>{date}</h4>'
-        html_content += f'<h3>{title}</h3>'
+        else:
+            start, link = line.split(': ', maxsplit=1)
+            link = link[:-1]
+
+            # html_content += f'<h4>{date}</h4>'
+            html_content += f'<h3>{title}</h3>'
+            html_content += f'<a href = "{link}">{title}</a>'
 
     elif line.startswith('____'):
         html_content += '</div>'
@@ -91,12 +107,17 @@ html = """
       margin: 10px 0;
     }
     
+    a {
+      color: black;
+      text-align: center;
+    }
+    
     </style>
   </head>
   
   <header>
   <h1>Financial News Report</h1>
-  <p>2023/9/4 ~ 2023/9/10</p>
+  <p>{today}</p>
   </header>
   
   <body>
@@ -108,6 +129,8 @@ html = """
 with open('report.html', 'w') as f:
 
   html = html.replace('{html_content}', html_content)
+  html = html.replace('{today}', today)
+
 
   f.write(html)
 

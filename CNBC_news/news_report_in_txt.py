@@ -61,6 +61,7 @@ def output_report(df):
             company_name = row['company_names']
             title = row['title']
             date = row['date']
+            link = row['link']
 
             # Print out the news summary by company
             f.write(f"Company: {company_name}\n")
@@ -72,9 +73,11 @@ def output_report(df):
                 if title_i[0] == ',':
                    title_i = title_i[2:] # remove ', ' for >=2 entries
                 date_i = date[i]
+                link_i = link[i]
 
                 if title_i not in title_list:
                     f.write(f"--{date_i}: {title_i};\n")
+                    f.write(f"--Link: {link_i};\n")
                     title_list.append(title_i)
 
             f.write("____" * 20 + "\n" * 2)  # Visually separate news
