@@ -44,7 +44,7 @@ for line in lines:
 
             # html_content += f'<h4>{date}</h4>'
             html_content += f'<h3>{title}</h3>'
-            html_content += f'<a href = "{link}">{title}</a>'
+            html_content += f'<a class="link" style="text-decoration: underline;" href="{link}"> *article link* </a>'
 
     elif line.startswith('____'):
         html_content += '</div>'
@@ -107,10 +107,29 @@ html = """
       margin: 10px 0;
     }
     
-    a {
-      color: black;
-      text-align: center;
+    a:link {
+       color: black;
+       background-color: transparent;
+       text-decoration: none;
+       text-align:center;
     }
+    a:visited {
+       color: deepskyblue;
+       background-color: transparent;
+       text-decoration: none;
+    }
+    a:active {
+       color: greenyellow;
+       background-color: transparent;
+    }
+    
+    .link {
+      position: relative;
+      text-decoration: underline;
+      buttom: 5px;
+      left: 450px;
+    }
+    
     
     </style>
   </head>
@@ -126,7 +145,7 @@ html = """
   </html>
 """
 
-with open('report.html', 'w') as f:
+with open(f'report_{today}.html', 'w') as f:
 
   html = html.replace('{html_content}', html_content)
   html = html.replace('{today}', today)
