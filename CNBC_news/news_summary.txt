@@ -1,248 +1,263 @@
-Company: AMC
---2023/09/06: Shares of AMC slide after theater chain announces plan to sell stock;
---Link: https://www.cnbc.com/2023/09/06/amc-shares-fall-as-it-announces-plan-to-sell-additional-stock.html;
+Company: 365 Copilot
+--2023/09/21: Microsoft will start selling 365 Copilot software to enterprises Nov. 1;
+--Link: https://www.cnbc.com/2023/09/21/microsoft-365-copilot-software-becomes-available-to-enterprises-nov-1.html;
 ________________________________________________________________________________
 
-Company: Adobe
---2023/09/08: Stocks making big premarket moves: Kroger, DocuSign, Snowflake, Adobe and more;
---Link: https://www.cnbc.com/2023/09/08/premarket-movers-kroger-docusign-snowflake-adobe-and-more.html;
+Company: ARM
+--2023/09/22: Final Trades: ARM, WMT, VC;
+--Link: https://www.cnbc.com/video/2023/09/22/final-trades-arm-wmt-vc.html;
 ________________________________________________________________________________
 
-Company: Adyen
---2023/09/07: Stripe rival Adyen secures banking license in the UK;
---Link: https://www.cnbc.com/2023/09/07/stripe-rival-adyen-secures-banking-license-in-the-uk.html;
+Company: Accenture
+--2023/09/22: Cramer's week ahead: Earnings from Costco, Paychex and Accenture;
+--Link: https://www.cnbc.com/2023/09/22/cramers-week-ahead-earnings-from-costco-paychex-and-accenture.html;
 ________________________________________________________________________________
 
-Company: AeroVironment
---2023/09/06: Ukraine drone supplier AeroVironment soars more than 20%;
---Link: https://www.cnbc.com/2023/09/06/ukraine-drone-supplier-aerovironment-soars-more-than-20percent-heads-for-best-day-in-more-than-2-years.html;
+Company: Activision Blizzard
+--2023/09/22: UK regulator says it may clear Microsoft's new Activision Blizzard takeover offer;
+--Link: https://www.cnbc.com/2023/09/22/uk-regulators-say-may-clear-microsofts-new-activision-takeover-deal.html;
 ________________________________________________________________________________
 
-Company: African Union
---2023/09/09: G20 welcomes African Union as permanent member at Delhi summit;
---Link: https://www.cnbc.com/2023/09/09/g20-african-union-au.html;
+Company: Adidas
+--2023/09/20: Adidas CEO says Kanye West didn't mean antisemitic remarks, isn't a bad person;
+--Link: https://www.cnbc.com/2023/09/20/adidas-ceo-bjorn-gulden-says-kanye-west-didnt-mean-antisemitic-remarks.html;
+________________________________________________________________________________
+
+Company: Airbnb
+--2023/09/19: Meet Airbnb's official party pooper, who reduced partying by 55% in two years;
+--Link: https://www.cnbc.com/2023/09/19/airbnb-party-preventer-naba-banerjee-reduced-parties-55percent-in-two-years.html;
+________________________________________________________________________________
+
+Company: Alibaba
+--2023/09/22: Stocks making the biggest moves premarket: AstraZeneca, Wayfair, Alibaba;
+--Link: https://www.cnbc.com/2023/09/22/stocks-making-the-biggest-moves-premarket-astrazeneca-wayfair-alibaba-and-more.html;
 ________________________________________________________________________________
 
 Company: Amazon
---2023/09/06: Amazon lawsuit from FTC expected as soon as this month — here's what's at stake;
---Link: https://www.cnbc.com/2023/09/06/ftcs-antitrust-case-against-amazon-expected-soon-reports.html;
+--2023/09/19: Amazon doesn't need the hype of AI for its stock to trade higher, says Ritholtz's Josh Brown;
+--Link: https://www.cnbc.com/video/2023/09/19/amazon-doesnt-need-the-hype-of-ai-for-its-stock-to-trade-higher-says-ritholtzas-josh-brown.html;
+--2023/09/22: Amazon is bringing ads to Prime Video — ad-free tier to cost extra $2.99 a month;
+--Link: https://www.cnbc.com/2023/09/22/amazon-prime-video-ads-start-in-2024.html;
+--2023/09/20: Amazon gives Alexa an AI facelift as it launches new smart speakers;
+--Link: https://www.cnbc.com/2023/09/20/amazon-event-2023-heres-everything-the-company-just-announced.html;
+--2023/09/19: Op-ed: FTC's crackdown against Amazon will help long-term innovation;
+--Link: https://www.cnbc.com/2023/09/19/op-ed-ftc-amazon-crackdown-will-help-innovation-bradley-tusk.html;
+--2023/09/19: Amazon adding 250,000 workers for the holidays and bumping average pay;
+--Link: https://www.cnbc.com/2023/09/19/amazon-adding-250000-workers-for-the-holidays-and-bumping-average-pay.html;
 ________________________________________________________________________________
 
-Company: American Electric Power
---2023/09/08: Cramer's Lightning Round: American Electric Power is a buy;
---Link: https://www.cnbc.com/2023/09/08/cramers-lightning-round-american-electric-power-is-a-buy.html;
-________________________________________________________________________________
-
-Company: Amgen
---2023/09/05: FTC clears Amgen buyout of Horizon: What it means for other pharma deals;
---Link: https://www.cnbc.com/2023/09/05/ftc-clears-amgen-horizon-buyout-what-it-means-for-other-pharma-deals.html;
-________________________________________________________________________________
-
-Company: Appen
---2023/09/06: Inside the turmoil at Appen, the former AI darling that's reeling from mounting losses;
---Link: https://www.cnbc.com/2023/09/06/appen-which-helps-amazon-and-google-train-ai-is-reeling.html;
+Company: Anheuser-Busch
+--2023/09/20: Anheuser-Busch to stop cutting off Clydesdale horse tails after backlash;
+--Link: https://www.cnbc.com/2023/09/20/anheuser-busch-to-stop-cutting-off-clydesdale-horse-tails.html;
 ________________________________________________________________________________
 
 Company: Apple
---2023/09/07: Apple stock is under pressure: What you need to know;
---Link: https://www.cnbc.com/video/2023/09/07/apple-stock-is-under-pressure-what-you-need-to-know.html;
---2023/09/07: Stocks making the biggest moves premarket: Apple, WestRock, McDonald's and more;
---Link: https://www.cnbc.com/2023/09/07/stocks-making-the-biggest-moves-premarket-aapl-wrk-mcd.html;
---2023/09/06: Apple buying Disney would be a storybook ending for Iger, but fairy tales aren't real;
---Link: https://www.cnbc.com/2023/09/06/apple-disney-merger-iger.html;
---2023/09/08: Apple's iPhone 15 event kicks off on Tuesday. Here's what to expect;
---Link: https://www.cnbc.com/2023/09/08/apples-iphone-15-event-kicks-off-on-tuesday-heres-what-to-expect.html;
---2023/09/07: EU's crackdown on Apple, Meta and others is to avoid forced breakups, top official says;
---Link: https://www.cnbc.com/2023/09/07/eus-crackdown-on-apple-meta-and-others-is-to-avoid-forced-breakups-top-official-says.html;
---2023/09/07: Apple shares fall after reports of China ban on iPhone use by government workers;
---Link: https://www.cnbc.com/2023/09/07/apple-shares-fall-after-reports-that-china-banned-iphone-use-by-government-employees.html;
---2023/09/06: Apple and Arm sign deal for chip technology that goes beyond 2040;
---Link: https://www.cnbc.com/2023/09/06/apple-and-arm-sign-deal-for-chip-technology-that-goes-beyond-2040.html;
+--2023/09/22: Chart Master: The Chart Master sticks to Apple sell call;
+--Link: https://www.cnbc.com/video/2023/09/22/chart-master-the-chart-master-sticks-to-apple-sell-call.html;
+--2023/09/22: Apple CEO Tim Cook appears in New York to celebrate iPhone 15 release;
+--Link: https://www.cnbc.com/2023/09/22/apple-ceo-tim-cook-appears-in-new-york-to-celebrate-iphone-15-release.html;
+--2023/09/20: Apple, Goldman were planning iPhone stock-trading feature until markets turned;
+--Link: https://www.cnbc.com/2023/09/20/apple-goldman-sachs-were-planning-a-stock-trading-feature-for-iphones.html;
+--2023/09/19: Apple iPhone 15 Pro review: Lighter weight makes a huge difference;
+--Link: https://www.cnbc.com/2023/09/19/apple-iphone-15-pro-review-lighter-weight-makes-a-huge-difference.html;
+________________________________________________________________________________
+
+Company: Ark
+--2023/09/20: Ark CEO Cathie Wood says she avoided the Arm IPO frenzy. Here's why;
+--Link: https://www.cnbc.com/2023/09/20/ark-ceo-cathie-wood-says-she-swerved-the-arm-ipo-frenzy-heres-why.html;
 ________________________________________________________________________________
 
 Company: Arm
---2023/09/06: Apple and Arm sign deal for chip technology that goes beyond 2040;
---Link: https://www.cnbc.com/2023/09/06/apple-and-arm-sign-deal-for-chip-technology-that-goes-beyond-2040.html;
+--2023/09/20: Ark CEO Cathie Wood says she avoided the Arm IPO frenzy. Here's why;
+--Link: https://www.cnbc.com/2023/09/20/ark-ceo-cathie-wood-says-she-swerved-the-arm-ipo-frenzy-heres-why.html;
 ________________________________________________________________________________
 
-Company: BMW
---2023/09/08: From BMW to Porsche: The cars on display at one of the world's biggest auto shows;
---Link: https://www.cnbc.com/2023/09/08/bmw-mercedes-byd-and-porsche-cars-on-display-at-iaa-motor-show.html;
+Company: AstraZeneca
+--2023/09/22: Stocks making the biggest moves premarket: AstraZeneca, Wayfair, Alibaba;
+--Link: https://www.cnbc.com/2023/09/22/stocks-making-the-biggest-moves-premarket-astrazeneca-wayfair-alibaba-and-more.html;
+--2023/09/22: European markets close lower on prospect of higher for longer rates;
+--Link: https://www.cnbc.com/2023/09/22/europe-markets-open-to-close-higher-for-longer-rate-prospects-in-view.html;
 ________________________________________________________________________________
 
-Company: BTIG
---2023/09/08: BTIG's Jonathan Krinsky: Too many under the surface risk for bull rally return;
---Link: https://www.cnbc.com/video/2023/09/08/btigs-jonathan-krinsky-too-many-under-the-surface-risk-for-bull-rally-return.html;
+Company: Bank of Japan
+--2023/09/22: Asia markets pare losses as Bank of Japan leaves monetary policy unchanged;
+--Link: https://www.cnbc.com/2023/09/22/asia-stock-markets-today-live-updates.html;
 ________________________________________________________________________________
 
-Company: British American Tobacco
---2023/09/07: British American Tobacco finalizes Russia exit with sale to local managers;
---Link: https://www.cnbc.com/2023/09/07/british-american-tobacco-finalizes-russia-exit.html;
+Company: Biden
+--2023/09/22: Biden to offer Ukraine small number of long-range missiles, officials say;
+--Link: https://www.cnbc.com/2023/09/22/ukraine-war-live-updates-latest-news-on-russia-and-the-war-in-ukraine.html;
+--2023/09/22:  Kremlin slams 'aggressive' Poland;
+--Link: https://www.cnbc.com/2023/09/22/ukraine-war-live-updates-latest-news-on-russia-and-the-war-in-ukraine.html;
 ________________________________________________________________________________
 
-Company: C3.ai
---2023/09/07: Stocks making the biggest moves midday: ChargePoint, Seagate, C3.ai and more;
---Link: https://www.cnbc.com/2023/09/07/stocks-making-the-biggest-moves-midday-chargepoint-holdings-seagate-technology-c3ai-and-more-.html;
+Company: Bird
+--2023/09/22: Scooter company Bird delisted by NYSE after stock collapse, will trade over the counter;
+--Link: https://www.cnbc.com/2023/09/22/scooter-company-bird-delisted-from-nyse-will-trade-over-the-counter.html;
+________________________________________________________________________________
+
+Company: Bridgewater
+--2023/09/21: Ex-Bridgewater CEO McCormick would get big money backing for Senate run in Pa.;
+--Link: https://www.cnbc.com/2023/09/21/dave-mccormick-set-for-pennsylvania-senate-run-fundraising.html;
+________________________________________________________________________________
+
+Company: Broadcom
+--2023/09/21: Stocks making the biggest moves midday: Splunk, Cisco, Broadcom, Fox and more;
+--Link: https://www.cnbc.com/2023/09/21/stocks-making-the-biggest-moves-midday-splk-foxa-avgo-csco.html;
 ________________________________________________________________________________
 
 Company: CNBC
---2023/09/08: CNBC Daily Open: Employers are holding on to workers — and it’s costing them;
---Link: https://www.cnbc.com/2023/09/08/stock-markets-employers-are-holding-on-to-workers-thats-costly.html;
---2023/09/08: CNBC's 'Halftime' traders debate the Fed's next move and market impact;
---Link: https://www.cnbc.com/video/2023/09/08/cnbcs-halftime-traders-debate-the-feds-next-move-and-market-impact.html;
+--2023/09/22: Nucor CEO talks steel oversupply to CNBC's Jim Cramer;
+--Link: https://www.cnbc.com/2023/09/22/nucor-ceo-talks-steel-oversupply.html;
+--2023/09/22: CNBC Daily Open: Banishing the AI hallucination;
+--Link: https://www.cnbc.com/2023/09/22/stock-markets-banishing-the-ai-hallucination.html;
 ________________________________________________________________________________
 
-Company: ChargePoint
---2023/09/07: Stocks making the biggest moves midday: ChargePoint, Seagate, C3.ai and more;
---Link: https://www.cnbc.com/2023/09/07/stocks-making-the-biggest-moves-midday-chargepoint-holdings-seagate-technology-c3ai-and-more-.html;
+Company: CNN
+--2023/09/19: CNN has a new CEO and a new mission: Build a sustainable business;
+--Link: https://www.cnbc.com/2023/09/19/new-cnn-ceo-mark-thompson-will-concentrate-on-cnns-5-year-viability.html;
 ________________________________________________________________________________
 
-Company: Charter
---2023/09/07: Charter and Disney aren't budging in blackout fight as NFL season kicks off;
---Link: https://www.cnbc.com/2023/09/07/disney-charter-blackout-nfl-season.html;
+Company: Cisco
+--2023/09/21: Stocks making the biggest moves midday: Splunk, Cisco, Broadcom, Fox and more;
+--Link: https://www.cnbc.com/2023/09/21/stocks-making-the-biggest-moves-midday-splk-foxa-avgo-csco.html;
+--2023/09/21: Cisco makes largest acquisition, buying cybersecurity company Splunk for $28 billion;
+--Link: https://www.cnbc.com/2023/09/21/cisco-acquiring-splunk-for-157-a-share-in-cash.html;
 ________________________________________________________________________________
 
-Company: Comcast
---2023/09/06: Comcast, Disney move up deadline to decide Hulu future ownership;
---Link: https://www.cnbc.com/2023/09/06/comcast-disney-move-up-deadline-to-decide-hulu-future-ownership.html;
+Company: Citadel Securities LLC
+--2023/09/22: SEC slaps Citadel Securities LLC with $7M fine to settle short selling charges;
+--Link: https://www.cnbc.com/2023/09/22/sec-slaps-citadel-with-7-million-fine-to-settle-short-selling-charges.html;
+________________________________________________________________________________
+
+Company: Confluent
+--2023/09/22: Cramer's Lightning Round: Confluent has 'some of the best enterprise software in the world';
+--Link: https://www.cnbc.com/2023/09/22/cramers-lightning-round-confluent-enterprise-software.html;
 ________________________________________________________________________________
 
 Company: Congress
---2023/09/07: Former Trump aide Peter Navarro guilty of two counts of contempt of Congress;
---Link: https://www.cnbc.com/2023/09/07/verdict-peter-navarro-contempt-of-congress-jan6-case.html;
+--2023/09/21: Ukraine leader Zelenskyy meets with Biden, Congress;
+--Link: https://www.cnbc.com/2023/09/21/ukraine-leader-zelenskyy-to-meet-with-biden-congress.html;
+________________________________________________________________________________
+
+Company: Constellation Energy
+--2023/09/21: Constellation Energy CEO emphasizes the reliability of nuclear power;
+--Link: https://www.cnbc.com/2023/09/21/constellation-energy-ceo-emphasizes-the-reliability-of-nuclear-power-.html;
+________________________________________________________________________________
+
+Company: Costco
+--2023/09/22: Cramer's week ahead: Earnings from Costco, Paychex and Accenture;
+--Link: https://www.cnbc.com/2023/09/22/cramers-week-ahead-earnings-from-costco-paychex-and-accenture.html;
 ________________________________________________________________________________
 
 Company: DOJ
---2023/09/08: Here's how Google plans to fight the DOJ;
---Link: https://www.cnbc.com/2023/09/08/heres-how-google-plans-to-fight-the-doj.html;
+--2023/09/20: SpaceX countersues DOJ, seeking to dismiss hiring discrimination case;
+--Link: https://www.cnbc.com/2023/09/20/spacex-countersues-doj-in-hiring-discrimination-case.html;
 ________________________________________________________________________________
 
-Company: DeSantis
---2023/09/07: DeSantis board asks court to dismiss Disney's counterclaims in contract clash;
---Link: https://www.cnbc.com/2023/09/07/desantis-board-hits-back-at-disney-in-legal-fight.html;
+Company: Darden Restaurants
+--2023/09/21: Olive Garden parent Darden Restaurants beats earnings estimates;
+--Link: https://www.cnbc.com/2023/09/21/darden-restaurants-dri-q1-2024-earnings.html;
+________________________________________________________________________________
+
+Company: Deere
+--2023/09/22: Stocks making the biggest moves midday: Ford, Scholastic, Squarespace, Deere and more;
+--Link: https://www.cnbc.com/2023/09/22/stocks-making-the-biggest-moves-midday-f-schl-sqsp-de-and-more.html;
+________________________________________________________________________________
+
+Company: Defense
+--2023/09/21: House recesses after Defense bill, government funding plan implode;
+--Link: https://www.cnbc.com/2023/09/21/house-speaker-mccarthy-squeezed-in-shutdown-fight-markets-worry.html;
 ________________________________________________________________________________
 
 Company: Disney
---2023/09/07: Charter CEO: Disney and ESPN are the lynchpins in this dispute;
---Link: https://www.cnbc.com/video/2023/09/07/charter-ceo-disney-and-espn-are-the-lynchpins-in-this-dispute.html;
---2023/09/07: Charter and Disney aren't budging in blackout fight as NFL season kicks off;
---Link: https://www.cnbc.com/2023/09/07/disney-charter-blackout-nfl-season.html;
---2023/09/07: Disney drops all but free speech claim in political retaliation suit against DeSantis;
---Link: https://www.cnbc.com/2023/09/07/disney-drops-all-but-free-speech-claim-in-political-retaliation-suit-against-desantis.html;
---2023/09/06: Apple buying Disney would be a storybook ending for Iger, but fairy tales aren't real;
---Link: https://www.cnbc.com/2023/09/06/apple-disney-merger-iger.html;
---2023/09/06: Disney's wildest ride: Iger, Chapek and the making of an epic succession mess;
---Link: https://www.cnbc.com/2023/09/06/disney-succession-mess-iger-chapek.html;
---2023/09/06: Comcast, Disney move up deadline to decide Hulu future ownership;
---Link: https://www.cnbc.com/2023/09/06/comcast-disney-move-up-deadline-to-decide-hulu-future-ownership.html;
---2023/09/07: DeSantis board asks court to dismiss Disney's counterclaims in contract clash;
---Link: https://www.cnbc.com/2023/09/07/desantis-board-hits-back-at-disney-in-legal-fight.html;
+--2023/09/19: Disney plans to nearly double its investment in parks and cruises business;
+--Link: https://www.cnbc.com/2023/09/19/disney-plans-to-speed-up-and-expand-investment-in-parks-and-cruises-business.html;
 ________________________________________________________________________________
 
-Company: DocuSign
---2023/09/08: Stocks making big premarket moves: Kroger, DocuSign, Snowflake, Adobe and more;
---Link: https://www.cnbc.com/2023/09/08/premarket-movers-kroger-docusign-snowflake-adobe-and-more.html;
---2023/09/08: Stocks making the biggest moves midday: Kroger, DocuSign, Planet Labs, First Solar and more;
---Link: https://www.cnbc.com/2023/09/08/stocks-making-the-biggest-moves-midday-kroger-docusign-planet-labs-first-solar-and-more.html;
---2023/09/07: Stocks making the biggest moves after hours: DocuSign, Smartsheet and more;
---Link: https://www.cnbc.com/2023/09/07/stocks-making-the-biggest-moves-after-hours-docu-smar-pl.html;
+Company: Eli Lilly
+--2023/09/19: Eli Lilly sues clinics allegedly selling knockoff versions of Mounjaro drug;
+--Link: https://www.cnbc.com/2023/09/19/eli-lilly-sues-clinics-allegedly-selling-knockoff-versions-of-mounjaro.html;
 ________________________________________________________________________________
 
-Company: ESPN
---2023/09/07: Charter CEO: Disney and ESPN are the lynchpins in this dispute;
---Link: https://www.cnbc.com/video/2023/09/07/charter-ceo-disney-and-espn-are-the-lynchpins-in-this-dispute.html;
-________________________________________________________________________________
-
-Company: EU
---2023/09/07: EU's crackdown on Apple, Meta and others is to avoid forced breakups, top official says;
---Link: https://www.cnbc.com/2023/09/07/eus-crackdown-on-apple-meta-and-others-is-to-avoid-forced-breakups-top-official-says.html;
+Company: Ex-
+--2023/09/21: Ex-Bridgewater CEO McCormick would get big money backing for Senate run in Pa.;
+--Link: https://www.cnbc.com/2023/09/21/dave-mccormick-set-for-pennsylvania-senate-run-fundraising.html;
 ________________________________________________________________________________
 
 Company: FAA
---2023/09/08: FAA orders SpaceX to take corrective actions on Starship, keeps rocket grounded;
---Link: https://www.cnbc.com/2023/09/08/faa-starship-grounded-corrective-action.html;
---2023/09/07: SpaceX is not yet cleared for another Starship Super Heavy test flight, FAA says;
---Link: https://www.cnbc.com/2023/09/07/spacex-not-yet-cleared-for-second-starship-super-heavy-test-flight-faa-says.html;
---2023/09/07: Biden will nominate a former Obama official to run the FAA;
---Link: https://www.cnbc.com/2023/09/07/biden-will-nominate-a-former-obama-official-to-run-the-faa.html;
-________________________________________________________________________________
-
-Company: FCC
---2023/09/07: Senate confirms Anna Gomez to FCC, breaking yearslong deadlock at the agency;
---Link: https://www.cnbc.com/2023/09/07/senate-confirms-anna-gomez-to-fcc-breaking-years-long-agency-deadlock.html;
+--2023/09/20: With flurry of FAA approvals, many more drones are about to fly over U.S. skies;
+--Link: https://www.cnbc.com/2023/09/20/in-flurry-of-faa-approvals-drones-are-about-to-fly-far-over-us-skies.html;
 ________________________________________________________________________________
 
 Company: FTC
---2023/09/05: FTC clears Amgen buyout of Horizon: What it means for other pharma deals;
---Link: https://www.cnbc.com/2023/09/05/ftc-clears-amgen-horizon-buyout-what-it-means-for-other-pharma-deals.html;
---2023/09/06: Amazon lawsuit from FTC expected as soon as this month — here's what's at stake;
---Link: https://www.cnbc.com/2023/09/06/ftcs-antitrust-case-against-amazon-expected-soon-reports.html;
---2023/09/08: TurboTax maker Intuit deceived users with 'free' tax products, FTC judge rules;
---Link: https://www.cnbc.com/2023/09/08/ftc-judge-turbotax-maker-intuit-deceived-users-with-free-tax-offers.html;
+--2023/09/19: Op-ed: FTC's crackdown against Amazon will help long-term innovation;
+--Link: https://www.cnbc.com/2023/09/19/op-ed-ftc-amazon-crackdown-will-help-innovation-bradley-tusk.html;
+--2023/09/21: FTC sues Texas anesthesiology provider to bust monopoly;
+--Link: https://www.cnbc.com/2023/09/21/ftc-sues-texas-anesthesiology-provider-to-bust-monopoly.html;
 ________________________________________________________________________________
 
 Company: FTX
---2023/09/07: Former FTX exec Salame to forfeit $1.5 billion, pleads guilty to 2 criminal counts;
---Link: https://www.cnbc.com/2023/09/07/former-ftx-exec-salame-to-forfeit-1point5-billion-pleads-guilty-to-two-criminal-counts.html;
+--2023/09/19: FTX sues Sam Bankman-Fried's parents for millions in 'misappropriated funds';
+--Link: https://www.cnbc.com/2023/09/19/sbfs-parents-sued-by-ftx-for-millions-of-dollars-in-misappropriated-funds.html;
 ________________________________________________________________________________
 
 Company: Fed
---2023/09/08: Fed's inflation fight isn't done yet despite good progress, says former Fed governor;
---Link: https://www.cnbc.com/video/2023/09/08/feds-inflation-fight-isnt-done-yet-despite-good-progress-says-former-fed-governor.html;
---2023/09/08: Gold edges up as dollar rally cools, traders eye more Fed cues;
---Link: https://www.cnbc.com/2023/09/08/gold-set-for-weekly-dip-with-resilient-us-economy-in-focus.html;
---2023/09/08: CNBC's 'Halftime' traders debate the Fed's next move and market impact;
---Link: https://www.cnbc.com/video/2023/09/08/cnbcs-halftime-traders-debate-the-feds-next-move-and-market-impact.html;
+--2023/09/22: Two key Fed officials express support for keeping interest rates high;
+--Link: https://www.cnbc.com/2023/09/22/feds-susan-collins-expresses-support-for-holding-interest-rates-high.html;
+--2023/09/20: Take the Fed forecast with a grain of salt. It has a terrible track record;
+--Link: https://www.cnbc.com/2023/09/20/take-fed-forecast-with-a-grain-of-salt-it-has-a-terrible-track-record.html;
+--2023/09/19: Fed kicks off 2-day meeting: What investors should expect;
+--Link: https://www.cnbc.com/video/2023/09/19/fed-kicks-off-2-day-meeting-what-investors-should-expect.html;
 ________________________________________________________________________________
 
-Company: First Solar
---2023/09/08: Stocks making the biggest moves midday: Kroger, DocuSign, Planet Labs, First Solar and more;
---Link: https://www.cnbc.com/2023/09/08/stocks-making-the-biggest-moves-midday-kroger-docusign-planet-labs-first-solar-and-more.html;
+Company: Foodpanda
+--2023/09/22: Foodpanda confirms layoffs and talks to sell part of Asia food delivery unit;
+--Link: https://www.cnbc.com/2023/09/22/foodpanda-confirms-talks-to-sell-part-of-its-asia-business-layoffs.html;
 ________________________________________________________________________________
 
-Company: Flexport
---2023/09/08: Flexport founder publicly slams handpicked successor for hiring spree, rescinds offers;
---Link: https://www.cnbc.com/2023/09/08/flexport-ceo-ryan-petersen-rescinds-hiring-offers-cuts-office-space.html;
---2023/09/06: Flexport CEO Dave Clark resigns from logistics startup after one year in role;
---Link: https://www.cnbc.com/2023/09/06/flexport-ceo-dave-clark-resigns-from-logistics-startup-after-one-year-in-the-role.html;
+Company: Ford
+--2023/09/22: Stocks making the biggest moves midday: Ford, Scholastic, Squarespace, Deere and more;
+--Link: https://www.cnbc.com/2023/09/22/stocks-making-the-biggest-moves-midday-f-schl-sqsp-de-and-more.html;
+--2023/09/22: UAW targets 38 facilities at GM and Stellantis for expanded strikes, skips Ford;
+--Link: https://www.cnbc.com/2023/09/22/uaw-strike-expands-to-38-more-facilities-at-gm-and-stellantis.html;
+--2023/09/19: Ford barrels toward Canadian strike that could affect F-Series pickup production;
+--Link: https://www.cnbc.com/2023/09/19/ford-faces-possible-canadian-strike-amid-uaw-strike.html;
 ________________________________________________________________________________
 
-Company: G20
---2023/09/09: G20 welcomes African Union as permanent member at Delhi summit;
---Link: https://www.cnbc.com/2023/09/09/g20-african-union-au.html;
---2023/09/08: U.S. slams Russia’s ‘sham elections’ in occupied areas;
---Link: https://www.cnbc.com/2023/09/08/ukraine-war-live-updates-latest-news-on-russia-and-the-war-in-ukraine.html;
---2023/09/08:  India seeks G20 consensus on the war;
---Link: https://www.cnbc.com/2023/09/08/ukraine-war-live-updates-latest-news-on-russia-and-the-war-in-ukraine.html;
+Company: Fox
+--2023/09/21: Stocks making the biggest moves midday: Splunk, Cisco, Broadcom, Fox and more;
+--Link: https://www.cnbc.com/2023/09/21/stocks-making-the-biggest-moves-midday-splk-foxa-avgo-csco.html;
+--2023/09/21: Rupert Murdoch steps down as chairman of Fox and News Corp.;
+--Link: https://www.cnbc.com/2023/09/21/rupert-murdoch-steps-down-as-chairman-of-fox-and-news-corp.html;
 ________________________________________________________________________________
 
 Company: GM
---2023/09/07: UAW president calls GM offer ‘insulting’ ahead of strike deadline a week away;
---Link: https://www.cnbc.com/2023/09/07/gm-offers-wage-increases-hefty-bonuses-uaw.html;
+--2023/09/22: UAW targets 38 facilities at GM and Stellantis for expanded strikes, skips Ford;
+--Link: https://www.cnbc.com/2023/09/22/uaw-strike-expands-to-38-more-facilities-at-gm-and-stellantis.html;
+--2023/09/20: GM executive slams UAW over 'flow of misinformation,' rhetoric during strike;
+--Link: https://www.cnbc.com/2023/09/20/gm-slams-uaw-rhetoric-on-day-six-of-strike.html;
+--2023/09/20: GM and Stellantis just laid off more than 2,000 workers because of UAW strike;
+--Link: https://www.cnbc.com/2023/09/20/gm-stla-layoffs-uaw-strike-2023.html;
 ________________________________________________________________________________
 
-Company: GOP
---2023/09/07: Trump Georgia DA rejects House GOP demand for records as 'unjustified and illegal';
---Link: https://www.cnbc.com/2023/09/07/trump-georgia-da-rejects-house-gop-demand-for-records-as-illegal.html;
---2023/09/06: McConnell vows to finish Senate term despite health scares, GOP concerns;
---Link: https://www.cnbc.com/2023/09/06/mcconnell-vows-to-finish-senate-term-despite-health-scares-gop-concerns.html;
+Company: Goldman
+--2023/09/20: Stocks making biggest premarket moves: Pinterest, Instacart, Goldman and more;
+--Link: https://www.cnbc.com/2023/09/20/stocks-making-biggest-premarket-moves-pinterest-instacart-and-more.html;
+--2023/09/20: Apple, Goldman were planning iPhone stock-trading feature until markets turned;
+--Link: https://www.cnbc.com/2023/09/20/apple-goldman-sachs-were-planning-a-stock-trading-feature-for-iphones.html;
 ________________________________________________________________________________
 
 Company: Goldman Sachs
---2023/09/07: Goldman Sachs CEO David Solomon sees Wall Street rebound if tech IPOs perform;
---Link: https://www.cnbc.com/2023/09/07/goldman-sachs-ceo-david-solomon-ipo-market.html;
+--2023/09/22: Goldman Sachs says the weak yen is a 'double-edged sword' for Japan stocks;
+--Link: https://www.cnbc.com/video/2023/09/22/goldman-sachs-says-weak-yen-is-a-double-edged-sword-for-japan-stocks.html;
+--2023/09/22: SEC fines Goldman Sachs over inaccurate, incomplete trading information;
+--Link: https://www.cnbc.com/2023/09/22/sec-fines-goldman-sachs-over-inaccurate-trading-information.html;
 ________________________________________________________________________________
 
-Company: Google
---2023/09/08: Here's how Google plans to fight the DOJ;
---Link: https://www.cnbc.com/2023/09/08/heres-how-google-plans-to-fight-the-doj.html;
---2023/09/07: Google will soon require disclosures for AI-generated election ads;
---Link: https://www.cnbc.com/2023/09/07/google-will-soon-require-disclosures-for-ai-generated-election-ads-.html;
-________________________________________________________________________________
-
-Company: H&M
---2023/09/07: Stripe, Shopify, H&M spend $7 million on carbon removal from 12 new companies;
---Link: https://www.cnbc.com/2023/09/07/stripe-shopify-hm-spend-7-million-on-carbon-removal-via-frontier.html;
+Company: HSBC
+--2023/09/22: HSBC-backed startup is using AI to help banks fight crime, eyeing Nasdaq IPO;
+--Link: https://www.cnbc.com/2023/09/22/hsbc-backed-startup-is-using-ai-to-help-banks-fight-financial-crime.html;
 ________________________________________________________________________________
 
 Company: Hamilton Lane
@@ -251,288 +266,290 @@ Company: Hamilton Lane
 ________________________________________________________________________________
 
 Company: Hollywood
---2023/09/05: Women are fueling the box office in China and Hollywood should take note;
---Link: https://www.cnbc.com/2023/09/05/women-are-fueling-the-box-office-in-china-hollywood-should-take-note.html;
-________________________________________________________________________________
-
-Company: Horizon
---2023/09/05: FTC clears Amgen buyout of Horizon: What it means for other pharma deals;
---Link: https://www.cnbc.com/2023/09/05/ftc-clears-amgen-horizon-buyout-what-it-means-for-other-pharma-deals.html;
+--2023/09/21: Hollywood studios, writers near agreement to end strike, hope to finalize deal Thursday, sources say;
+--Link: https://www.cnbc.com/2023/09/21/hollywood-studios-writers-near-agreement-to-end-strike-hope-to-finalize-deal-thursday-sources-say.html;
 ________________________________________________________________________________
 
 Company: House
---2023/09/07: Trump Georgia DA rejects House GOP demand for records as 'unjustified and illegal';
---Link: https://www.cnbc.com/2023/09/07/trump-georgia-da-rejects-house-gop-demand-for-records-as-illegal.html;
+--2023/09/21: House recesses after Defense bill, government funding plan implode;
+--Link: https://www.cnbc.com/2023/09/21/house-speaker-mccarthy-squeezed-in-shutdown-fight-markets-worry.html;
 ________________________________________________________________________________
 
-Company: Hulu
---2023/09/06: Comcast, Disney move up deadline to decide Hulu future ownership;
---Link: https://www.cnbc.com/2023/09/06/comcast-disney-move-up-deadline-to-decide-hulu-future-ownership.html;
-________________________________________________________________________________
-
-Company: Illumina
---2023/09/07: Carl Icahn supports new Illumina CEO Jacob Thaysen months after proxy fight;
---Link: https://www.cnbc.com/2023/09/07/carl-icahn-supports-new-illumina-ceo-thaysen-after-proxy-fight-.html;
-________________________________________________________________________________
-
-Company: Intuit
---2023/09/08: TurboTax maker Intuit deceived users with 'free' tax products, FTC judge rules;
---Link: https://www.cnbc.com/2023/09/08/ftc-judge-turbotax-maker-intuit-deceived-users-with-free-tax-offers.html;
+Company: Instacart
+--2023/09/20: Stocks making the biggest midday moves: Instacart, Steelcase, Klavio and more;
+--Link: https://www.cnbc.com/2023/09/20/stocks-making-the-biggest-moves-midday-cart-scs-bhc.html;
+--2023/09/20: Stocks making biggest premarket moves: Pinterest, Instacart, Goldman and more;
+--Link: https://www.cnbc.com/2023/09/20/stocks-making-biggest-premarket-moves-pinterest-instacart-and-more.html;
+--2023/09/19: Instacart shares start trading on Nasdaq at $42;
+--Link: https://www.cnbc.com/video/2023/09/19/instacart-shares-start-trading-on-nasdaq-at-42.html;
+--2023/09/20: Instacart loses almost all IPO gains by second day of trading as rally fizzles;
+--Link: https://www.cnbc.com/2023/09/20/instacart-loses-almost-all-its-ipo-gains-by-second-day-on-nasdaq.html;
 ________________________________________________________________________________
 
 Company: JPMorgan
---2023/09/07: Mizuho's Jared Holz reacts to JPMorgan's huge obesity drug call;
---Link: https://www.cnbc.com/video/2023/09/07/mizuhos-jared-holz-reacts-to-jpmorgans-huge-obesity-drug-call.html;
+--2023/09/21: JPMorgan legal fees in Jeffrey Epstein sex traffic cases near $14M: former exec;
+--Link: https://www.cnbc.com/2023/09/21/jpmorgan-legal-fees-in-jeffrey-epstein-sex-traffick-cases-revealed.html;
 ________________________________________________________________________________
 
-Company: Khosla Ventures
---2023/09/06: Khosla Ventures backs effort to make orchards of lung-like material to absorb CO2;
---Link: https://www.cnbc.com/2023/09/06/khosla-ventures-backs-carbon-removal-company-with-lung-like-material.html;
+Company: Kaiser Permanente
+--2023/09/22: More than 75,000 Kaiser Permanente workers threaten to strike;
+--Link: https://www.cnbc.com/2023/09/22/kaiser-permanente-workers-threaten-strike.html;
 ________________________________________________________________________________
 
-Company: Kroger
---2023/09/08: Stocks making big premarket moves: Kroger, DocuSign, Snowflake, Adobe and more;
---Link: https://www.cnbc.com/2023/09/08/premarket-movers-kroger-docusign-snowflake-adobe-and-more.html;
---2023/09/08: Stocks making the biggest moves midday: Kroger, DocuSign, Planet Labs, First Solar and more;
---Link: https://www.cnbc.com/2023/09/08/stocks-making-the-biggest-moves-midday-kroger-docusign-planet-labs-first-solar-and-more.html;
---2023/09/08: Slowing inflation is dragging on Kroger sales, even as consumers feel a pinch;
---Link: https://www.cnbc.com/2023/09/08/kroger-kr-earnings-q2-2023.html;
---2023/09/08: Kroger will pay up to $1.2 billion to settle most nationwide opioid claims;
---Link: https://www.cnbc.com/2023/09/08/kroger-will-pay-up-to-1point2-billion-to-settle-most-nationwide-opioid-claims.html;
+Company: Klavio
+--2023/09/20: Stocks making the biggest midday moves: Instacart, Steelcase, Klavio and more;
+--Link: https://www.cnbc.com/2023/09/20/stocks-making-the-biggest-moves-midday-cart-scs-bhc.html;
 ________________________________________________________________________________
 
-Company: Lucid
---2023/09/07: Lucid is exploring China entry;
---Link: https://www.cnbc.com/2023/09/07/lucid-is-exploring-china-entry-confirms-mass-market-ev-models-ahead.html;
+Company: Klaviyo
+--2023/09/20: Klaviyo shares open at $36.75 in NYSE debut;
+--Link: https://www.cnbc.com/video/2023/09/20/klaviyo-inc-ipo-opens-at-36-point-75.html;
+--2023/09/20: Klaviyo rises 9% in muted NYSE debut after software vendor priced IPO at $30 a share;
+--Link: https://www.cnbc.com/2023/09/20/klaviyo-shares-open-at-36point75-in-nyse-debut.html;
 ________________________________________________________________________________
 
-Company: Lululemon
---2023/09/07: Cramer reviews Lululemon's Q2 earnings, says it's not too late to buy;
---Link: https://www.cnbc.com/2023/09/07/cramer-reviews-lululemons-q2-earnings-says-its-not-too-late-to-buy.html;
+Company: Kraft
+--2023/09/20: Kraft recalls 84,000 cases of American cheese slices over choking hazard;
+--Link: https://www.cnbc.com/2023/09/20/kraft-recalls-singles-american-cheese-slices-over-choking-hazard.html;
+________________________________________________________________________________
+
+Company: Kremlin
+--2023/09/22: Biden to offer Ukraine small number of long-range missiles, officials say;
+--Link: https://www.cnbc.com/2023/09/22/ukraine-war-live-updates-latest-news-on-russia-and-the-war-in-ukraine.html;
+--2023/09/22:  Kremlin slams 'aggressive' Poland;
+--Link: https://www.cnbc.com/2023/09/22/ukraine-war-live-updates-latest-news-on-russia-and-the-war-in-ukraine.html;
 ________________________________________________________________________________
 
 Company: McDonald's
---2023/09/07: Stocks making the biggest moves premarket: Apple, WestRock, McDonald's and more;
---Link: https://www.cnbc.com/2023/09/07/stocks-making-the-biggest-moves-premarket-aapl-wrk-mcd.html;
+--2023/09/22: McDonald's to raise royalty fees for new franchised restaurants;
+--Link: https://www.cnbc.com/2023/09/22/mcdonalds-to-raise-royalty-fees-for-new-franchised-restaurants.html;
 ________________________________________________________________________________
 
-Company: Meta
---2023/09/07: EU's crackdown on Apple, Meta and others is to avoid forced breakups, top official says;
---Link: https://www.cnbc.com/2023/09/07/eus-crackdown-on-apple-meta-and-others-is-to-avoid-forced-breakups-top-official-says.html;
+Company: Medicare
+--2023/09/21: Florida nurse practitioner convicted in $200 million Medicare fraud scheme;
+--Link: https://www.cnbc.com/2023/09/21/florida-nurse-practitioner-convicted-in-200-million-medicare-fraud-scheme.html;
 ________________________________________________________________________________
 
 Company: Microsoft
---2023/09/07: Microsoft and Paige are building world's largest AI model for detecting cancer;
---Link: https://www.cnbc.com/2023/09/07/microsoft-paige-building-worlds-largest-ai-model-to-detect-cancer.html;
---2023/09/06: Microsoft gaming chief Phil Spencer says Starfield is seeing 'huge demand';
---Link: https://www.cnbc.com/2023/09/06/microsoft-gaming-chief-phil-spencer-cites-huge-demand-for-starfield.html;
+--2023/09/22: UK regulator says it may clear Microsoft's new Activision Blizzard takeover offer;
+--Link: https://www.cnbc.com/2023/09/22/uk-regulators-say-may-clear-microsofts-new-activision-takeover-deal.html;
+--2023/09/21: Microsoft will start selling 365 Copilot software to enterprises Nov. 1;
+--Link: https://www.cnbc.com/2023/09/21/microsoft-365-copilot-software-becomes-available-to-enterprises-nov-1.html;
+--2023/09/21: Here's everything Microsoft announced at its Surface and Copilot event;
+--Link: https://www.cnbc.com/2023/09/21/heres-everything-microsoft-announced-at-its-surface-and-copilot-event-in-new-york.html;
 ________________________________________________________________________________
 
-Company: Mizuho
---2023/09/07: Mizuho's Jared Holz reacts to JPMorgan's huge obesity drug call;
---Link: https://www.cnbc.com/video/2023/09/07/mizuhos-jared-holz-reacts-to-jpmorgans-huge-obesity-drug-call.html;
+Company: NBCUniversal
+--2023/09/21: WWE's 'SmackDown' to return to NBCUniversal's USA Network in 2024;
+--Link: https://www.cnbc.com/2023/09/21/wwes-smackdown-to-return-to-nbcuniversals-usa-network.html;
 ________________________________________________________________________________
 
-Company: Moderna
---2023/09/06: Moderna, Pfizer say updated Covid vaccine was effective against BA.2.86 in trial;
---Link: https://www.cnbc.com/2023/09/06/moderna-says-new-covid-vaccine-effective-against-bapoint2point86-variant.html;
+Company: NYSE
+--2023/09/20: Klaviyo shares open at $36.75 in NYSE debut;
+--Link: https://www.cnbc.com/video/2023/09/20/klaviyo-inc-ipo-opens-at-36-point-75.html;
+--2023/09/22: Scooter company Bird delisted by NYSE after stock collapse, will trade over the counter;
+--Link: https://www.cnbc.com/2023/09/22/scooter-company-bird-delisted-from-nyse-will-trade-over-the-counter.html;
+--2023/09/20: Klaviyo rises 9% in muted NYSE debut after software vendor priced IPO at $30 a share;
+--Link: https://www.cnbc.com/2023/09/20/klaviyo-shares-open-at-36point75-in-nyse-debut.html;
 ________________________________________________________________________________
 
-Company: MyPillow
---2023/09/08: New tapes reveal MyPillow CEO Mike Lindell meltdown in 2020 election deposition;
---Link: https://www.cnbc.com/2023/09/08/my-pillow-ceo-mike-lindell-melts-down-in-trump-2020-deposition.html;
+Company: Nasdaq
+--2023/09/22: HSBC-backed startup is using AI to help banks fight crime, eyeing Nasdaq IPO;
+--Link: https://www.cnbc.com/2023/09/22/hsbc-backed-startup-is-using-ai-to-help-banks-fight-financial-crime.html;
 ________________________________________________________________________________
 
-Company: NFL
---2023/09/07: Charter and Disney aren't budging in blackout fight as NFL season kicks off;
---Link: https://www.cnbc.com/2023/09/07/disney-charter-blackout-nfl-season.html;
---2023/09/06: A record 73 million Americans plan to bet on the NFL this season, survey says;
---Link: https://www.cnbc.com/2023/09/06/nfl-week-1-record-number-of-americans-to-bet-on-nfl-this-season-.html;
---2023/09/06: Are you ready to stream football? NFL games are shifting away from regular TV;
---Link: https://www.cnbc.com/2023/09/06/football-nfl-shift-toward-streaming-away-from-regular-tv.html;
+Company: Neuralink
+--2023/09/20: Elon Musk's Neuralink is recruiting patients for its first human trial;
+--Link: https://www.cnbc.com/2023/09/20/elon-musks-neuralink-is-recruiting-patients-for-its-first-human-trial.html;
 ________________________________________________________________________________
 
-Company: NY AG
---2023/09/08: Trump overstated net worth by up to $3.6 billion each year, NY AG says in new filing;
---Link: https://www.cnbc.com/2023/09/08/trump-overstated-net-worth-by-up-to-3point6-billion-per-year-ny-ag-alleges-in-new-filing.html;
+Company: News Corp.
+--2023/09/21: Rupert Murdoch steps down as chairman of Fox and News Corp.;
+--Link: https://www.cnbc.com/2023/09/21/rupert-murdoch-steps-down-as-chairman-of-fox-and-news-corp.html;
 ________________________________________________________________________________
 
-Company: Paige
---2023/09/07: Microsoft and Paige are building world's largest AI model for detecting cancer;
---Link: https://www.cnbc.com/2023/09/07/microsoft-paige-building-worlds-largest-ai-model-to-detect-cancer.html;
+Company: Nomura
+--2023/09/21: US dollar has a 'powerful set of fundamentals', says Nomura;
+--Link: https://www.cnbc.com/video/2023/09/21/us-dollar-has-a-powerful-set-of-fundamentals-says-nomura.html;
 ________________________________________________________________________________
 
-Company: Peloton
---2023/09/07: New York man was killed 'instantly' by Peloton bike, his family says in lawsuit;
---Link: https://www.cnbc.com/2023/09/07/peloton-bike-death-new-york-man-ryan-furtado-killed-instantly-suit-says.html;
+Company: Nucor
+--2023/09/22: Nucor CEO talks steel oversupply to CNBC's Jim Cramer;
+--Link: https://www.cnbc.com/2023/09/22/nucor-ceo-talks-steel-oversupply.html;
 ________________________________________________________________________________
 
-Company: Pfizer
---2023/09/06: Moderna, Pfizer say updated Covid vaccine was effective against BA.2.86 in trial;
---Link: https://www.cnbc.com/2023/09/06/moderna-says-new-covid-vaccine-effective-against-bapoint2point86-variant.html;
+Company: Olive Garden
+--2023/09/21: Olive Garden parent Darden Restaurants beats earnings estimates;
+--Link: https://www.cnbc.com/2023/09/21/darden-restaurants-dri-q1-2024-earnings.html;
 ________________________________________________________________________________
 
-Company: Planet Labs
---2023/09/08: Stocks making the biggest moves midday: Kroger, DocuSign, Planet Labs, First Solar and more;
---Link: https://www.cnbc.com/2023/09/08/stocks-making-the-biggest-moves-midday-kroger-docusign-planet-labs-first-solar-and-more.html;
+Company: OpenAI
+--2023/09/20: John Grisham, George R.R. Martin and other prominent authors sue OpenAI;
+--Link: https://www.cnbc.com/2023/09/20/john-grisham-george-rr-martin-other-prominent-authors-sue-openai.html;
 ________________________________________________________________________________
 
-Company: Porsche
---2023/09/08: From BMW to Porsche: The cars on display at one of the world's biggest auto shows;
---Link: https://www.cnbc.com/2023/09/08/bmw-mercedes-byd-and-porsche-cars-on-display-at-iaa-motor-show.html;
+Company: Paychex
+--2023/09/22: Cramer's week ahead: Earnings from Costco, Paychex and Accenture;
+--Link: https://www.cnbc.com/2023/09/22/cramers-week-ahead-earnings-from-costco-paychex-and-accenture.html;
 ________________________________________________________________________________
 
-Company: RH
---2023/09/08: RH CEO talks potential Miami expansion;
---Link: https://www.cnbc.com/2023/09/08/rh-ceo-talks-potential-miami-expansion.html;
+Company: Philip Morris
+--2023/09/20: Philip Morris weighs options for pharmaceuticals unit to boost health care;
+--Link: https://www.cnbc.com/2023/09/20/philip-morris-considers-selling-stake-in-pharmaceuticals-unit.html;
 ________________________________________________________________________________
 
-Company: Ripple
---2023/09/08: Ripple buys crypto infrastructure startup in its second acquisition of 2023;
---Link: https://www.cnbc.com/2023/09/08/ripple-buys-crypto-infrastructure-startup-in-its-second-acquisition-of-2023.html;
+Company: Pinterest
+--2023/09/20: Stocks making biggest premarket moves: Pinterest, Instacart, Goldman and more;
+--Link: https://www.cnbc.com/2023/09/20/stocks-making-biggest-premarket-moves-pinterest-instacart-and-more.html;
 ________________________________________________________________________________
 
-Company: Roblox
---2023/09/08: Roblox opens its marketplace to the masses while pushing AI and subscriptions;
---Link: https://www.cnbc.com/2023/09/08/roblox-is-letting-game-creators-sell-3d-goods-looks-to-boost-revenue.html;
+Company: Ritholtz
+--2023/09/19: Amazon doesn't need the hype of AI for its stock to trade higher, says Ritholtz's Josh Brown;
+--Link: https://www.cnbc.com/video/2023/09/19/amazon-doesnt-need-the-hype-of-ai-for-its-stock-to-trade-higher-says-ritholtzas-josh-brown.html;
 ________________________________________________________________________________
 
-Company: Roku
---2023/09/06: Roku stock jumps after company says it will lay off 10% of workforce;
---Link: https://www.cnbc.com/2023/09/06/roku-to-lay-off-10percent-of-workforce-stock-jumps.html;
+Company: Rocket Lab
+--2023/09/19: Rocket Lab stock drops after first satellite launch failure in over two years;
+--Link: https://www.cnbc.com/2023/09/19/rocket-lab-stock-drops-after-first-electron-launch-failure-in-years.html;
 ________________________________________________________________________________
 
-Company: Seagate
---2023/09/07: Stocks making the biggest moves midday: ChargePoint, Seagate, C3.ai and more;
---Link: https://www.cnbc.com/2023/09/07/stocks-making-the-biggest-moves-midday-chargepoint-holdings-seagate-technology-c3ai-and-more-.html;
+Company: SEC
+--2023/09/22: SEC fines Goldman Sachs over inaccurate, incomplete trading information;
+--Link: https://www.cnbc.com/2023/09/22/sec-fines-goldman-sachs-over-inaccurate-trading-information.html;
+--2023/09/22: SEC slaps Citadel Securities LLC with $7M fine to settle short selling charges;
+--Link: https://www.cnbc.com/2023/09/22/sec-slaps-citadel-with-7-million-fine-to-settle-short-selling-charges.html;
+________________________________________________________________________________
+
+Company: Scholastic
+--2023/09/22: Stocks making the biggest moves midday: Ford, Scholastic, Squarespace, Deere and more;
+--Link: https://www.cnbc.com/2023/09/22/stocks-making-the-biggest-moves-midday-f-schl-sqsp-de-and-more.html;
 ________________________________________________________________________________
 
 Company: Senate
---2023/09/07: Senate confirms Anna Gomez to FCC, breaking yearslong deadlock at the agency;
---Link: https://www.cnbc.com/2023/09/07/senate-confirms-anna-gomez-to-fcc-breaking-years-long-agency-deadlock.html;
---2023/09/06: McConnell vows to finish Senate term despite health scares, GOP concerns;
---Link: https://www.cnbc.com/2023/09/06/mcconnell-vows-to-finish-senate-term-despite-health-scares-gop-concerns.html;
+--2023/09/21: Ex-Bridgewater CEO McCormick would get big money backing for Senate run in Pa.;
+--Link: https://www.cnbc.com/2023/09/21/dave-mccormick-set-for-pennsylvania-senate-run-fundraising.html;
 ________________________________________________________________________________
 
-Company: Shopify
---2023/09/07: Stripe, Shopify, H&M spend $7 million on carbon removal from 12 new companies;
---Link: https://www.cnbc.com/2023/09/07/stripe-shopify-hm-spend-7-million-on-carbon-removal-via-frontier.html;
-________________________________________________________________________________
-
-Company: Smartsheet
---2023/09/07: Stocks making the biggest moves after hours: DocuSign, Smartsheet and more;
---Link: https://www.cnbc.com/2023/09/07/stocks-making-the-biggest-moves-after-hours-docu-smar-pl.html;
-________________________________________________________________________________
-
-Company: Snowflake
---2023/09/08: Stocks making big premarket moves: Kroger, DocuSign, Snowflake, Adobe and more;
---Link: https://www.cnbc.com/2023/09/08/premarket-movers-kroger-docusign-snowflake-adobe-and-more.html;
+Company: Senate Intelligence
+--2023/09/20: Senate Intelligence chair cautions on AI 'deep fakes' disrupting 2024 election;
+--Link: https://www.cnbc.com/2023/09/20/ai-could-harm-2024-us-election-senate-intelligence-chair-warns.html;
 ________________________________________________________________________________
 
 Company: SpaceX
---2023/09/08: FAA orders SpaceX to take corrective actions on Starship, keeps rocket grounded;
---Link: https://www.cnbc.com/2023/09/08/faa-starship-grounded-corrective-action.html;
---2023/09/07: SpaceX is not yet cleared for another Starship Super Heavy test flight, FAA says;
---Link: https://www.cnbc.com/2023/09/07/spacex-not-yet-cleared-for-second-starship-super-heavy-test-flight-faa-says.html;
+--2023/09/20: SpaceX countersues DOJ, seeking to dismiss hiring discrimination case;
+--Link: https://www.cnbc.com/2023/09/20/spacex-countersues-doj-in-hiring-discrimination-case.html;
 ________________________________________________________________________________
 
-Company: Starfield
---2023/09/06: Microsoft gaming chief Phil Spencer says Starfield is seeing 'huge demand';
---Link: https://www.cnbc.com/2023/09/06/microsoft-gaming-chief-phil-spencer-cites-huge-demand-for-starfield.html;
+Company: Splunk
+--2023/09/21: Stocks making the biggest moves midday: Splunk, Cisco, Broadcom, Fox and more;
+--Link: https://www.cnbc.com/2023/09/21/stocks-making-the-biggest-moves-midday-splk-foxa-avgo-csco.html;
+--2023/09/21: Cisco makes largest acquisition, buying cybersecurity company Splunk for $28 billion;
+--Link: https://www.cnbc.com/2023/09/21/cisco-acquiring-splunk-for-157-a-share-in-cash.html;
 ________________________________________________________________________________
 
-Company: Starlink
---2023/09/07: Ukraine rips Musk for disrupting sneak attack on Russian fleet with Starlink cutoff;
---Link: https://www.cnbc.com/2023/09/07/ukraine-rips-musk-disrupting-sneak-attack-russian-navy.html;
+Company: Squarespace
+--2023/09/22: Stocks making the biggest moves midday: Ford, Scholastic, Squarespace, Deere and more;
+--Link: https://www.cnbc.com/2023/09/22/stocks-making-the-biggest-moves-midday-f-schl-sqsp-de-and-more.html;
+________________________________________________________________________________
+
+Company: Steelcase
+--2023/09/20: Stocks making the biggest midday moves: Instacart, Steelcase, Klavio and more;
+--Link: https://www.cnbc.com/2023/09/20/stocks-making-the-biggest-moves-midday-cart-scs-bhc.html;
 ________________________________________________________________________________
 
 Company: Stellantis
---2023/09/08: Stellantis offers 14.5% pay increase to UAW, days before possible strike;
---Link: https://www.cnbc.com/2023/09/08/stellantis-offers-pay-increase-to-uaw-days-before-possible-strike.html;
-________________________________________________________________________________
-
-Company: Stripe
---2023/09/07: Stripe, Shopify, H&M spend $7 million on carbon removal from 12 new companies;
---Link: https://www.cnbc.com/2023/09/07/stripe-shopify-hm-spend-7-million-on-carbon-removal-via-frontier.html;
-________________________________________________________________________________
-
-Company: Supreme Court
---2023/09/08: Abortion pill company asks Supreme Court to decide mifepristone case;
---Link: https://www.cnbc.com/2023/09/08/drug-company-asks-supreme-court-to-decide-abortion-pill-case.html;
-________________________________________________________________________________
-
-Company: TGL
---2023/09/07: Steve Cohen invests in Tiger Woods and Rory McIlroy's golf startup TGL;
---Link: https://www.cnbc.com/2023/09/07/steve-cohen-invests-in-tiger-woods-rory-mcilroy-golf-startup-tgl-.html;
-________________________________________________________________________________
-
-Company: Tencent
---2023/09/07: Tencent releases AI model for businesses as competition in China heats up;
---Link: https://www.cnbc.com/2023/09/07/tencent-releases-ai-model-hunyuan-for-businesses-amid-china-competition.html;
-________________________________________________________________________________
-
-Company: Tesla
---2023/09/07: Tesla to install charging stations at 2,000 Hiltons in North America;
---Link: https://www.cnbc.com/2023/09/07/tesla-to-install-charging-stations-at-2000-hiltons-in-north-america.html;
+--2023/09/22: UAW targets 38 facilities at GM and Stellantis for expanded strikes, skips Ford;
+--Link: https://www.cnbc.com/2023/09/22/uaw-strike-expands-to-38-more-facilities-at-gm-and-stellantis.html;
+--2023/09/20: GM and Stellantis just laid off more than 2,000 workers because of UAW strike;
+--Link: https://www.cnbc.com/2023/09/20/gm-stla-layoffs-uaw-strike-2023.html;
+--2023/09/18: Stellantis could close 18 facilities under UAW deal — here are the full details;
+--Link: https://www.cnbc.com/2023/09/18/uaw-strike-stellantis-could-close-18-facilities-under-deal.html;
 ________________________________________________________________________________
 
 Company: Treasury
---2023/09/08: 2-year Treasury yield inches higher as investors consider interest rate policy path;
---Link: https://www.cnbc.com/2023/09/08/us-treasury-yields-investors-consider-interest-rate-decisions-ahead.html;
+--2023/09/22: Treasury yields retreat as investors assess economic outlook;
+--Link: https://www.cnbc.com/2023/09/22/us-treasury-yields-investors-assess-economic-outlook.html;
 ________________________________________________________________________________
 
-Company: Trump
---2023/09/08: Trump aide Mark Meadows loses bid to move Georgia election case to federal court;
---Link: https://www.cnbc.com/2023/09/08/judge-denies-trump-aide-meadows-bid-to-move-georgia-election-case-to-federal-court.html;
---2023/09/07: Former Trump aide Peter Navarro guilty of two counts of contempt of Congress;
---Link: https://www.cnbc.com/2023/09/07/verdict-peter-navarro-contempt-of-congress-jan6-case.html;
-________________________________________________________________________________
-
-Company: TurboTax
---2023/09/08: TurboTax maker Intuit deceived users with 'free' tax products, FTC judge rules;
---Link: https://www.cnbc.com/2023/09/08/ftc-judge-turbotax-maker-intuit-deceived-users-with-free-tax-offers.html;
+Company: Twitter
+--2023/09/20: Elon Musk’s X, formerly Twitter, ranks last in climate misinformation ‘scorecard’;
+--Link: https://www.cnbc.com/2023/09/20/elon-musks-x-formerly-twitter-ranks-last-in-climate-misinformation-scorecard.html;
 ________________________________________________________________________________
 
 Company: UAW
---2023/09/08: Stellantis offers 14.5% pay increase to UAW, days before possible strike;
---Link: https://www.cnbc.com/2023/09/08/stellantis-offers-pay-increase-to-uaw-days-before-possible-strike.html;
---2023/09/07: UAW president calls GM offer ‘insulting’ ahead of strike deadline a week away;
---Link: https://www.cnbc.com/2023/09/07/gm-offers-wage-increases-hefty-bonuses-uaw.html;
---2023/09/06: UAW strike would show Biden that it's time to 'pick a side,' union boss says;
---Link: https://www.cnbc.com/2023/09/06/uaw-leader-says-strike-would-send-biden-a-message.html;
---2023/09/08: Looming UAW strike puts 'Union Joe' Biden in a tough position;
---Link: https://www.cnbc.com/2023/09/08/looming-uaw-strike-puts-union-joe-biden-in-a-tough-position-.html;
---2023/09/06: Biden hails West Coast dockworker union contract as UAW deadline nears;
---Link: https://www.cnbc.com/2023/09/06/biden-to-hail-west-coast-dockworker-union-contract-as-uaw-deadline-nears.html;
+--2023/09/22: UAW targets 38 facilities at GM and Stellantis for expanded strikes, skips Ford;
+--Link: https://www.cnbc.com/2023/09/22/uaw-strike-expands-to-38-more-facilities-at-gm-and-stellantis.html;
+--2023/09/22: Automakers question UAW's strike motives after leaked 'chaos' messages;
+--Link: https://www.cnbc.com/2023/09/22/automakers-question-uaw-strike-motives-after-leaked-messages.html;
+--2023/09/21: Where key issues stand as UAW closes in on extended strikes against automakers;
+--Link: https://www.cnbc.com/2023/09/21/uaw-strike-top-issues-where-gm-ford-and-stellantis-stand.html;
+--2023/09/20: GM executive slams UAW over 'flow of misinformation,' rhetoric during strike;
+--Link: https://www.cnbc.com/2023/09/20/gm-slams-uaw-rhetoric-on-day-six-of-strike.html;
+--2023/09/20: GM and Stellantis just laid off more than 2,000 workers because of UAW strike;
+--Link: https://www.cnbc.com/2023/09/20/gm-stla-layoffs-uaw-strike-2023.html;
+--2023/09/19: White House no longer sending top officials to Detroit for UAW strike talks;
+--Link: https://www.cnbc.com/2023/09/19/uaw-strikes-white-house-officials-not-going-to-detroit-for-auto-talks.html;
+--2023/09/19: UAW will strike at more U.S. auto plants if 'serious progress' isn't made by Friday;
+--Link: https://www.cnbc.com/2023/09/19/uaw-will-strike-more-us-auto-plants-if-serious-progress-isnt-made.html;
+--2023/09/18: Stellantis could close 18 facilities under UAW deal — here are the full details;
+--Link: https://www.cnbc.com/2023/09/18/uaw-strike-stellantis-could-close-18-facilities-under-deal.html;
+--2023/09/22: UAW strike: Tim Scott faces labor complaint over firing comments;
+--Link: https://www.cnbc.com/2023/09/22/uaw-strike-tim-scott-faces-labor-complaint-over-firing-comments.html;
+--2023/09/22: UAW president invites Biden to join picket line as strikes expand;
+--Link: https://www.cnbc.com/2023/09/22/uaw-strikes-shawn-fain-invites-joe-biden-to-join-picket-line.html;
+--2023/09/22: Biden will travel to Michigan to ‘join the picket line’ with UAW workers;
+--Link: https://www.cnbc.com/2023/09/22/biden-to-travel-to-michigan-to-support-uaw-strikes.html;
+--2023/09/20: Tim Scott and Nikki Haley attack unions as UAW strike threatens to escalate;
+--Link: https://www.cnbc.com/2023/09/20/scott-and-haley-attack-unions-as-uaw-strike-threatens-to-escalate.html;
 ________________________________________________________________________________
 
-Company: VinFast
---2023/09/07: Cramer's Lightning Round: Stay away from VinFast;
---Link: https://www.cnbc.com/2023/09/07/cramers-lightning-round-stay-away-from-vinfast.html;
+Company: USA Network
+--2023/09/21: WWE's 'SmackDown' to return to NBCUniversal's USA Network in 2024;
+--Link: https://www.cnbc.com/2023/09/21/wwes-smackdown-to-return-to-nbcuniversals-usa-network.html;
+________________________________________________________________________________
+
+Company: VC
+--2023/09/22: Final Trades: ARM, WMT, VC;
+--Link: https://www.cnbc.com/video/2023/09/22/final-trades-arm-wmt-vc.html;
+________________________________________________________________________________
+
+Company: Virtus
+--2023/09/20: Rising energy prices will weaken the economy, says Virtus' Joe Terranova;
+--Link: https://www.cnbc.com/video/2023/09/20/consumers-and-the-economy-have-held-up-despite-higher-rates-says-hightowers-stephanie-link.html;
+________________________________________________________________________________
+
+Company: WGA
+--2023/09/21: Every content provider is 'behind the eight ball' due to WGA strike, warns long-time media analyst;
+--Link: https://www.cnbc.com/video/2023/09/21/every-content-provider-is-behind-the-eight-ball-due-to-wga-strike-warns-long-time-media-analyst.html;
+________________________________________________________________________________
+
+Company: WMT
+--2023/09/22: Final Trades: ARM, WMT, VC;
+--Link: https://www.cnbc.com/video/2023/09/22/final-trades-arm-wmt-vc.html;
+________________________________________________________________________________
+
+Company: WWE
+--2023/09/21: WWE's 'SmackDown' to return to NBCUniversal's USA Network in 2024;
+--Link: https://www.cnbc.com/2023/09/21/wwes-smackdown-to-return-to-nbcuniversals-usa-network.html;
 ________________________________________________________________________________
 
 Company: Walmart
---2023/09/07: Walmart cuts starting pay for new hires who prepare online orders, stock shelves;
---Link: https://www.cnbc.com/2023/09/07/walmart-cuts-starting-pay-for-new-hires-who-prepare-online-orders-stock-shelves.html;
-________________________________________________________________________________
-
-Company: Warner Bros Discovery
---2023/09/05: Warner Bros Discovery expects earnings hit of up to $500 million as strikes drag on;
---Link: https://www.cnbc.com/2023/09/05/warner-bros-discovery-expects-big-earnings-hit-amid-strikes.html;
+--2023/09/20: Walmart opens pet center with veterinary care and grooming, signaling bigger ambitions;
+--Link: https://www.cnbc.com/2023/09/20/walmart-opens-pet-center-with-veterinary-care-and-grooming.html;
 ________________________________________________________________________________
 
 Company: Warner Bros. Discovery
---2023/09/06: Warner Bros. Discovery CEO says writers, actors strikes need to end;
---Link: https://www.cnbc.com/2023/09/06/warner-bros-discovery-ceo-says-writers-actors-strikes-need-to-end.html;
+--2023/09/19: Live sports are headed to Max, as Warner Bros. Discovery adds new streaming tier;
+--Link: https://www.cnbc.com/2023/09/19/live-sports-come-to-max-warner-bros-discovery-streaming-platform.html;
 ________________________________________________________________________________
 
-Company: WeWork
---2023/09/06: WeWork CEO says company is 'here to stay' as it renegotiates leases;
---Link: https://www.cnbc.com/2023/09/06/wework-ceo-says-company-is-here-to-stay-as-it-renegotiates-leases.html;
+Company: Wayfair
+--2023/09/22: Stocks making the biggest moves premarket: AstraZeneca, Wayfair, Alibaba;
+--Link: https://www.cnbc.com/2023/09/22/stocks-making-the-biggest-moves-premarket-astrazeneca-wayfair-alibaba-and-more.html;
 ________________________________________________________________________________
 
-Company: WestRock
---2023/09/07: Stocks making the biggest moves premarket: Apple, WestRock, McDonald's and more;
---Link: https://www.cnbc.com/2023/09/07/stocks-making-the-biggest-moves-premarket-aapl-wrk-mcd.html;
+Company: White House
+--2023/09/19: White House no longer sending top officials to Detroit for UAW strike talks;
+--Link: https://www.cnbc.com/2023/09/19/uaw-strikes-white-house-officials-not-going-to-detroit-for-auto-talks.html;
 ________________________________________________________________________________
 
