@@ -75,13 +75,20 @@ class Gum_KG_Generate(object):
 
 
 if __name__ == "__main__":
-    # 启动Neo4j - bin\neo4j-admin server console
-    uri = "bolt://localhost:7687"
+    # 启动Neo4j - Windows: bin\neo4j-admin server console
+    # 启动Neo4j - Mac: ./bin/neo4j-admin server console
+    uri = "bolt://localhost:7689" #7687
     user = "neo4j"
     password = "Quanjiaxinfu1@"
-    database = 'energy'
-    energy_file_path = '/Users/yuanchenwang/Desktop/KG/KG_Energy_20240730-汇总.xlsx'
-    gum_file_path = '/Users/yuanchenwang/Desktop/KG/db_path_and_mapping.xlsx'
+    database = 'neo4j'
+
+    energy_file_path = '/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/Industry KG/KG_Energy_20240730-汇总.xlsx'
+    gum_file_path = '/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/Industry KG/db_path_and_mapping.xlsx'
+    export_csv_file_path = '/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/Industry KG/output/Energy_KG_Data.csv'
+    current_date = datetime.datetime.now().strftime('%Y%m%d')
+    base_name, extension = os.path.splitext(export_csv_file_path)
+    export_csv_file_path = f"{base_name}_{current_date}{extension}"
+
 
     session = Gum_KG_Generate(uri, user, password, database)
 
@@ -168,11 +175,7 @@ if __name__ == "__main__":
     # return parameter path: MATCH p = (n:Machine)-[*]->(k:Parameter)-[*]->(m:Measure) RETURN p;
     # session.set_node_color('Parameter','表面粉下涂抹器（设定值）','purple') #不会改变实际的颜色
 
-    csv_file_path = '/Users/yuanchenwang/Desktop/KG/Energy_KG_Data.csv'
-    current_date = datetime.datetime.now().strftime('%Y%m%d')
-    base_name, extension = os.path.splitext(csv_file_path)
-    csv_file_path = f"{base_name}_{current_date}{extension}"
-    session.export_all_data(csv_file_path)
+    session.export_all_data(export_csv_file_path)
     session.close()
 
     # Links: https://www.cnblogs.com/yin-jihu/p/17983407
