@@ -101,11 +101,11 @@ if __name__ == "__main__":
     df_process = session.extract_nodes_from_excel(gum_file_path, 'process_machine_man')
     df_env = session.extract_nodes_from_excel(gum_file_path, 'environment')
     df_material = session.extract_nodes_from_excel(gum_file_path, 'material')
-    df_product = session.extract_nodes_from_excel(gum_file_path, 'product')
+    df_parameter = session.extract_nodes_from_excel(gum_file_path, 'parameter')
     df_effect = session.extract_nodes_from_excel(gum_file_path, 'effect')
 
 
-    session.create_node("Product", name="Gum Stick")
+    session.create_node("Product", name="Gum Stick", product="Gum Stick")
     # Measure & Target
     for index, row in df_effect.iterrows():
         measure_name = row['Measure']
@@ -168,10 +168,28 @@ if __name__ == "__main__":
         session.create_relationship("Process", process_name, "Product", product_name, "HAS_Product") # Process & Product
         session.create_relationship("Step", step_name, "Machine", machine_name, "HAS_Machine") # Step & Machine
 
-
+    # Machine and Parameter
+    for index, row in df_parameter.iterrows():
+        parameter_name = row['Parameters']
+        machine_name = row['Machine']
+        attributes = row.to_dict()
+        attributes.pop('Process')
+        attributes.pop('Parameters')
+        attributes.pop('Machine')
+        session.create_node("Parameter", name=parameter_name, machine=machine_name, product="Gum Stick", **attributes)
+        session.create_relationship("Machine", machine_name, "Parameter", parameter_name, "HAS_Parameter") # Machine & Parameter
 
     # check schema: CALL db.schema.visualization()
-    # return process-product-sku path: MATCH p = (n)-[*]->(m:Product)-[*]->(k);
+
+    # return 工序到产出物 process-product-sku path: MATCH p = (n)-[*]->(m:Product)-[*]->(k) RETURN p;
+    # return 工序到工步 process-step path: MATCH p = (n:Process)-[*]->(m:Step) RETURN p;
+    # return 设备到人 machine-man path: MATCH p = (n:Man)-[*]->(m:Machine) RETURN p;
+    # return 设备到参数 machine-parameter path: MATCH p = (n:Machine)-[*]->(m:Parameter) RETURN p;
+    # return 产品到SKU product-sku path: MATCH p = (n:Product)-[*]->(m:SKU) RETURN p;
+    # return 环境变量 environment-process path: MATCH p = ()-[r]-(e:Environment) RETURN p;
+    # return 测量 measure-product path: MATCH p = ()-[r]-(e:Measure) RETURN p;
+    # return 物料到工步再到工序 material-(step)-process path: MATCH p = (n:Material)-[*]->(m:Process) RETURN p;
+
     # return parameter path: MATCH p = (n:Machine)-[*]->(k:Parameter)-[*]->(m:Measure) RETURN p;
     # session.set_node_color('Parameter','表面粉下涂抹器（设定值）','purple') #不会改变实际的颜色
 
