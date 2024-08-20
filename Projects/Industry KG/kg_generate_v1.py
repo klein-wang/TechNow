@@ -7,6 +7,18 @@ import datetime
 from neo4j import GraphDatabase
 # pip install -r requirements.txt
 
+import logging
+logging.basicConfig(filename='kg_generate.log', filemode='a', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
+# add a StreamHandler to log console
+# console_handler = logging.StreamHandler()
+# console_handler.setLevel(logging.INFO)
+# formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+# console_handler.setFormatter(formatter)
+# logging.getLogger('').addHandler(console_handler)
+
+
 
 class Gum_KG_Generate(object):
     def __init__(self, uri, user, password, database):
@@ -28,14 +40,15 @@ class Gum_KG_Generate(object):
             query = query.rstrip(',')
             query += "}) RETURN a"
             result = session.run(query)
-            print(result, label)
+            logging.info(f"Created node with label {label}: {result}")
 
     def create_relationship(self, node1_label, node1_name, node2_label, node2_name, relationship_type):
         with self._driver.session() as session:
             query = "MATCH (a:{} {{name: '{}'}}), (b:{} {{name: '{}'}}) MERGE (a)-[:{}]->(b)".format(
                 node1_label, node1_name, node2_label, node2_name, relationship_type)
             result = session.run(query)
-            print(result, node1_name, relationship_type, node2_name)
+            # print(result, node1_name, relationship_type, node2_name)
+            logging.info(f"Created relationship from {node1_name} to {node2_name} with type {relationship_type}: {result}")
 
     def set_node_color(self, label, name, color):
         with self._driver.session() as session:
@@ -80,8 +93,11 @@ class Gum_KG_Generate(object):
 if __name__ == "__main__":
     # 启动Neo4j - Windows: bin\neo4j-admin server console
     # 启动Neo4j - Mac: ./bin/neo4j-admin server console
+    # Get the directory of the current script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    config_file_path = os.path.join(script_dir, 'config.ini')
     config = configparser.ConfigParser()
-    config.read('config.ini')
+    config.read(config_file_path)
 
     if not config.sections():
         print("Error: config.ini file is empty or not found.")
@@ -93,9 +109,11 @@ if __name__ == "__main__":
     password = config.get('neo4j', 'password')
     database = config.get('neo4j', 'database')
 
-    energy_file_path = config.get('files', 'energy_file_path')
-    gum_file_path = config.get('files', 'gum_file_path')
-    export_csv_file_path = config.get('files', 'export_csv_file_path')
+    # Construct the relative path to the energy file
+    energy_file_path = os.path.join(script_dir, config.get('files', 'energy_file_path'))
+    gum_file_path = os.path.join(script_dir, config.get('files', 'gum_file_path'))
+    export_csv_file_path = os.path.join(script_dir, config.get('files', 'export_csv_file_path'))
+
     current_date = datetime.datetime.now().strftime('%Y%m%d')
     base_name, extension = os.path.splitext(export_csv_file_path)
     export_csv_file_path = f"{base_name}_{current_date}{extension}"
