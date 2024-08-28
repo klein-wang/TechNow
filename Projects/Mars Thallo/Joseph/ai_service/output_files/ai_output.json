@@ -1,0 +1,30 @@
+{
+    "initial_params": {
+        "big_roller_speed": 23.6,
+        "1_roller_speed": 83.9,
+        "1_roller_gap": 0.1003,
+        "2_roller_speed": 122.6,
+        "2_roller_gap": 0.067,
+        "3_roller_speed": 141.8,
+        "3_roller_gap": 0.064,
+        "forming_roller_speed": 165.8,
+        "forming_roller_gap": 0.063,
+        "1_cooling_roller_temperature": -15.0,
+        "2_cooling_roller_temperature": -15.4
+    },
+    "suggested_params": {
+        "big_roller_speed": 23.6,
+        "1_roller_speed": 83.9,
+        "1_roller_gap": 0.10030000000000001,
+        "2_roller_speed": 122.6,
+        "2_roller_gap": 0.067,
+        "3_roller_speed": 141.8,
+        "3_roller_gap": 0.06,
+        "forming_roller_speed": 165.8,
+        "forming_roller_gap": 0.06,
+        "1_cooling_roller_temperature": -11.35570208592644,
+        "2_cooling_roller_temperature": -15.400000000000002
+    },
+    "initial_weight": 35.49,
+    "predicted_weight_after_suggestion": 35.23
+}

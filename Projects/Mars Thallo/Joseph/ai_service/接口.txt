@@ -1,0 +1,38 @@
+入参：
+
+{
+    "time": [2024, 6, 12, 0, 0] # 格式：[year, month, day, hour, minute]
+}
+
+出参:
+
+{
+    "initial_params": { # 当前的初始参数
+        "big_roller_speed": 23.6, # 大辊速度
+        "1_roller_speed": 83.9, # 1号辊速度
+        "1_roller_gap": 0.1003, # 1号辊间隙
+        "2_roller_speed": 122.6, # 2号辊速度
+        "2_roller_gap": 0.067, # 2号辊间隙
+        "3_roller_speed": 141.8, # 3号辊速度
+        "3_roller_gap": 0.064, # 3号辊间隙
+        "forming_roller_speed": 165.8, # 定型辊速度
+        "forming_roller_gap": 0.063, # 定型辊间隙
+        "1_cooling_roller_temperature": -15.0, # 1号冷辊温度
+        "2_cooling_roller_temperature": -15.4 # 2号冷辊温度
+    },
+    "suggested_params": { # 推荐的参数
+        "big_roller_speed": 23.6, # 大辊速度
+        "1_roller_speed": 83.9, # 1号辊速度
+        "1_roller_gap": 0.10030000000000001, # 1号辊间隙
+        "2_roller_speed": 122.6, # 2号辊速度
+        "2_roller_gap": 0.067, # 2号辊间隙
+        "3_roller_speed": 141.8, # 3号辊速度
+        "3_roller_gap": 0.06, # 3号辊间隙
+        "forming_roller_speed": 165.8, # 定型辊速度
+        "forming_roller_gap": 0.06, # 定型辊间隙
+        "1_cooling_roller_temperature": -11.35570208592644, # 1号冷辊温度
+        "2_cooling_roller_temperature": -15.400000000000002 # 2号冷辊温度
+    },
+    "initial_weight": 35.49, # 当前重量
+    "predicted_weight_after_suggestion": 35.23 # 调整后的预测重量
+}

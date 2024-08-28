@@ -1,0 +1,34 @@
+Step 1. Build Image
+
+进入这个path，然后操作：
+
+docker build -t ai_image .
+
+
+Step 2. 启动一个container，用于之后文件的交互，使用前面创建的镜像，保持后台运行
+
+docker run -d --name yng_ai_container ai_image tail -f /dev/null
+
+Step 3. 调用 Image 中的 Python 文件
+
+格式为：
+docker exec -it yng_ai_container python ai_service.py 线上Azure API调用时的输入字段
+
+例如：
+docker exec -it yng_ai_container python ai_service.py '{"time": [2024, 6, 12, 0, 0]}'
+
+
+Step 4. 进入 Docker Files 去提取结果放在外面
+
+然后，从临时容器中，将Step 2中运行的结果文件拿出来，放在本地路径
+docker cp yng_ai_container:app/output_files/ai_output.json output_files/ai_output.json
+
+最后，关闭并删除临时容器
+docker stop yng_ai_container
+docker rm yng_ai_container
+
+
+Step 5. 接收docker中运行的结果
+
+结果在这个路径下：
+output_files/ai_output.json

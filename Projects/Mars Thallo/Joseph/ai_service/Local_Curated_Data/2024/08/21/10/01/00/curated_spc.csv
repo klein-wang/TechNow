@@ -1,0 +1,5 @@
+ID,DataTime,ItemCode,Item,LengthOrThickness,WidthOrDepth,Operator,Shift,LengthOrThicknessStd,WidthOrDepthStd,Status,Load,EntryType,Target,Actual
+651374,2024-08-21 09:40:04,557766,DMPY（绿箭金装薄荷）,,,尹文成,早班,,,0,204.0,3,35.23,35.48
+651375,2024-08-21 09:40:13,557766,DMPY（绿箭金装薄荷）,,,尹文成,早班,,,0,204.0,3,35.23,35.4
+651378,2024-08-21 09:51:39,557766,DMPY（绿箭金装薄荷）,,,尹文成,早班,,,0,210.0,3,35.23,35.75
+651379,2024-08-21 09:51:47,557766,DMPY（绿箭金装薄荷）,,,尹文成,早班,,,0,210.0,3,35.23,35.59
