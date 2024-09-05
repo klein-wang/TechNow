@@ -1,12 +1,19 @@
 import pandas as pd
 
 # 手动列出所有的文件名
-file_names = ['1.csv', '2.csv', '3.csv', '4.csv', '5.csv']
+file_names = [
+    'otdata_20240812.csv',
+    'otdata_20240814.csv',
+    'otdata_20240815.csv',
+    'otdata_20240818.csv',
+    'otdata_20240820.csv',
+    'otdata_20240822.csv'
+    ]
 
 # 初始化一个空的DataFrame来存储合并的数据
 combined_df = pd.DataFrame()
 # 定义正确的标题
-expected_header = ['Tag', 'TS', 'Value']
+expected_header = ['Tag', 'Value', 'TS']
 
 # 读取每个CSV文件并追加到combined_df中
 for file in file_names:
@@ -25,6 +32,9 @@ for file in file_names:
     combined_df = pd.concat([combined_df, df])
 
 # format TS
+# Filter out the problematic timestamp
+combined_df = combined_df[combined_df['TS'] >= '2000-01-01 08:00:00']
+
 combined_df['TS'] = pd.to_datetime(combined_df['TS'], format="mixed", utc=True).dt.tz_localize(None) #%Y-%m-%d %H:%M:%S.%f %z
 combined_df['TS'] = combined_df['TS'].dt.floor('s')
 
