@@ -2,11 +2,11 @@ import pandas as pd
 
 # 手动列出所有的文件名
 file_names = [
-    'otdata_20240812.csv',
-    'otdata_20240814.csv',
-    'otdata_20240815.csv',
-    'otdata_20240818.csv',
-    'otdata_20240820.csv',
+    # 'otdata_20240812.csv',
+    # 'otdata_20240814.csv',
+    # 'otdata_20240815.csv',
+    # 'otdata_20240818.csv',
+    # 'otdata_20240820.csv',
     'otdata_20240822.csv'
     ]
 

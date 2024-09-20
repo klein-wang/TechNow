@@ -1,4 +1,4 @@
-import pandas as pd
+﻿import pandas as pd
 import numpy as np
 import joblib
 import json
@@ -15,6 +15,7 @@ import configparser
 import warnings
 import edge_blob
 import data_mapping
+import db_service
 
 
 def fit_range(x, lb, ub):
@@ -141,14 +142,7 @@ def map_data():
     file_path_now = input_data['filePath']
     merge_file_path = ''
 
-    if 'Local_Curated_Data' in input_data['filePath']:
-        merge_file_path = input_data['filePath'] + 'merge.csv'
-        df_curated_data = pd.read_csv(input_data['filePath'] + 'curated_parm.csv')
-        df_spc_data = pd.read_csv(input_data['filePath'] + 'curated_spc.csv')
-        file_path_last = input_data['filePath'][:19] + (
-                datetime.datetime.strptime(input_data['filePath'][19:], '%Y/%m/%d/%H/%M/%S/') - datetime.timedelta(seconds=15)
-            ).strftime('%Y/%m/%d/%H/%M/%S/')
-        df_prev_merge_empty = pd.DataFrame.from_dict({
+    df_prev_merge_empty = pd.DataFrame.from_dict({
             x: [] for x in [
                 'DataTime', 'Load', 'Item', 'Sugar', 'Weight', 'Prev_Weight',
                 'Avg_Weight_5min', 'Avg_Weight_15min', 'Avg_Weight_30min',
@@ -173,24 +167,37 @@ def map_data():
                 'Prev_CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp'
             ]
         })
+
+
+    if 'Local_Curated_Data' in input_data['filePath']:
+        merge_file_path = input_data['filePath'] + 'merge.csv'
+        df_curated_data = pd.read_csv(input_data['filePath'] + 'curated_parm.csv')
+        df_spc_data = pd.read_csv(input_data['filePath'] + 'curated_spc.csv')
+        file_path_last = input_data['filePath'][:19] + (
+                datetime.datetime.strptime(input_data['filePath'][19:], '%Y/%m/%d/%H/%M/%S/') - datetime.timedelta(seconds=15)
+            ).strftime('%Y/%m/%d/%H/%M/%S/')
         try:
             df_prev_merge = pd.read_csv(file_path_last + 'merge.csv')
         except:
             df_prev_merge = df_prev_merge_empty
     else:
         df_curated_data = edge_blob.read_csv_blob_to_dataframe(input_data['filePath'] + 'curated_parm.csv')
-        df_spc_data = edge_blob.read_csv_blob_to_dataframe(input_data['filePath'] + 'curated_spc.csv')
+        #df_spc_data = edge_blob.read_csv_blob_to_dataframe(input_data['filePath'] + 'curated_spc.csv')
+        #从spc 数据库获取spc data
+        df_spc_data = db_service.get_spc_data(T)
         file_path_last = (
                 datetime.datetime.strptime(input_data['filePath'], '%Y/%m/%d/%H/%M/%S/') - datetime.timedelta(seconds=15)
             ).strftime('%Y/%m/%d/%H/%M/%S/')
         try:
             df_prev_merge = edge_blob.read_csv_blob_to_dataframe(file_path_last + 'merge.csv')
+            if df_prev_merge.empty:
+               df_prev_merge = df_prev_merge_empty
         except:
             df_prev_merge = df_prev_merge_empty
 
     # df_mapping, current_data = data_mapping.merge_data(df_curated_data, df_spc_data, df_prev_merge)
 
-    df_mapping, current_data = data_mapping.process_etl_data(
+    df_mapping, current_data, df_weight, df_thickness_depth, df_legnth_width = data_mapping.process_etl_data(
         now=T,
         parm=df_curated_data,
         spc=df_spc_data,
@@ -231,7 +238,7 @@ def map_data():
         if c in name_mapping:
             current_data[name_mapping[c]] = current_data[c]
 
-    return df_mapping, current_data
+    return df_mapping, current_data, df_weight, df_thickness_depth, df_legnth_width 
 
 def predict_weight_now(df_mapping, current_data):
 
@@ -312,7 +319,7 @@ def run(input_str):
         'Temp2': {'ub': -10.0, 'lb': -15.0}
     }
 
-    df_mapping, current_data = map_data()
+    df_mapping, current_data, df_weight, df_thickness_depth, df_legnth_width = map_data()
     weight_prediction, actual_weight = predict_weight_now(df_mapping, current_data)
     print(weight_prediction)
 
@@ -343,18 +350,41 @@ def run(input_str):
             Suggestion_Dict['WeightPredictionAfterChange'] = New_PredWeight
             Suggestion_Dict['is_change'] = True
 
-        return json.dumps(Suggestion_Dict)
+    # 添加长度宽度厚度深度数据
+    Suggestion_Dict['Length_Date'] = df_legnth_width['DataTime'].strftime("%Y-%m-%d %H:%M:%S")
+    Suggestion_Dict['Length'] = df_legnth_width['LengthOrThickness']
+    Suggestion_Dict['Length_std'] = df_legnth_width['LengthOrThickness_std']
+    Suggestion_Dict['width'] = df_legnth_width['WidthOrDepth']
+    Suggestion_Dict['width_std'] = df_legnth_width['WidthOrDepth_std']
+
+    Suggestion_Dict['Thickness_Date'] = df_thickness_depth['DataTime'].strftime("%Y-%m-%d %H:%M:%S")
+    Suggestion_Dict['Thickness'] = df_thickness_depth['LengthOrThickness']
+    Suggestion_Dict['Thickness_std'] = df_thickness_depth['LengthOrThickness_std']
+    Suggestion_Dict['Depth'] = df_thickness_depth['WidthOrDepth']
+    Suggestion_Dict['Depth_std'] = df_thickness_depth['WidthOrDepth_std']
+
+    Suggestion_Dict['Weight_Date'] = df_weight['DataTime'].strftime("%Y-%m-%d %H:%M:%S")
+    #shift_code = df_weight['shift'].strip()
+    #shift_points = shift_code.split('\\u')
+    #Suggestion_Dict['shift'] = ''.join([chr(int(code,16)) for code in shift_points[1:]]) 
+    Suggestion_Dict['shift'] = df_weight['shift'].strip()
+    return json.dumps(Suggestion_Dict, ensure_ascii=False)
 
 
 if __name__ == '__main__':
 
     # raw_data = sys.argv[1]
     raw_data = json.dumps({
-        "time":  [2024, 8, 21, 10, 10, 0, 0],
-        "fileFirstTs": "2024-07-91 16:55:16",
-        "curTs": "2024-08-14 14:52:31",
-        "filePath": "Local_Curated_Data/2024/08/21/10/10/00/",
-        "fileLastTs": "2024-06-28 16:55:31"
+        "time": [2024,8,26,15,5,15],
+        "filePath": "2024/08/26/15/05/15/",
+        "fileLastTs": "2024-08-26 15:06:01"
+
+	#"time":  [2024, 8, 21, 10, 10, 0, 0],
+        #"fileFirstTs": "2024-07-91 16:55:16",
+        #"curTs": "2024-08-14 14:52:31",
+        #"filePath": "Local_Curated_Data/2024/08/21/10/10/00/",
+        #"fileLastTs": "2024-06-28 16:55:31"
     })
+    
     output_json = run(raw_data)
     print (output_json)
