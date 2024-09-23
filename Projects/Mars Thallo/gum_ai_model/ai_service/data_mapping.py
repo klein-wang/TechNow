@@ -1,4 +1,4 @@
-import pandas as pd
+﻿import pandas as pd
 import numpy as np
 from pandas.api.types import CategoricalDtype
 from datetime import datetime, timedelta
@@ -29,16 +29,96 @@ def merge_data(df_params, df_spc, df_prev_merge):
 
 
 def merge_OT_SPC(curated_parm, curated_spc):
-    # test
-    # curated_parm = parm
-    # curated_spc = spc
-
+    
     # Step 1: 处理 spc 数据
-    spc = curated_spc[['DataTime', 'Item', 'Load', 'Actual']].copy()
-    spc.rename(columns={'Actual': 'Weight'}, inplace=True)
+    spc = curated_spc[(curated_spc['EntryType'] == 3) | (curated_spc['EntryType'] == 2)] 
+    spc = spc[['DataTime', 'Item', 'Load', 'Weight','ItemCode','EntryType',
+                      'LengthOrThickness', 'WidthOrDepth']].copy()
+    spc['DataTime'] = pd.to_datetime(spc['DataTime'], format="%Y-%m-%d %H:%M:%S", utc=True).dt.tz_localize(None)
+
+    # 排序 entry level = 3& =2
+    spc = spc.sort_values(by='DataTime', ascending=True)
+
+    #获取长度宽度数据
+    spc_00 = curated_spc[curated_spc['EntryType'] == 3]
+    spc_00 = spc_00.sort_values(by='DataTime', ascending=False)
+    spc_0 = spc_00.iloc[0]
+    spc_10 = curated_spc[curated_spc['EntryType'] == 1] 
+    spc_1 = spc_10.iloc[0]
+    spc_20 = curated_spc[curated_spc['EntryType'] == 2]
+    spc_20 = spc_20.sort_values(by='DataTime', ascending=False)
+    spc_2 = spc_20.iloc[0]
+
+    # Step 2: 筛选 EntryType 等于 3 的数据，这个是重量数据
+    entry_type_3 = spc[spc['EntryType'] == 3]
+ 
+    # Step 3: MAPPING 长宽
+    def find_corresponding_length_width(row, df):
+        # 1分钟内的条件，并且 Load 和 Item 一致
+        condition_1min = (
+            (df['DataTime'] > row['DataTime']) &
+            (df['DataTime'] <= row['DataTime'] + pd.Timedelta(minutes=1)) &
+            (df['EntryType'] == 2) &
+            (df['Load'] == row['Load']) & 
+            (df['Item'] == row['Item'])
+        )
+        corresponding_row_1min = df[condition_1min]
+        
+        if not corresponding_row_1min.empty:
+            # 取找到的第一个对应的行
+            corresponding_row = corresponding_row_1min.iloc[0]
+        else:
+            # 如果1分钟内没有找到，查找3分钟内的最近一条数据，Load 和 ID 也必须一致
+            condition_3min = (
+                (df['DataTime'] > row['DataTime']) &
+                (df['DataTime'] <= row['DataTime'] + pd.Timedelta(minutes=3)) &
+                (df['EntryType'] == 2) &
+                (df['Load'] == row['Load']) & 
+                (df['Item'] == row['Item'])
+            )
+            corresponding_row_3min = df[condition_3min]
+            
+            if not corresponding_row_3min.empty:
+                # 取找到的最近一条对应的行
+                corresponding_row = corresponding_row_3min.iloc[0]
+            else:
+                # 如果3分钟内也找不到，返回NA
+                return pd.Series({
+                    'DataTime': row['DataTime'],
+                    'Load': row['Load'],
+                    'Item': row['Item'],
+                    'Weight': row['Weight'],
+                    'LengthOrThickness': 'NA',
+                    'WidthOrDepth': 'NA',
+                    'DataTime2': 'NA'
+                })
+        
+        return pd.Series({
+            'DataTime': row['DataTime'],
+            'Load': row['Load'],
+            'Item': row['Item'],
+            'Weight': row['Weight'],  # EntryType == 3 的 Actual 值作为 Weight
+            'LengthOrThickness': corresponding_row['LengthOrThickness'],
+            'WidthOrDepth': corresponding_row['WidthOrDepth'],
+            'DataTime2': corresponding_row['DataTime']  # 对应找到的行的时间
+        })
+
+    result3 = entry_type_3.apply(lambda row: find_corresponding_length_width(row, spc), axis=1)
+    
+    # 首先确保 DataTime 和 DataTime2 都是 datetime 类型
+    result3['DataTime'] = pd.to_datetime(result3['DataTime'])
+    result3['DataTime2'] = pd.to_datetime(result3['DataTime2'], errors='coerce')  # 遇到 'NA' 会处理为 NaT (Not a Time)
+
+    # 增加一列：计算时间差 （optional）
+    result3['TimeDiff'] = result3['DataTime2'] - result3['DataTime']
+    spc = result3
 
     # 根据Item的首字母判断是否含有糖
     spc['Sugar'] = np.where(spc['Item'].str[0].isin(['D', 'W', 'R']), 'Sugar', 'Sugarfree')
+
+    # Step 4: Parm Dataset
+    curated_parm['TS'] = pd.to_datetime(curated_parm['TS'], format="%Y-%m-%d %H:%M:%S", utc=True).dt.tz_localize(None)
+    parm = curated_parm.dropna(subset=['TS'])
 
     # 需要的列名列表
     required_columns = [
@@ -52,76 +132,96 @@ def merge_OT_SPC(curated_parm, curated_spc):
         "CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rChillerSetpoint",
         "CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rDrum1InletTemp",
         "CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rDrum2InletTemp",
-        "CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp"
+        "CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp",
+        "SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_SP",
+        "SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_SP"
     ]
+    para = parm.copy()
+    # 将 Tag 为 "SFBMix.plcSFBMix.dbAdditionalParameter.StateFromSheeting.bMachineRunning" 的 Value 列中的 True 和 False 修改为 1 和 0
+    para.loc[para['Tag'] == "SFBMix.plcSFBMix.dbAdditionalParameter.StateFromSheeting.bMachineRunning", 'Value'] = \
+        para.loc[para['Tag'] == "SFBMix.plcSFBMix.dbAdditionalParameter.StateFromSheeting.bMachineRunning", 'Value'].apply(lambda x: 1 if x == 'True' else 0)
+    
+    # 筛选出 Tag 列中在 required_columns 中的元素
+    filtered_para = para[para['Tag'].isin(required_columns[1:])]  # required_columns[1:] 是除去 'TS' 的其他列
 
-    # Step 2: 处理 para 数据
-    para = curated_parm.copy()
-    #   para.rename(columns={'TS': 'Date'}, inplace=True)
-    # 行转列
+  # 行转列
+    # 由于会出现一样的TS导致出现error，我们需要在pivot之前detect到重复
+    def process_data_before_pivot(filtered_para):
+        try:
+            # Step 1: 尝试执行 pivot 操作
+            para_pivoted = filtered_para.pivot(index='TS', columns='Tag', values='Value').reset_index()
+            return para_pivoted
+        except:
+            # Step 2: 如果出现任何错误，删除 TS 和 Tag 列的重复组合，保留第一个出现的组合
+            filtered_para = filtered_para.drop_duplicates(subset=['TS', 'Tag'], keep='first')
+        
+            try:
+                # Step 3: 再次尝试执行 pivot 操作
+                para_pivoted = filtered_para.pivot(index='TS', columns='Tag', values='Value').reset_index()
+                return para_pivoted
+            except:
+                # Step 4: 如果再次失败，对 TS 列进行去重，保留前面那行
+                filtered_para = filtered_para.drop_duplicates(subset='TS', keep='first')
+                
+                # 最终再次尝试 pivot 操作
+                para_pivoted = filtered_para.pivot(index='TS', columns='Tag', values='Value').reset_index()
+                return para_pivoted
 
-    para = para.pivot_table(index='TS', columns='Tag', values='Value', aggfunc='mean').reset_index()
+    # 执行处理
+    para_pivoted = process_data_before_pivot(filtered_para)
 
-    # 确保所有必需的列都存在，缺失的列用 NA 填充
+    # 遍历 required_columns 列表，检查 df 中是否存在这些列
     for col in required_columns:
-        if col not in para.columns:
-            para[col] = np.nan
+        if col not in para_pivoted.columns:
+            # 如果 df 中不存在某列，则添加该列并填充 NaN（或其他默认值）
+            para_pivoted[col] = np.nan  # 你可以根据需要替换 np.nan 为其他默认值
+    para = para_pivoted
 
     # 选择列并按顺序排列
-    para = para[required_columns]
-    para.fillna(method='ffill', inplace=True)
+    para_pivoted = para_pivoted[['TS'] + required_columns[1:]]
 
-    # later delet this: just to fill the NA
-    # para.fillna(method='bfill', inplace=True)
-    para['TS'] = pd.to_datetime(para['TS']) + timedelta(minutes=1)
+    # 由于在参数不调整的时候没有记录，在表格中会展示NAN，我们将有数值的中间填写相关数据
+    para_pivoted.fillna(method='ffill', inplace=True)
+    para = para_pivoted
+    latest_dict = para.sort_values(by='TS', ascending=False).iloc[0].to_dict()
+
+    # 遍历字典，将可转换为浮点数的字符串转换为浮点数
+    for key, value in latest_dict.items():
+        if isinstance(value, str):
+            try:latest_dict[key] = float(value)
+            except ValueError:
+                continue
+
+    para['TS'] = pd.to_datetime(para['TS']) + pd.Timedelta(minutes=1)
+
     # 将 TS 列重命名为 Date
     para.rename(columns={'TS': 'DataTime'}, inplace=True)
 
-    # 提取最新一条记录
-    # latest_dict = para.iloc[-1, 2:].to_dict()
-    latest_dict = para.iloc[-1].to_dict()
-
-    # Step 3: 进行数据合并与计算
-    # 当在 spc 数据框中找到一个 Date 值时，它会在 para 数据框中查找等于或早于该 Date 值的最近一行进行匹配。
-    # 因此，如果 spc 中某个 Date 的值在 para 中找不到完全相同的 Date，则会回退到最接近但早于它的那个 Date 进行匹配。
     merge = pd.merge_asof(spc.sort_values('DataTime'),
-                          para.sort_values('DataTime'),
-                          on='DataTime',
-                          direction='backward')
-
+                          para.sort_values('DataTime'), 
+                          on='DataTime', direction='backward')
+    
     merge['Prev_Weight'] = merge['Weight'].shift(1)
 
-    # 计算过去 5, 15 和 30 分钟的均值，不包含当前重量
-    # closed='left'：指定窗口左闭右开，这意味着在计算滚动平均值时，窗口会排除当前记录的值，只考虑当前记录之前的值。
-    # df[col] 是一个 Series 对象，而不是一个 DataFrame，因此它无法识别 on='DataTime' 选项。
-    # 在 DataFrame 上调用 rolling，而不是在 Series 上调用。
     def calculate_avg_weight(df, minutes_back, col):
         if df[col].isna().all():
             return df[col]  # 如果全是空值，返回原列
         # 使用 DataFrame 而不是 Series 进行 rolling 操作
         return df.rolling(f'{minutes_back}T', on='DataTime', closed='left', min_periods=1)[col].mean()
-
-    # 示例：对每个列进行检查并计算滚动平均值
+    
+    # 对每个列进行检查并计算滚动平均值
     merge['Avg_Weight_5min'] = calculate_avg_weight(merge, 5, 'Weight')
     merge['Avg_Weight_15min'] = calculate_avg_weight(merge, 15, 'Weight')
     merge['Avg_Weight_30min'] = calculate_avg_weight(merge, 30, 'Weight')
 
-    # 仅处理 key_columns 中除了前两个元素以外的所有列
     for col in required_columns[2:]:
         merge[f'Prev_{col}'] = merge[col].shift(1)
-
-    # 按照指定顺序重新排列列
-    # merge 数据框中的列会按照以下顺序排列：
-    # 固定顺序的列（Date, Load, Item, Sugar, Weight, Prev_Weight, Avg_Weight_5min, Avg_Weight_15min, Avg_Weight_30min）。
-    # 动态生成的列，这些列以原列名和对应的 Prev_ 前缀列名成对排列。
-
-    # merge = merge[['DataTime', 'Load', 'Item', 'Sugar',
-    #               'Weight', 'Prev_Weight', 'Avg_Weight_5min', 'Avg_Weight_15min', 'Avg_Weight_30min'] +
-    #             [col for pair in zip(key_columns, [f'Prev_{col}' for col in key_columns]) for col in pair]]
-
-    # 构建固定的列列表
-    base_columns = ['DataTime', 'Load', 'Item', 'Sugar',
-                    'Weight', 'Prev_Weight', 'Avg_Weight_5min', 'Avg_Weight_15min', 'Avg_Weight_30min']
+    
+    # 构建固定的列表
+    base_columns = ['DataTime','TimeDiff',
+                    'Load', 'Item', 'Sugar',
+                     'LengthOrThickness', 'WidthOrDepth', 'Weight',
+                    'Prev_Weight', 'Avg_Weight_5min', 'Avg_Weight_15min', 'Avg_Weight_30min']
 
     # 动态生成要选择的列，确保选择的列存在于 merge 中
     dynamic_columns = [col for pair in zip(required_columns, [f'Prev_{col}' for col in required_columns])
@@ -133,8 +233,20 @@ def merge_OT_SPC(curated_parm, curated_spc):
     # 选择存在的列，不会因缺少某些列而报错
     merge = merge[selected_columns]
 
+    # 确保merge里面所有列都尽可能是float格式，定义一个函数，将字符串转换为浮点
+    def convert_to_float(value):
+        if isinstance(value, str):  # 检查是否是字符串
+            try:
+                return float(value)
+            except ValueError:
+                return value  # 保留原值（如果无法转换）
+        return value  # 如果不是字符串，保持原值
+
+    # 使用 applymap 方法应用函数到整个 DataFrame
+    merge = merge.applymap(convert_to_float)
+
     # 返回结果
-    return merge, latest_dict
+    return merge, latest_dict, spc_0.to_dict(), spc_1.to_dict(), spc_2.to_dict()
 
 
 def process_etl_data(now,
@@ -143,54 +255,73 @@ def process_etl_data(now,
                      prev_merge,
                      merge_OT_SPC=None,
                      output_file="merge_final_py2.csv"):
-    # Step 1: 读取当前ETL生成的15秒的数据 + 上一个合并文件
-    # parm = pd.read_csv(parm_file)
-    # spc = pd.read_csv(spc_file)
-    # prev_merge = pd.read_csv(prev_merge_file)
 
     # 转化时间格式为没有时区信息的 pandas.Timestamp 对象
     parm['TS'] = pd.to_datetime(parm['TS'], format="%Y-%m-%d %H:%M:%S", utc=True).dt.tz_localize(None)
-    spc['DataTime'] = pd.to_datetime(spc['DataTime'], format="%Y-%m-%d %H:%M:%S", utc=True).dt.tz_localize(None)
-    prev_merge['DataTime'] = pd.to_datetime(prev_merge['DataTime'], format="%Y-%m-%d %H:%M:%S",
-                                            utc=True).dt.tz_localize(None)
+    #spc['DataTime'] = pd.to_datetime(spc['DataTime'], format="%Y-%m-%d %H:%M:%S", utc=True).dt.tz_localize(None)
+    prev_merge['DataTime'] = pd.to_datetime(prev_merge['DataTime'], format="%Y-%m-%d %H:%M:%S", utc=True).dt.tz_localize(None)
 
     # 删除 parm 中 TS 列为空值的行
     parm = parm.dropna(subset=['TS'])
 
     # Step 2: 直接进行合并，获取 merge 和 merge_latest_dict
-    merge_new, merge_latest_dict = merge_OT_SPC(parm, spc)
+    merge_new, merge_latest_dict, spc_0, spc_1, spc_2 = merge_OT_SPC(parm, spc)
 
-    # Step 3: 筛选数据，去掉既不是最近30分钟又不是最近10次的数据
-    recent_30min = now - timedelta(minutes=30)
+    time_needed = [
+         # 'TS', 'SFBMix.plcSFBMix.dbAdditionalParameter.StateFromSheeting.bMachineRunning',
+         'CG_Sheeting.CG_Sheeting.dbHMI.Sheeting.SRV_Gap3rdSizing.rActualPosition_inches',
+         'CG_Sheeting.CG_Sheeting.dbHMI.Sheeting.SRV_Gap2ndSizing.rActualPosition_inches',
+         'CG_Sheeting.CG_Sheeting.dbHMI.Sheeting.SRV_Gap1stSizing.rActualPosition_inches',
+         'CG_Sheeting.CG_Sheeting.dbHMI.Sheeting.SRV_GapFinalSizing.rActualPosition_inches',
+         'CG_Sheeting.CG_Sheeting.dbHMI.Scoring.SRV_CrossScore.rSetpoint_Ratio',
+         'CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rChillerSetpoint',
+         'CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rDrum1InletTemp',
+         'CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rDrum2InletTemp',
+         'CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp',
+         'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_SP',
+         'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_SP'
+    ]
 
-    # 保留最近30分钟的数据
-    merge_recent_30min = merge_new[merge_new['DataTime'] >= recent_30min]
+    df_required_tags = pd.DataFrame.from_dict({
+        'Tag': time_needed
+        # 'Value': [merge_latest_dict[t] for t in list(merge_latest_dict.keys()) if t != 'TS']
+    })
+    df_update_time = pd.merge(parm, df_required_tags, how='inner', on=['Tag'])
+    df_update_time['Value'] = df_update_time['Value'].astype('float64')
+    df_update_time = df_update_time.sort_values(by=['Tag', 'Value', 'TS'], ascending=True).reset_index(drop=True)
+    df_update_time['Last_Value'] = df_update_time['Value'].shift(1)
+    df_update_time['Last_Tag'] = df_update_time['Tag'].shift(1)
+    df_update_time = df_update_time[
+        (df_update_time['Tag'] != df_update_time['Last_Tag']) | (df_update_time['Value'] != df_update_time['Last_Value'])
+    ]
+    update_time_dict = df_update_time.groupby('Tag').agg({'TS': np.min}).to_dict(orient='index')
 
-    # 保留最近10次的记录
-    merge_recent_10 = merge_new.tail(10)
-
-    # 选择两者中的较大集合：去掉既不是最近30分钟又不是最近10次的数据作为当前15秒的merge结果
-    if len(merge_recent_30min) >= len(merge_recent_10):
-        merge_final = merge_recent_30min
-    else:
-        merge_final = merge_recent_10
-
-    # 保存 merge_final 到 output_file
-    if output_file:
-        merge_final.to_csv(output_file, index=False)
-
-    # Step 5: 获取最新一条数据（离当前时间最近的一条）
-    latest_data = merge_final.sort_values(by='DataTime', ascending=False).iloc[0]
+    # # Step 3: 筛选数据，去掉既不是最近30分钟又不是最近10次的数据
+    # recent_30min = now - timedelta(minutes=30)
 
     # 生成 dictionary {列名：当前值}
-    latest_dict = latest_data.to_dict()
+    latest_dict = merge_new.sort_values(by='DataTime', ascending=False).iloc[0].to_dict()
+    for key, value in latest_dict.items():
+        if isinstance(value, str):
+            try:latest_dict[key] = float(value)
+            except ValueError:
+                continue
 
     # 输出两个latest_dict进行对比
-    print("Merge Latest Dict:")
-    print(merge_latest_dict)
-
-    print("\nProcess ETL Data Latest Dict:")
-    print(latest_dict)
+    # print("Merge Latest Dict:")
+    # print(merge_latest_dict)
+    #
+    # print("\nProcess ETL Data Latest Dict:")
+    # print(latest_dict)
+    #
+    # print("\n Spc_0 Data Dict:")
+    # print(spc_0)
+    #
+    # print("\n Spc_1 Data Dict:")
+    # print(spc_1)
+    #
+    # print("\n Spc_2 Data Dict:")
+    # print(spc_2)
 
     # 返回 merge_latest_dict 和 latest_dict
-    return merge_final, merge_latest_dict
+    return merge_new, merge_latest_dict, spc_0, spc_1, spc_2, update_time_dict

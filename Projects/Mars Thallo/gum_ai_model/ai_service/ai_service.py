@@ -16,6 +16,8 @@ import warnings
 import edge_blob
 import data_mapping
 import db_service
+from db_factory import SpcDBFactory
+from config import SpcDBPoolConfig
 
 
 def fit_range(x, lb, ub):
@@ -26,15 +28,20 @@ def fit_range(x, lb, ub):
     return x
 
 
-def single_factor_change(initial_weight, target_weight, initial_x, k, lb, ub):
-    delta = (target_weight - initial_weight) / k
-    new_x = fit_range(initial_x + delta, lb, ub)
-    new_weight = initial_weight + (new_x - initial_x) * k
-    return new_x, new_weight
+# def single_factor_change(initial_weight, target_weight, initial_x, k, lb, ub):
+#     delta = (target_weight - initial_weight) / k
+#     new_x = fit_range(initial_x + delta, lb, ub)
+#     new_weight = initial_weight + (new_x - initial_x) * k
+#     return new_x, new_weight
+
+
+def datetime_to_list(x):
+    return [int(x.year), int(x.month), int(x.day), int(x.hour), int(x.minute), int(x.second)]
 
 
 def constrained_optimization(thresholds, weight_prediction, current_data):
 
+    # Set four decision variables, Drum 1, Drum 2, Drum 3, Final Sizing Drum
     DV = ['Gap1', 'Gap2', 'Gap3', 'GapFS']
 
     solver = pywraplp.Solver.CreateSolver('SCIP')
@@ -42,22 +49,29 @@ def constrained_optimization(thresholds, weight_prediction, current_data):
     infinity = solver.infinity()
 
     # Decision Variables
+    # Set upper and lower bound for gap of four drums to be set
     DV_factor_values = {
         x: solver.NumVar(
             thresholds[x]['lb'], thresholds[x]['ub'], '''Suggested_Value_%s''' % (x)
         ) for x in DV
     }
+
+    # Predicted weight if we make changes on drum gaps
     weight_after_change = weight_prediction + \
                           K_Gap1 * (DV_factor_values['Gap1'] - current_data['Gap1']) + \
                           K_Gap2 * (DV_factor_values['Gap2'] - current_data['Gap2']) + \
                           K_Gap3 * (DV_factor_values['Gap3'] - current_data['Gap3']) + \
                           K_GapFS * (DV_factor_values['GapFS'] - current_data['GapFS'])
 
-    # 1st Priority Objective
+    # 1st Priority Objective =
+    #   ABS(weight after change - target weight)
     final_weight_gap = weight_after_change - Target_Weight
     OBJ_abs_weight_gap = solver.NumVar(0, 100, 'OBJ_weight_gap')
 
-    # 2nd Priority Objecticce
+    # 2nd Priority Objective =
+    #   ABS(weight difference change between drum 1 and drum 2)
+    #   + ABS(weight difference change between drum 2 and drum 3)
+    #   + ABS(weight difference change between drum 3 and final sizing drum)
     diff_1_2_before = current_data['Gap1'] - current_data['Gap2']
     diff_1_2_after = DV_factor_values['Gap1'] - DV_factor_values['Gap2']
     diff_2_3_before = current_data['Gap2'] - current_data['Gap3']
@@ -72,6 +86,18 @@ def constrained_optimization(thresholds, weight_prediction, current_data):
     solver.Minimize(OBJ_abs_weight_gap + 0.01 * (2 * abs_1_2_diff_change + abs_2_3_diff_change + abs_3_FS_diff_change))
 
     # Constraints
+
+    # Change limit is 0.003
+    solver.Add(DV_factor_values['Gap1'] - current_data['Gap1'] >= -0.003)
+    solver.Add(DV_factor_values['Gap1'] - current_data['Gap1'] <= 0.003)
+    solver.Add(DV_factor_values['Gap2'] - current_data['Gap2'] >= -0.003)
+    solver.Add(DV_factor_values['Gap2'] - current_data['Gap2'] <= 0.003)
+    solver.Add(DV_factor_values['Gap3'] - current_data['Gap3'] >= -0.003)
+    solver.Add(DV_factor_values['Gap3'] - current_data['Gap3'] <= 0.003)
+    solver.Add(DV_factor_values['GapFS'] - current_data['GapFS'] >= -0.003)
+    solver.Add(DV_factor_values['GapFS'] - current_data['GapFS'] <= 0.003)
+
+    # Math needed to turn an ABS function into an integer linear programing one. So it can solve much quicker.
     solver.Add(OBJ_abs_weight_gap >= final_weight_gap)
     solver.Add(OBJ_abs_weight_gap >= (-1) * final_weight_gap)
     solver.Add(abs_1_2_diff_change >= diff_1_2_before - diff_1_2_after)
@@ -90,51 +116,51 @@ def constrained_optimization(thresholds, weight_prediction, current_data):
         return current_data['Gap1'], current_data['Gap2'], current_data['Gap3'], current_data['GapFS'], \
             weight_prediction
 
-
-def multi_factors_change(initial_weight, dic_initial_x, dic_k, dic_lb, dic_ub):
-
-    solver = pywraplp.Solver.CreateSolver('SCIP')
-    bigM = 10 ** 10
-    infinity = solver.infinity()
-
-    DV_factor_changes = {
-        x: solver.IntVar(0, 1, '''Is_Change_%s''' % (x)) for x in dic_initial_x
-    }
-    DV_factor_values = {
-        x: solver.NumVar(
-            np.min([dic_lb[x], dic_initial_x[x]]),
-            np.max([dic_ub[x], dic_initial_x[x]]),
-            '''Suggested_Value_%s''' % (x)
-        ) for x in dic_initial_x
-    }
-
-    weight_after_change = initial_weight + np.sum([
-        (DV_factor_values[x] - dic_initial_x[x]) * dic_k[x] for x in dic_initial_x
-    ])
-    OBJ_count_changed_factors = np.sum([
-        DV_factor_changes[x] for x in dic_initial_x
-    ])
-    final_weight_gap = weight_after_change - Target_Weight
-    OBJ_abs_weight_gap = solver.NumVar(0, 100, 'OBJ_weight_gap')
-    solver.Minimize(OBJ_abs_weight_gap + 0.001 * OBJ_count_changed_factors)
-    solver.Add(OBJ_abs_weight_gap >= final_weight_gap)
-    solver.Add(OBJ_abs_weight_gap >= (-1) * final_weight_gap)
-
-    # DV_factor_changes[x]越小越好，这里自带一个趋势
-    for x in dic_initial_x:
-        solver.Add(bigM * (DV_factor_changes[x]) >= DV_factor_values[x] - dic_initial_x[x])
-        solver.Add(bigM * (DV_factor_changes[x]) >= dic_initial_x[x] - DV_factor_values[x])
-
-    status = solver.Solve()
-
-    if status == pywraplp.Solver.OPTIMAL:
-        return {
-            x: DV_factor_changes[x].solution_value() for x in DV_factor_changes
-        }, {
-            x: DV_factor_values[x].solution_value() for x in DV_factor_values
-        }, weight_after_change.solution_value()
-    else:
-        return {x: 0 for x in DV_factor_changes}, dic_initial_x, initial_weight
+#
+# def multi_factors_change(initial_weight, dic_initial_x, dic_k, dic_lb, dic_ub):
+#
+#     solver = pywraplp.Solver.CreateSolver('SCIP')
+#     bigM = 10 ** 10
+#     infinity = solver.infinity()
+#
+#     DV_factor_changes = {
+#         x: solver.IntVar(0, 1, '''Is_Change_%s''' % (x)) for x in dic_initial_x
+#     }
+#     DV_factor_values = {
+#         x: solver.NumVar(
+#             np.min([dic_lb[x], dic_initial_x[x]]),
+#             np.max([dic_ub[x], dic_initial_x[x]]),
+#             '''Suggested_Value_%s''' % (x)
+#         ) for x in dic_initial_x
+#     }
+#
+#     weight_after_change = initial_weight + np.sum([
+#         (DV_factor_values[x] - dic_initial_x[x]) * dic_k[x] for x in dic_initial_x
+#     ])
+#     OBJ_count_changed_factors = np.sum([
+#         DV_factor_changes[x] for x in dic_initial_x
+#     ])
+#     final_weight_gap = weight_after_change - Target_Weight
+#     OBJ_abs_weight_gap = solver.NumVar(0, 100, 'OBJ_weight_gap')
+#     solver.Minimize(OBJ_abs_weight_gap + 0.001 * OBJ_count_changed_factors)
+#     solver.Add(OBJ_abs_weight_gap >= final_weight_gap)
+#     solver.Add(OBJ_abs_weight_gap >= (-1) * final_weight_gap)
+#
+#     # DV_factor_changes[x]越小越好，这里自带一个趋势
+#     for x in dic_initial_x:
+#         solver.Add(bigM * (DV_factor_changes[x]) >= DV_factor_values[x] - dic_initial_x[x])
+#         solver.Add(bigM * (DV_factor_changes[x]) >= dic_initial_x[x] - DV_factor_values[x])
+#
+#     status = solver.Solve()
+#
+#     if status == pywraplp.Solver.OPTIMAL:
+#         return {
+#             x: DV_factor_changes[x].solution_value() for x in DV_factor_changes
+#         }, {
+#             x: DV_factor_values[x].solution_value() for x in DV_factor_values
+#         }, weight_after_change.solution_value()
+#     else:
+#         return {x: 0 for x in DV_factor_changes}, dic_initial_x, initial_weight
 
 
 def map_data():
@@ -164,17 +190,25 @@ def map_data():
                 'CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rDrum2InletTemp',
                 'Prev_CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rDrum2InletTemp',
                 'CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp',
-                'Prev_CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp'
+                'Prev_CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp',
+                'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_SP',
+                'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_SP'
             ]
         })
 
 
-    if 'Local_Curated_Data' in input_data['filePath']:
+    if Connection_Method == 'Azure':
+
+        Blob_Target = edge_blob.AzureBlobStorage(connection_string=edge_blob.BlobConfig.target_conn_str)
         merge_file_path = input_data['filePath'] + 'merge.csv'
-        df_curated_data = pd.read_csv(input_data['filePath'] + 'curated_parm.csv')
-        df_spc_data = pd.read_csv(input_data['filePath'] + 'curated_spc.csv')
-        file_path_last = input_data['filePath'][:19] + (
-                datetime.datetime.strptime(input_data['filePath'][19:], '%Y/%m/%d/%H/%M/%S/') - datetime.timedelta(seconds=15)
+        curated_file_path = input_data['filePath'] + 'curated_parm.csv'
+        blob_data = Blob_Target.download_blob(edge_blob.BlobConfig.target_container_name,
+                                              curated_file_path)
+        df_curated_data = pd.read_csv(io.BytesIO(blob_data))
+        df_spc_data = db_service.get_spc_data(T, 'YNG_SPC_TReceive', 'YNG_SPC_TItem')
+        # df_spc_data = pd.read_csv(input_data['filePath'] + 'curated_spc.csv')
+        file_path_last = input_data['filePath'][:20] + (
+                datetime.datetime.strptime(input_data['filePath'][20:], '%Y/%m/%d/%H/%M/%S/') - datetime.timedelta(seconds=15)
             ).strftime('%Y/%m/%d/%H/%M/%S/')
         try:
             df_prev_merge = pd.read_csv(file_path_last + 'merge.csv')
@@ -197,16 +231,20 @@ def map_data():
 
     # df_mapping, current_data = data_mapping.merge_data(df_curated_data, df_spc_data, df_prev_merge)
 
-    df_mapping, current_data, df_weight, df_thickness_depth, df_legnth_width = data_mapping.process_etl_data(
-        now=T,
-        parm=df_curated_data,
-        spc=df_spc_data,
-        prev_merge=df_prev_merge,
-        merge_OT_SPC=data_mapping.merge_OT_SPC,
-        output_file=merge_file_path
-    )
+    df_mapping, current_data, df_weight, df_thickness_depth, df_legnth_width, update_time_dict = \
+        data_mapping.process_etl_data(
+            now=T,
+            parm=df_curated_data,
+            spc=df_spc_data,
+            prev_merge=df_prev_merge,
+            merge_OT_SPC=data_mapping.merge_OT_SPC,
+            output_file=merge_file_path
+        )
 
-    if 'Local_Curated_Data' not in input_data['filePath']:
+    if Connection_Method == 'Azure':
+        Blob_Target.upload_blob(edge_blob.BlobConfig.target_container_name, input_data['filePath'] + 'merge.csv',
+                                df_mapping.to_csv(index=False).encode('utf-8'))
+    else:
         edge_blob.save_dataframe_to_csv_blob(input_data['filePath'] + 'merge.csv', df_mapping)
 
     name_mapping = {
@@ -228,7 +266,9 @@ def map_data():
         'CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rDrum2InletTemp': 'Temp2',
         'Prev_CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rDrum2InletTemp': 'Prev_Temp2',
         'CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp': 'TempExtruder',
-        'Prev_CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp': 'Prev_TempExtruder'
+        'Prev_CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp': 'Prev_TempExtruder',
+        'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_SP': 'TempLowerSetValue',
+        'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_SP': 'TempUpperSetValue'
     }
 
     df_mapping = df_mapping.rename(columns=name_mapping)
@@ -238,7 +278,12 @@ def map_data():
         if c in name_mapping:
             current_data[name_mapping[c]] = current_data[c]
 
-    return df_mapping, current_data, df_weight, df_thickness_depth, df_legnth_width 
+    fixed_keys = list(update_time_dict.keys())
+    for c in fixed_keys:
+        if c in name_mapping:
+            update_time_dict[name_mapping[c]] = update_time_dict[c]
+
+    return df_mapping, current_data, df_weight, df_thickness_depth, df_legnth_width, update_time_dict
 
 def predict_weight_now(df_mapping, current_data):
 
@@ -260,7 +305,7 @@ def predict_weight_now(df_mapping, current_data):
                                     df_mapping['GapFS_Influence']
 
     df_mapping['Date'] = [pd.Timestamp(x) for x in df_mapping['Date']]
-    df_mapping = df_mapping.sort_values(by='Date', ascending=False)
+    df_mapping = df_mapping.sort_values(by='Date', ascending=False, ignore_index=True)
     w_prev = df_mapping['Weight'][0]
     mw_prev = df_mapping['Modified_Weight'][0]
     t_end = datetime.datetime.strptime(input_data['fileLastTs'], "%Y-%m-%d %H:%M:%S")
@@ -284,7 +329,8 @@ def predict_weight_now(df_mapping, current_data):
 
 def run(input_str):
 
-    global Target_Weight, df_mapping, input_data, current_data, K_GapFS, K_Gap3, K_Gap1, K_Gap2, K_Temp1, K_Temp2, T
+    global Target_Weight, df_mapping, input_data, current_data, K_GapFS, K_Gap3, K_Gap1, K_Gap2, K_Temp1, K_Temp2, T, \
+        Connection_Method
 
     Control_UB = 35.36
     Control_LB = 35.1
@@ -295,6 +341,10 @@ def run(input_str):
         input_data['time'][0], input_data['time'][1], input_data['time'][2],
         input_data['time'][3], input_data['time'][4], input_data['time'][5]
     )
+    Connection_Method = 'Edge'
+    if 'connection' in input_data:
+        if input_data['connection'] == 'Azure':
+            Connection_Method = 'Azure'
 
     # Load Models
     Model_GapFS = joblib.load('Models/Forming Roller 定型辊间隙.joblib')
@@ -316,20 +366,50 @@ def run(input_str):
         'Gap3': {'ub': 0.075, 'lb': 0.06},
         'GapFS': {'ub': 0.07, 'lb': 0.06},
         'Temp1': {'ub': -10.0, 'lb': -15.0},
-        'Temp2': {'ub': -10.0, 'lb': -15.0}
+        'Temp2': {'ub': -10.0, 'lb': -15.0},
+        'TempExtruder': {'ub': 70, 'lb': 45},
+        'CrossScore': {'ub': 220, 'lb': 180}
     }
 
-    df_mapping, current_data, df_weight, df_thickness_depth, df_legnth_width = map_data()
+    azure_config = {
+        'SPC_DB_SERVER': 'dev-ce2-iot-core-sql.database.chinacloudapi.cn',
+        'SPC_DB_PORT': 1433,
+        'SPC_DB_DATABASE': 'dev-ce2-iot-core-mgmtengine-sqldb',
+        'SPC_DB_USERNAME': 'whi',
+        'SPC_DB_PASSWORD': 'jxg-ml5@dga'
+    }
+    edge_config = {
+        'SPC_DB_SERVER': '10.157.85.236',
+        'SPC_DB_PORT': 1434,
+        'SPC_DB_DATABASE': 'spc-datadb',
+        'SPC_DB_USERNAME': 'spc_datauser',
+        'SPC_DB_PASSWORD': 'Accenture@2024'
+    }
+
+    # 3 初始化相关配置文件
+    if Connection_Method == 'Azure':
+        SpcDBPoolConfig.init(azure_config)
+    else:
+        SpcDBPoolConfig.init(edge_config)
+
+    # 4. 初始化db2连接池资源
+    SpcDBFactory.init_pool(SpcDBPoolConfig)
+
+    df_mapping, current_data, dic_weight, dic_thickness_depth, dic_length_width, last_change_time = map_data()
     weight_prediction, actual_weight = predict_weight_now(df_mapping, current_data)
     print(weight_prediction)
 
     Suggestion_Dict = {
         'code': 200, # 这期都是200，异常处理下一期做
+        'human_takeover': False,
         'is_change': False, # 是否需要调整
         'Gap1': current_data['Gap1'], # 1号辊推荐间隙
         'Gap2': current_data['Gap2'], # 2号辊推荐间隙
         'Gap3': current_data['Gap3'], #  3号辊推荐间隙
         'GapFS': current_data['GapFS'], # 定型辊推荐间隙，FS = final sizing
+        'CrossScore': current_data['CrossScore'], # 横刀速度
+        'TempLowerSetValue': current_data['TempLowerSetValue'], # 夹套水下部温度
+        'TempUpperSetValue': current_data['TempUpperSetValue'], # 夹套水上部温度
         'ActualWeight': actual_weight,
         'WeightPredictionBeforeChange': weight_prediction, # 按照现有参数重量预测
         'WeightPredictionAfterChange': weight_prediction, # 按照推荐的参数重量预测
@@ -338,53 +418,152 @@ def run(input_str):
     for x in input_data:
         Suggestion_Dict[x] = input_data[x]
 
+    CS_change_allowed = False
+    Gaps_change_allowed = False
+    Temprature_change_allowed = False
+
+    # Lock for CrossScoring
+    # if no recent value change within 15 minutes, and no change since last spc weighing, unlock
+    if T - last_change_time['CrossScore']['TS'] >= datetime.timedelta(minutes = 15) and \
+            dic_weight['DataTime'] > last_change_time['CrossScore']['TS']:
+        CS_change_allowed = True
+
+    # Lock for Gaps
+    # if no recent value change within 15 minutes, and no change since last spc weighing, unlock
+    most_recent_gap_change = np.max([
+        last_change_time['Gap1']['TS'], last_change_time['Gap2']['TS'],
+        last_change_time['Gap3']['TS'], last_change_time['GapFS']['TS']
+    ])
+    if T - most_recent_gap_change >= datetime.timedelta(minutes = 15) and \
+            dic_weight['DataTime'] > most_recent_gap_change:
+        Gaps_change_allowed = True
+
+    # Lock for Temperature
+    # if no recent value change within 20 minutes, and no change since last spc weighing, unlock
+    most_recent_temp_change = np.max([
+        last_change_time['TempLowerSetValue']['TS'], last_change_time['TempUpperSetValue']['TS']
+    ])
+    if T - most_recent_temp_change >= datetime.timedelta(minutes = 20) and \
+            dic_weight['DataTime'] > most_recent_temp_change:
+        Temprature_change_allowed = True
+
     if weight_prediction > Control_UB or weight_prediction < Control_LB:
-        New_Gap1, New_Gap2, New_Gap3, New_GapFS, New_PredWeight = constrained_optimization(
-            dic_lb_ub, weight_prediction, current_data
-        )
-        if New_PredWeight != weight_prediction:
-            Suggestion_Dict['Gap1'] = New_Gap1
-            Suggestion_Dict['Gap2'] = New_Gap2
-            Suggestion_Dict['Gap3'] = New_Gap3
-            Suggestion_Dict['GapFS'] = New_GapFS
-            Suggestion_Dict['WeightPredictionAfterChange'] = New_PredWeight
-            Suggestion_Dict['is_change'] = True
+
+        Suggestion_Dict['msg'] += '重量异常。'
+        # Change CrossScoring Rollers if Length is not within the range we want
+        if (dic_length_width['LengthOrThickness'] > 72.2 or dic_length_width['LengthOrThickness'] < 71.2) \
+                and CS_change_allowed:
+
+            delta_cs = (Target_Weight - weight_prediction) * 50
+            Suggestion_Dict['CrossScore'] = fit_range(
+                current_data['CrossScore'] + delta_cs, dic_lb_ub['CrossScore']['lb'], dic_lb_ub['CrossScore']['ub']
+            )
+            Suggestion_Dict['WeightPredictionAfterChange'] = Suggestion_Dict['WeightPredictionBeforeChange'] + \
+                0.02 * (Suggestion_Dict['CrossScore'] - current_data['CrossScore'])
+            if Suggestion_Dict['WeightPredictionAfterChange'] != Suggestion_Dict['WeightPredictionBeforeChange']:
+                Suggestion_Dict['is_change'] = True
+                Suggestion_Dict['msg'] += '调整横刀速度'
+
+        # If Length is OK, then change gaps
+        elif Gaps_change_allowed:
+
+            # 如果宽度没有问题，那么看能否通过做
+            New_Gap1, New_Gap2, New_Gap3, New_GapFS, New_PredWeight = constrained_optimization(
+                dic_lb_ub, weight_prediction, current_data
+            )
+            if New_PredWeight != weight_prediction:
+                Suggestion_Dict['Gap1'] = New_Gap1
+                Suggestion_Dict['Gap2'] = New_Gap2
+                Suggestion_Dict['Gap3'] = New_Gap3
+                Suggestion_Dict['GapFS'] = New_GapFS
+                Suggestion_Dict['WeightPredictionAfterChange'] = New_PredWeight
+                Suggestion_Dict['is_change'] = True
+                Suggestion_Dict['msg'] += '调整辊轮间隙。'
+
+    # Change Temperature
+    if 'NCS' in dic_weight['Item']:
+        temp_lb = 45.787
+        temp_ub = 48.449
+    else:
+        temp_lb = 48.519
+        temp_ub = 50.845
+
+    if Temprature_change_allowed:
+
+        if current_data['TempExtruder'] > temp_ub:
+            Suggestion_Dict['msg'] += '挤压机出口温度过高。'
+            Suggestion_Dict['TempLowerSetValue'] = fit_range(
+                current_data['TempLowerSetValue'] - 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+            )
+            Suggestion_Dict['TempUpperSetValue'] = fit_range(
+                current_data['TempUpperSetValue'] - 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+            )
+            if Suggestion_Dict['TempLowerSetValue'] != current_data['TempLowerSetValue'] or \
+                    Suggestion_Dict['TempUpperSetValue'] != current_data['TempUpperSetValue']:
+                Suggestion_Dict['is_change'] = True
+                Suggestion_Dict['msg'] += '调整夹套水温度。'
+
+        elif current_data['TempExtruder'] < temp_lb:
+            Suggestion_Dict['msg'] += '挤压机出口温度过低。'
+            Suggestion_Dict['TempLowerSetValue'] = fit_range(
+                current_data['TempLowerSetValue'] + 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+            )
+            Suggestion_Dict['TempUpperSetValue'] = fit_range(
+                current_data['TempUpperSetValue'] + 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+            )
+            if Suggestion_Dict['TempLowerSetValue'] != current_data['TempLowerSetValue'] or \
+                    Suggestion_Dict['TempUpperSetValue'] != current_data['TempUpperSetValue']:
+                Suggestion_Dict['is_change'] = True
+                Suggestion_Dict['msg'] += '调整夹套水温度。'
 
     # 添加长度宽度厚度深度数据
-    Suggestion_Dict['Length_Date'] = df_legnth_width['DataTime'].strftime("%Y-%m-%d %H:%M:%S")
-    Suggestion_Dict['Length'] = df_legnth_width['LengthOrThickness']
-    Suggestion_Dict['Length_std'] = df_legnth_width['LengthOrThickness_std']
-    Suggestion_Dict['width'] = df_legnth_width['WidthOrDepth']
-    Suggestion_Dict['width_std'] = df_legnth_width['WidthOrDepth_std']
+    Suggestion_Dict['Length_Date'] = dic_length_width['DataTime'].strftime("%Y-%m-%d %H:%M:%S")
+    Suggestion_Dict['Length'] = dic_length_width['LengthOrThickness']
+    Suggestion_Dict['Length_std'] = dic_length_width['LengthOrThickness_std']
+    Suggestion_Dict['width'] = dic_length_width['WidthOrDepth']
+    Suggestion_Dict['width_std'] = dic_length_width['WidthOrDepth_std']
 
-    Suggestion_Dict['Thickness_Date'] = df_thickness_depth['DataTime'].strftime("%Y-%m-%d %H:%M:%S")
-    Suggestion_Dict['Thickness'] = df_thickness_depth['LengthOrThickness']
-    Suggestion_Dict['Thickness_std'] = df_thickness_depth['LengthOrThickness_std']
-    Suggestion_Dict['Depth'] = df_thickness_depth['WidthOrDepth']
-    Suggestion_Dict['Depth_std'] = df_thickness_depth['WidthOrDepth_std']
+    Suggestion_Dict['Thickness_Date'] = dic_thickness_depth['DataTime'].strftime("%Y-%m-%d %H:%M:%S")
+    Suggestion_Dict['Thickness'] = dic_thickness_depth['LengthOrThickness']
+    Suggestion_Dict['Thickness_std'] = dic_thickness_depth['LengthOrThickness_std']
+    Suggestion_Dict['Depth'] = dic_thickness_depth['WidthOrDepth']
+    Suggestion_Dict['Depth_std'] = dic_thickness_depth['WidthOrDepth_std']
 
-    Suggestion_Dict['Weight_Date'] = df_weight['DataTime'].strftime("%Y-%m-%d %H:%M:%S")
+    Suggestion_Dict['Weight_Date'] = dic_weight['DataTime'].strftime("%Y-%m-%d %H:%M:%S")
     #shift_code = df_weight['shift'].strip()
     #shift_points = shift_code.split('\\u')
     #Suggestion_Dict['shift'] = ''.join([chr(int(code,16)) for code in shift_points[1:]]) 
-    Suggestion_Dict['shift'] = df_weight['shift'].strip()
+    Suggestion_Dict['shift'] = dic_weight['shift'].strip()
     return json.dumps(Suggestion_Dict, ensure_ascii=False)
 
 
 if __name__ == '__main__':
 
-    # raw_data = sys.argv[1]
-    raw_data = json.dumps({
-        "time": [2024,8,26,15,5,15],
-        "filePath": "2024/08/26/15/05/15/",
-        "fileLastTs": "2024-08-26 15:06:01"
 
-	#"time":  [2024, 8, 21, 10, 10, 0, 0],
-        #"fileFirstTs": "2024-07-91 16:55:16",
-        #"curTs": "2024-08-14 14:52:31",
-        #"filePath": "Local_Curated_Data/2024/08/21/10/10/00/",
-        #"fileLastTs": "2024-06-28 16:55:31"
-    })
+    # raw_data = sys.argv[1]
+    t = datetime.datetime(2024, 9, 13, 9, 0, 0, 0)
+    while t <= datetime.datetime(2024, 9, 13, 10, 23, 59, 45):
+        raw_data = json.dumps({
+            "time": datetime_to_list(t),
+            "filePath": "Curated Data/yngetl/" + t.strftime('%Y/%m/%d/%H/%M/%S/'),
+            "fileLastTs": t.strftime('%Y-%m-%d %H:%M:%S'),
+            "connection": 'Azure'
+
+        #"time":  [2024, 8, 21, 10, 10, 0, 0],
+            #"fileFirstTs": "2024-07-91 16:55:16",
+            #"curTs": "2024-08-14 14:52:31",
+            #"filePath": "Local_Curated_Data/2024/08/21/10/10/00/",
+            #"fileLastTs": "2024-06-28 16:55:31"
+        })
+        output_json = run(raw_data)
+
+        output_dict = json.loads(output_json)
+
+        print(output_dict['time'])
+        if output_dict['is_change']:
+            print(output_dict['msg'])
+            print(output_json)
+
+        t += datetime.timedelta(seconds=15)
     
-    output_json = run(raw_data)
-    print (output_json)
+

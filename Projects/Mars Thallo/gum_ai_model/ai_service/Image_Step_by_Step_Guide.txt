@@ -32,3 +32,18 @@ Step 5. 接收docker中运行的结果
 
 结果在这个路径下：
 output_files/ai_output.json
+
+Step 6. 包装了 REST 接口后：
+
+构建 docker 镜像：
+
+    docker build -t ai_image .
+
+启动 docker 镜像：
+
+    docker run -d --name yng_ai_container \
+      -p 5002:5002 ai_image
+
+访问接口：
+
+   curl --request POST http://<IP>:5002/api/v1/gum-sheeting -d '{"time":[y,M,d,H,m,s], "path": "some path"}'

@@ -1,5 +1,5 @@
 # Use an official Python 3.8 runtime as a parent image
-FROM python:3.9
+FROM python:3.8
 
 EXPOSE 5002
 
@@ -8,6 +8,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
+
 
 # Install pip requirements
 COPY requirements.txt .
@@ -20,6 +21,9 @@ COPY . /app
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
+# runtime env
+ENV MY_ENV=DEV
 
+ENV PATH=/home/appuser/.local/bin:$PATH
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["gunicorn", "--bind", "0.0.0.0:5002", "gun:app"]
+CMD ["gunicorn", "--config", "gun.py", "app:app"]
