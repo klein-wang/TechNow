@@ -17,5 +17,6 @@ SELECT a.[ID]
   LEFT JOIN [spc-datadb].[dbo].[TItem] b
   ON a.FItemCode = b.fItemCode
   WHERE 
-      FDate > '2024-07-01 00:00:00' AND FDate < '2024-09-01 00:00:00'
+      FDate > '2024-05-01 00:00:00' --AND FDate < '2024-09-26 00:00:00'
+	  AND [FXJType] = '3'
   ORDER BY FDate ASC
