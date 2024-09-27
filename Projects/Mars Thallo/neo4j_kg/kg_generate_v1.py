@@ -220,6 +220,7 @@ if __name__ == "__main__":
     # return 物料到工步再到工序 material-(step)-process path: MATCH p = (n:Material)-[*]->(m:Process) RETURN p;
 
     # check saving: MATCH (n:Step) WHERE n.Saving_kJ <> "nan" RETURN n;
+    # MATCH (n) DETACH DELETE n
 
     # return parameter path: MATCH p = (n:Machine)-[*]->(k:Parameter)-[*]->(m:Measure) RETURN p;
     # session.set_node_color('Parameter','表面粉下涂抹器（设定值）','purple') #不会改变实际的颜色
