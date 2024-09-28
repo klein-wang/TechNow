@@ -1,0 +1,27 @@
+{
+    "Driam": 2,
+    "Batch": "02-2024-07-04 16:04",
+    "Time": [
+        2024,
+        7,
+        4,
+        22,
+        37,
+        54
+    ],
+    "SKU": "Rb-ESM",
+    "Phase": 12,
+    "Cycle": 1,
+    "Weight": 1.41609,
+    "Concentration": 0.7367,
+    "GumCenterTotalWeight": 2000,
+    "Num_Gum_Center": 2120342,
+    "SyrupTotalRecipeValue2": 449.0,
+    "PhaseTotalSyrup2": 472.91,
+    "Pellets_in_Sample": 141,
+    "Appearance_1_Num": 147,
+    "Appearance_2_Num": 0,
+    "Appearance_3_Num": 0,
+    "Appearance_4_Num": 0,
+    "Final_Appearance_Quality": true
+}

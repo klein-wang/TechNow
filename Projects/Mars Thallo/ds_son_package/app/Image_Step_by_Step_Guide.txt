@@ -1,0 +1,34 @@
+Step 1. Build Image
+
+进入这个path，然后操作：
+
+docker build -t ai_image .
+
+
+Step 2. 调用 Image 中的 Python 文件
+
+格式为：
+docker run -p 4000:80 ai_image python weight_control_constrained_edge.py 线上Azure API调用时的输入字段
+
+例如：
+docker run -p 4000:80 ai_image python weight_control_constrained_edge.py '{"Driam": 2, "Batch": "02-2024-07-04 16:04", "Time": [2024, 7, 4, 22, 37, 54], "SKU": "Rb-ESM", "Phase": 12, "Cycle": 1, "Weight": 1.41609, "Concentration": 0.7367, "GumCenterTotalWeight": 2000, "Num_Gum_Center": 2120342, "SyrupTotalRecipeValue2": 449.0, "PhaseTotalSyrup2": 472.91, "Pellets_in_Sam
+ple": 141, "Appearance_1_Num": 147, "Appearance_2_Num": 0, "Appearance_3_Num": 0, "Appearance_4_Num": 0, "Final_Appearance_Quality": true}'
+
+
+Step 3. 进入 Docker Files 去提取结果放在外面
+
+先启动给一个临时容器，使用前面创建的镜像，保持后台运行
+docker run -d --name temp_container ai_image tail -f /dev/null
+
+然后，从临时容器中，将Step 2中运行的结果文件拿出来，放在本地路径
+docker cp temp_container:/output_files/ai_result.json output_files/ai_result.json
+
+最后，关闭并删除临时容器
+docker stop temp_container
+docker rm temp_container
+
+
+Step 4. 接收docker中运行的结果
+
+结果在这个路径下：
+output_files/ai_result.json
