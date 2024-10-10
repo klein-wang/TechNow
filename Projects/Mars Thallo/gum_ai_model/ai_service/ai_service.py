@@ -205,7 +205,7 @@ def map_data():
         blob_data = Blob_Target.download_blob(edge_blob.BlobConfig.target_container_name,
                                               curated_file_path)
         df_curated_data = pd.read_csv(io.BytesIO(blob_data))
-        df_spc_data = db_service.get_spc_data(T, 'YNG_SPC_TReceive', 'YNG_SPC_TItem')
+        # df_spc_data = db_service.get_spc_data(T, 'YNG_SPC_TReceive', 'YNG_SPC_TItem')
         # df_spc_data = pd.read_csv(input_data['filePath'] + 'curated_spc.csv')
         file_path_last = input_data['filePath'][:20] + (
                 datetime.datetime.strptime(input_data['filePath'][20:], '%Y/%m/%d/%H/%M/%S/') - datetime.timedelta(seconds=15)
@@ -214,11 +214,26 @@ def map_data():
             df_prev_merge = pd.read_csv(file_path_last + 'merge.csv')
         except:
             df_prev_merge = df_prev_merge_empty
+        try:
+            blob_data = Blob_Target.download_blob(edge_blob.BlobConfig.target_container_name,
+                                                  file_path_last + 'curated_spc_data.csv')
+            df_last_spc = pd.read_csv(io.BytesIO(blob_data))
+            df_spc_data = db_service.get_spc_data(
+                now=T, spc_table_name='YNG_SPC_TReceive', item_table_name='YNG_SPC_TItem', initialization=False,
+                df_last_spc=df_last_spc
+            )
+        except:
+            df_spc_data = db_service.get_spc_data(
+                now=T, spc_table_name='YNG_SPC_TReceive', item_table_name='YNG_SPC_TItem'
+            )
+        Blob_Target.upload_blob(edge_blob.BlobConfig.target_container_name, input_data['filePath'] + 'curated_spc_data.csv',
+                                df_spc_data.to_csv(index=False).encode('utf-8'))
+
     else:
         df_curated_data = edge_blob.read_csv_blob_to_dataframe(input_data['filePath'] + 'curated_parm.csv')
         #df_spc_data = edge_blob.read_csv_blob_to_dataframe(input_data['filePath'] + 'curated_spc.csv')
         #从spc 数据库获取spc data
-        df_spc_data = db_service.get_spc_data(T)
+        # df_spc_data = db_service.get_spc_data(T)
         file_path_last = (
                 datetime.datetime.strptime(input_data['filePath'], '%Y/%m/%d/%H/%M/%S/') - datetime.timedelta(seconds=15)
             ).strftime('%Y/%m/%d/%H/%M/%S/')
@@ -228,6 +243,13 @@ def map_data():
                df_prev_merge = df_prev_merge_empty
         except:
             df_prev_merge = df_prev_merge_empty
+        try:
+            df_last_spc = edge_blob.read_csv_blob_to_dataframe(file_path_last + 'curated_spc_data.csv')
+            df_spc_data = db_service.get_spc_data(now=T, initialization=False, df_last_spc=df_last_spc)
+        except:
+            df_spc_data = db_service.get_spc_data(now=T)
+        edge_blob.save_dataframe_to_csv_blob(input_data['filePath'] + 'curated_spc_data.csv', df_spc_data)
+
 
     # df_mapping, current_data = data_mapping.merge_data(df_curated_data, df_spc_data, df_prev_merge)
 
@@ -368,7 +390,7 @@ def run(input_str):
         'Temp1': {'ub': -10.0, 'lb': -15.0},
         'Temp2': {'ub': -10.0, 'lb': -15.0},
         'TempExtruder': {'ub': 70, 'lb': 45},
-        'CrossScore': {'ub': 220, 'lb': 180}
+        'CrossScore': {'ub': 220, 'lb': 150}
     }
 
     azure_config = {
@@ -451,10 +473,11 @@ def run(input_str):
 
         Suggestion_Dict['msg'] += '重量异常。'
         # Change CrossScoring Rollers if Length is not within the range we want
-        if (dic_length_width['LengthOrThickness'] > 72.2 or dic_length_width['LengthOrThickness'] < 71.2) \
+        if (dic_length_width['LengthOrThickness'] > 72.2 or dic_length_width['LengthOrThickness'] < 70.5) \
                 and CS_change_allowed:
 
             delta_cs = (Target_Weight - weight_prediction) * 50
+            delta_cs = fit_range(delta_cs, -0.6, 0.6)
             Suggestion_Dict['CrossScore'] = fit_range(
                 current_data['CrossScore'] + delta_cs, dic_lb_ub['CrossScore']['lb'], dic_lb_ub['CrossScore']['ub']
             )
@@ -541,11 +564,12 @@ if __name__ == '__main__':
 
 
     # raw_data = sys.argv[1]
-    t = datetime.datetime(2024, 9, 13, 9, 0, 0, 0)
-    while t <= datetime.datetime(2024, 9, 13, 10, 23, 59, 45):
+    t = datetime.datetime(2024, 10, 9, 9, 8, 45, 0)
+    while t <= datetime.datetime(2024, 10, 24, 15, 44, 59, 45):
         raw_data = json.dumps({
             "time": datetime_to_list(t),
-            "filePath": "Curated Data/yngetl/" + t.strftime('%Y/%m/%d/%H/%M/%S/'),
+            "filePath": "Curated Data/yngetl/" + (t - datetime.timedelta(seconds=15)).strftime('%Y/%m/%d/%H/%M/%S/'),
+            # "filePath": (t - datetime.timedelta(seconds=15)).strftime('%Y/%m/%d/%H/%M/%S/'),
             "fileLastTs": t.strftime('%Y-%m-%d %H:%M:%S'),
             "connection": 'Azure'
 
@@ -565,5 +589,5 @@ if __name__ == '__main__':
             print(output_json)
 
         t += datetime.timedelta(seconds=15)
-    
+        break
 
