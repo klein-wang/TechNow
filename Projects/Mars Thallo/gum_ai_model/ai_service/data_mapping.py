@@ -134,7 +134,9 @@ def merge_OT_SPC(curated_parm, curated_spc):
         "CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rDrum2InletTemp",
         "CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp",
         "SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_SP",
-        "SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_SP"
+        "SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_SP",
+        'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_RealValue',
+        'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_RealValue'
     ]
     para = parm.copy()
     # 将 Tag 为 "SFBMix.plcSFBMix.dbAdditionalParameter.StateFromSheeting.bMachineRunning" 的 Value 列中的 True 和 False 修改为 1 和 0
@@ -279,7 +281,9 @@ def process_etl_data(now,
          'CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rDrum2InletTemp',
          'CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp',
          'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_SP',
-         'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_SP'
+         'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_SP',
+         'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_RealValue',
+         'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_RealValue'
     ]
 
     df_required_tags = pd.DataFrame.from_dict({

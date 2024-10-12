@@ -192,7 +192,9 @@ def map_data():
                 'CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp',
                 'Prev_CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp',
                 'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_SP',
-                'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_SP'
+                'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_SP',
+                'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_RealValue',
+                'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_RealValue'
             ]
         })
 
@@ -290,7 +292,9 @@ def map_data():
         'CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp': 'TempExtruder',
         'Prev_CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp': 'Prev_TempExtruder',
         'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_SP': 'TempLowerSetValue',
-        'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_SP': 'TempUpperSetValue'
+        'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_SP': 'TempUpperSetValue',
+        'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_LB_Temp_RealValue': 'TempLowerRealValue',
+        'SFBMix.PLC_BOSCH EXTRUDER.DB_Data_Exchange.EXT_UB_Temp_RealValue': 'TempUpperRealValue'
     }
 
     df_mapping = df_mapping.rename(columns=name_mapping)
@@ -446,8 +450,9 @@ def run(input_str):
 
     # Lock for CrossScoring
     # if no recent value change within 15 minutes, and no change since last spc weighing, unlock
-    if T - last_change_time['CrossScore']['TS'] >= datetime.timedelta(minutes = 15) and \
-            dic_weight['DataTime'] > last_change_time['CrossScore']['TS']:
+    # if T - last_change_time['CrossScore']['TS'] >= datetime.timedelta(minutes = 15) and \
+    #         dic_weight['DataTime'] > last_change_time['CrossScore']['TS']:
+    if dic_weight['DataTime'] > last_change_time['CrossScore']['TS']:
         CS_change_allowed = True
 
     # Lock for Gaps
@@ -456,8 +461,9 @@ def run(input_str):
         last_change_time['Gap1']['TS'], last_change_time['Gap2']['TS'],
         last_change_time['Gap3']['TS'], last_change_time['GapFS']['TS']
     ])
-    if T - most_recent_gap_change >= datetime.timedelta(minutes = 15) and \
-            dic_weight['DataTime'] > most_recent_gap_change:
+    # if T - most_recent_gap_change >= datetime.timedelta(minutes = 15) and \
+    #         dic_weight['DataTime'] > most_recent_gap_change:
+    if dic_weight['DataTime'] > most_recent_gap_change:
         Gaps_change_allowed = True
 
     # Lock for Temperature
@@ -516,10 +522,10 @@ def run(input_str):
         if current_data['TempExtruder'] > temp_ub:
             Suggestion_Dict['msg'] += '挤压机出口温度过高。'
             Suggestion_Dict['TempLowerSetValue'] = fit_range(
-                current_data['TempLowerSetValue'] - 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempLowerRealValue'] - 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
             )
             Suggestion_Dict['TempUpperSetValue'] = fit_range(
-                current_data['TempUpperSetValue'] - 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempUpperRealValue'] - 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
             )
             if Suggestion_Dict['TempLowerSetValue'] != current_data['TempLowerSetValue'] or \
                     Suggestion_Dict['TempUpperSetValue'] != current_data['TempUpperSetValue']:
@@ -529,10 +535,10 @@ def run(input_str):
         elif current_data['TempExtruder'] < temp_lb:
             Suggestion_Dict['msg'] += '挤压机出口温度过低。'
             Suggestion_Dict['TempLowerSetValue'] = fit_range(
-                current_data['TempLowerSetValue'] + 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempLowerRealValue'] + 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
             )
             Suggestion_Dict['TempUpperSetValue'] = fit_range(
-                current_data['TempUpperSetValue'] + 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempUpperRealValue'] + 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
             )
             if Suggestion_Dict['TempLowerSetValue'] != current_data['TempLowerSetValue'] or \
                     Suggestion_Dict['TempUpperSetValue'] != current_data['TempUpperSetValue']:
