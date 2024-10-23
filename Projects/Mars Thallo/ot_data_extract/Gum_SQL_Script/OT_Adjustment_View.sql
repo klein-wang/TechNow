@@ -2,14 +2,15 @@ SELECT
       [Tag]
       ,[Value]
       ,[TS]
-  FROM [opc_timedata].[dbo].[yng_ts_opc_data_log]
+  --FROM [opc_timedata].[dbo].[yng_ts_opc_data_log]
+  FROM [opc_timedata2].[dbo].[yng_ts_opc_data_log]
   WHERE Tag IN (
-    /*
+    
     -- in production
 	'CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rGumEntranceTemperature', -- >= 32
 	'CG_Sheeting.CG_Sheeting.Variables.rGumExtruderExitGumTemp', -- >= 40
 	'CG_Sheeting.CG_Sheeting.dbHMI.Scoring.SRV_CrossScore.rActualVelocityRPM', -- > 100 
-	*/
+	
 
 	-- adjustment
 	'CG_Sheeting.CG_Sheeting.dbHMI.Cooling.Variables.rChillerSetpoint',
@@ -23,4 +24,5 @@ SELECT
 	'CG_Sheeting.CG_Sheeting.dbHMI.Scoring.SRV_CrossScore.rSetpoint_Ratio',
 	'CG_Sheeting.CG_Sheeting.dbHMI.Variables.rSheetsPerMinuteSetpoint' -- line speed
 )
-AND [TS] > '2024-09-14 00:00:00' ORDER BY [TS] DESC
+AND [TS] > '2024-09-14 00:00:00' 
+AND [Value] <> 'N/A' ORDER BY [TS] DESC

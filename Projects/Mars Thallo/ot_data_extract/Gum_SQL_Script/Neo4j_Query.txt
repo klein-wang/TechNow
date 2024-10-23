@@ -1,0 +1,6 @@
+-- Schema
+call db.schema.visualization()
+
+-- Path
+match p = (n:SKU)-[HAS_Product]-(k:Product) return p
+match p = (n:Machine)-[HAS_Process]-(k:Process) return p
