@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marsbackend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: marsbackend
+  template:
+    metadata:
+      labels:
+        app: marsbackend
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: marsbackend
+        image: acrmwpornpce201.azurecr.cn/yng-pellet-mars-backend:#{Build.BuildNumber}#
+        #image: devce2iotmwdgaacr.azurecr.cn/plate-weighing:850968
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: marsbackend
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: marsbackend
+  type: LoadBalancer
