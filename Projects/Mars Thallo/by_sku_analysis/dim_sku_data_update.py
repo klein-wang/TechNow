@@ -2,13 +2,12 @@ import os
 import pandas as pd
 
 file_names = 'SKU参数配置表.xlsx'
-directory = os.getcwd()
-file_path = os.path.join(directory, file_names)
+current_file_path = os.path.abspath(__file__)
+current_file_directory = os.path.dirname(current_file_path)
+file_path = os.path.join(current_file_directory, file_names)
 
 df_sku = pd.read_excel(file_path)
-
 sku_count = len(set(df_sku['skuName']))
-print(f'一共有{sku_count}个SKU \n')
 
 
 def generate_update_sql(db_name, df_sku, columns, name_mapping_dict):
@@ -42,8 +41,8 @@ def generate_update_sql(db_name, df_sku, columns, name_mapping_dict):
     return sql_statements
 
 
-
-print('-------------- Running --------------')
+print(f'一共有{sku_count}个SKU')
+print('-------------- Running -------------- \n')
 db_name = 'test-portaldb'
 columns = ['重量_UB', '重量_LB', '重量_STD', '挤压机出口胶温_UB', '挤压机出口胶温_LB']
 name_mapping_dict = {
