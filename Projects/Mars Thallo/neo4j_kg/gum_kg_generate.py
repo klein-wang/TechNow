@@ -190,7 +190,7 @@ if __name__ == "__main__":
     # return 工序到工步 process-step path: MATCH p = (n:Process)-[*]->(m:Step) RETURN p;
     # return 设备到人 machine-man path: MATCH p = (n:Man)-[*]->(m:Machine) RETURN p;
     # return 设备到参数 machine-parameter path: MATCH p = (n:Machine)-[*]->(m:Parameter) RETURN p;
-    print("return 产品到SKU product-sku path: MATCH p = (n:Product)-[*]->(m:SKU) RETURN p;")
+    print("return 产品到SKU product-sku path: MATCH p = (n:Product)-[*]-(m:SKU) RETURN p;")
     # return 环境变量 environment-process path: MATCH p = ()-[r]-(e:Environment) RETURN p;
     print("return 测量到参数 measure-parameter path: MATCH p = (n:Measure)-[*2..4]-(m:Parameter) RETURN p;")
     # return 物料到工步再到工序 material-(step)-process path: MATCH p = (n:Material)-[*]->(m:Process) RETURN p;
