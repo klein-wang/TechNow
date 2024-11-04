@@ -1,4 +1,4 @@
-SELECT a.[ID]
+﻿SELECT a.[ID]
       ,a.[FDate] AS Date
       ,a.[FItemCode] AS Item_code
 	  ,b.fItemName AS Item
@@ -17,7 +17,8 @@ SELECT a.[ID]
   LEFT JOIN [spc-datadb].[dbo].[TItem] b
   ON a.FItemCode = b.fItemCode
   WHERE 
-      FDate > '2024-01-01 00:00:00' --AND FDate < '2024-09-26 00:00:00'
+      FDate > '2023-01-01 00:00:00' --AND FDate < '2024-09-26 00:00:00'
 	  AND [FXJType] = '3' --weight
+	  --AND REPLACE(LEFT(b.fItemName,4), '（', '') IN ('RPCM') --('RPSY','DMLG')
 	  --AND [FXJType] = '2' --length
   ORDER BY FDate ASC

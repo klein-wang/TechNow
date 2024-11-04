@@ -65,7 +65,7 @@ def generate_json(df_sku):
     json_data = json.dumps(updated_grouped_data, indent=4)
 
     # Write the JSON string to a file
-    json_file_path = os.path.join(current_file_directory, 'sku_data.json')
+    json_file_path = os.path.join(current_file_directory, 'sku_config.json')
     with open(json_file_path, 'w') as json_file:
         json_file.write(json_data)
 

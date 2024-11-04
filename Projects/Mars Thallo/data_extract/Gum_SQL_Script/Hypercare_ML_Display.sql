@@ -22,5 +22,7 @@ SELECT
       ,[update_time]
   FROM [test-portaldb].[dbo].[yng_recommend_weight_data] --test 238/dev 237
   WHERE 
-      [data_time] > '2024-10-16 00:00:00' --AND [data_time] < '2024-09-26 00:00:00'
+      [data_time] > '2024-11-04 16:00:00'
+	  AND [operator_status] = '3'
+	  --AND [operator_status] = '0'
   order by [data_time] ASC

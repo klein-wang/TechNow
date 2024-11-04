@@ -153,9 +153,13 @@ class AzureBlobStorage:
 
 
 class BlobConfig:
+
     source_conn_str = "DefaultEndpointsProtocol=https;AccountName=devce2iotcoreadls01;AccountKey=r6kwbfAFw8XGYrzn4HprzHmeF9F62veBFy4PPN0rEiWiMGEBLhIEd2k7iiTrJLyoXREouMGN1HED+AStW05bwA==;EndpointSuffix=core.chinacloudapi.cn"
     source_container_name = "devce2iotcoreadls01"
 
-    target_conn_str = "DefaultEndpointsProtocol=https;AccountName=devce2iotcoreadls02;AccountKey=1ni1XJ3eZpXLMvLjtPcz8x489HajofT1USgdFeGNuzaS2XXCBZiS8tyQu5zisMpAobhVA4LW5oTv+ASt5ufs2A==;EndpointSuffix=core.chinacloudapi.cn"
-    target_container_name = "devce2iotcoreadls02"
+    # target_conn_str = "DefaultEndpointsProtocol=https;AccountName=devce2iotcoreadls02;AccountKey=1ni1XJ3eZpXLMvLjtPcz8x489HajofT1USgdFeGNuzaS2XXCBZiS8tyQu5zisMpAobhVA4LW5oTv+ASt5ufs2A==;EndpointSuffix=core.chinacloudapi.cn"
+    # target_container_name = "devce2iotcoreadls02"
+
+    target_conn_str = "DefaultEndpointsProtocol=https;AccountName=dlsmwcoredevcn301;AccountKey=uPpb1b6CMNLLLF0jaAsLmtRM427nfDhLXaMtFP2bSzsja8ch1Qp5+jHXD9KOc3+tWsYgXbsBwBZj+AStm69Kfw==;EndpointSuffix=core.chinacloudapi.cn"
+    target_container_name = "yngblob"
 
