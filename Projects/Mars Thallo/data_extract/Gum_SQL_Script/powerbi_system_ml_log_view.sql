@@ -1,40 +1,144 @@
-SELECT [id]
-      ,[sku]
-      ,[extruder_exit_gum_temp]
-      ,[n1_roller_gap]
-      ,[n2_roller_gap]
-      ,[n3_roller_gap]
-      ,[forming_roller_gap]
-      ,[extruder_temperature_up]
-      ,[extruder_temperature_up_sv]
-      ,[cross_cutter_speed]
-      ,[cross_cutter_speed_sv]
-      ,[data_time]
-      ,[weight_ts]
-      ,[shift]
-      ,[actual_weight]
-      ,[sr_recommend_1_roller_gap]
-      ,[sr_recommend_2_roller_gap]
-      ,[sr_recommend_3_roller_gap]
-      ,[sr_recommend_forming_roller_gap]
-      ,[sr_recommend_extruder_temperature_up]
-      ,[sr_recommend_cross_cutter_speed]
-      ,[diff_recommend_1_roller_gap]
-      ,[diff_recommend_2_roller_gap]
-      ,[diff_recommend_3_roller_gap]
-      ,[diff_recommend_forming_roller_gap]
-      ,[diff_recommend_extruder_temperature_up]
-      ,[diff_recommend_cross_cutter_speed]
-      ,[predicted_weight]
-      ,[operator_status]
-      ,[operator_reason]
-      ,[write_back_status]
-      ,[write_back_type]
-      ,[recommend_weight_data_id]
-      ,[create_by]
-      ,[update_by]
-      ,[create_time]
-      ,[update_time]
-  FROM [test-portaldb].[dbo].[yng_recommend_weight_data_log]
-  WHERE [is_change] = '1'
-	AND [data_time] > '2024-10-29 13:00:06'
+﻿WITH PreprocessedData AS (
+    SELECT 
+        [id]
+        ,[sku]
+        ,[shift]
+        ,[data_time]
+        ,[weight_ts]
+        ,[actual_weight]
+        ,[predicted_weight] - [actual_weight] as predicted_change
+        ,[operator_status]
+        ,[write_back_status]
+        ,[recommend_weight_data_id]
+        ,[update_by]
+        ,[update_time]
+        ,[extruder_exit_gum_temp]
+        ,[n1_roller_gap]
+        ,[n2_roller_gap]
+        ,[n3_roller_gap]
+        ,[forming_roller_gap]
+        ,[extruder_temperature_up_sv]
+        ,[cross_cutter_speed_sv]
+        ,[sr_recommend_1_roller_gap]
+        ,[sr_recommend_2_roller_gap]
+        ,[sr_recommend_3_roller_gap]
+        ,[sr_recommend_forming_roller_gap]
+        ,[sr_recommend_extruder_temperature_up]
+        ,[sr_recommend_cross_cutter_speed]
+        ,CAST(FLOOR(CAST([sr_recommend_extruder_temperature_up] AS FLOAT)) AS INT) AS rounded_sr_recommend_extruder_temperature_up
+        ,LAG([sr_recommend_1_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_1_roller_gap
+        ,LAG([sr_recommend_2_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_2_roller_gap
+        ,LAG([sr_recommend_3_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_3_roller_gap
+        ,LAG([sr_recommend_forming_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_forming_roller_gap
+        ,LAG(CAST(FLOOR(CAST([sr_recommend_extruder_temperature_up] AS FLOAT)) AS INT)) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_extruder_temperature_up
+        ,LAG([sr_recommend_cross_cutter_speed]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_cross_cutter_speed
+        ,[data_time] AS date
+    FROM [test-portaldb].[dbo].[yng_recommend_weight_data_log]
+    WHERE [is_change] = '1'
+    --
+	AND [data_time] > '2024-11-05 15:00:00' --AND [data_time] < '2024-11-06 00:00:00'
+),
+/*
+ComparisonData AS (
+    SELECT 
+        *,
+        CASE 
+            WHEN 
+                [sr_recommend_1_roller_gap] = prev_sr_recommend_1_roller_gap
+                AND [sr_recommend_2_roller_gap] = prev_sr_recommend_2_roller_gap
+                AND [sr_recommend_3_roller_gap] = prev_sr_recommend_3_roller_gap
+                AND [sr_recommend_forming_roller_gap] = prev_sr_recommend_forming_roller_gap
+                AND rounded_sr_recommend_extruder_temperature_up = prev_sr_recommend_extruder_temperature_up
+                AND [sr_recommend_cross_cutter_speed] = prev_sr_recommend_cross_cutter_speed
+            THEN LAG([id]) OVER (PARTITION BY [sku] ORDER BY [data_time]) ELSE id
+        END AS recommend_group_id
+    FROM PreprocessedData
+),
+*/
+
+ComparisonData AS (
+    SELECT 
+        *,
+        DENSE_RANK() OVER (
+            ORDER BY 
+                [sr_recommend_1_roller_gap],
+                [sr_recommend_2_roller_gap],
+                [sr_recommend_3_roller_gap],
+                [sr_recommend_forming_roller_gap],
+                rounded_sr_recommend_extruder_temperature_up,
+                [sr_recommend_cross_cutter_speed]
+        ) AS recommend_group_id
+    FROM PreprocessedData
+),
+
+
+MaxStatusData AS (
+    SELECT 
+        recommend_group_id,
+		MAX(id) AS id,
+        MAX(operator_status) AS operator_status
+    FROM ComparisonData
+    GROUP BY recommend_group_id
+),
+
+Combine AS (
+	SELECT
+		m.id AS id,
+		c.sku,
+		c.shift,
+		c.data_time,
+		c.actual_weight,
+		CASE WHEN c.actual_weight > 35.36 THEN 'over' WHEN c.actual_weight < 35.1 THEN 'less' ELSE 'normal' END AS weight_condition,
+		c.predicted_change,
+		c.weight_ts,
+		CASE m.operator_status 
+			WHEN '0' THEN 'none'
+			WHEN '1' THEN 'accept'
+			WHEN '2' THEN 'p_accept'
+			WHEN '3' THEN 'reject'
+		END AS operator_status,
+		--c.recommend_weight_data_id,
+		--c.update_by,
+		--c.update_time,
+		CONCAT_WS(', ', 
+				CASE WHEN c.sr_recommend_1_roller_gap <> c.n1_roller_gap 
+					  OR c.sr_recommend_2_roller_gap <> c.n2_roller_gap
+					  OR c.sr_recommend_3_roller_gap <> c.n3_roller_gap
+					  OR c.sr_recommend_forming_roller_gap <> c.forming_roller_gap
+					  THEN 'Gap' ELSE NULL END,
+				CASE WHEN c.sr_recommend_extruder_temperature_up <> c.extruder_temperature_up_sv THEN 'Temp' ELSE NULL END,
+				CASE WHEN c.sr_recommend_cross_cutter_speed <> c.cross_cutter_speed_sv THEN 'CS' ELSE NULL END
+			) AS changes,
+		CASE WHEN c.sr_recommend_1_roller_gap <> c.n1_roller_gap THEN c.sr_recommend_1_roller_gap ELSE NULL END AS diff_n1_roller_gap,
+		CASE WHEN c.sr_recommend_2_roller_gap <> c.n2_roller_gap THEN c.sr_recommend_2_roller_gap ELSE NULL END AS diff_n2_roller_gap,
+		CASE WHEN c.sr_recommend_3_roller_gap <> c.n3_roller_gap THEN c.sr_recommend_3_roller_gap ELSE NULL END AS diff_n3_roller_gap,
+		CASE WHEN c.sr_recommend_forming_roller_gap <> c.forming_roller_gap THEN c.sr_recommend_forming_roller_gap ELSE NULL END AS diff_forming_roller_gap,
+		CASE WHEN c.sr_recommend_extruder_temperature_up <> c.extruder_temperature_up_sv THEN c.sr_recommend_extruder_temperature_up ELSE NULL END AS diff_extruder_temperature_up,
+		CASE WHEN c.sr_recommend_cross_cutter_speed <> c.cross_cutter_speed_sv THEN c.sr_recommend_cross_cutter_speed ELSE NULL END AS diff_cross_cutter_speed,
+		/*
+		c.sr_recommend_1_roller_gap,
+		c.sr_recommend_2_roller_gap,
+		c.sr_recommend_3_roller_gap,
+		c.sr_recommend_forming_roller_gap,
+		c.sr_recommend_extruder_temperature_up,
+		c.sr_recommend_cross_cutter_speed,
+		*/
+		c.n1_roller_gap,
+		c.n2_roller_gap,
+		c.n3_roller_gap,
+		c.forming_roller_gap,
+		c.extruder_temperature_up_sv,
+		c.cross_cutter_speed_sv,
+		--c.extruder_exit_gum_temp,
+		--c.write_back_status,
+		'' AS reason
+	FROM MaxStatusData m
+	INNER JOIN ComparisonData c ON m.id = c.id
+)
+
+SELECT a.*
+       ,spc.[FUser] AS Operator
+FROM Combine a
+LEFT JOIN [spc-datadb].[dbo].[TReceive] spc ON a.weight_ts = spc.FDate
+WHERE operator_status IN ('none')  -- none 未操作，accept 接受, p_accept 部分接受, reject 拒绝
+ORDER BY id
