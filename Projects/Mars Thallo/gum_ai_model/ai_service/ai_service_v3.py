@@ -39,7 +39,7 @@ def datetime_to_list(x):
     return [int(x.year), int(x.month), int(x.day), int(x.hour), int(x.minute), int(x.second)]
 
 
-def constrained_optimization(thresholds, weight_prediction, current_data):
+def constrained_optimization(thresholds, weight_prediction, current_data, service_level=1):
 
     # Set four decision variables, Drum 1, Drum 2, Drum 3, Final Sizing Drum
     DV = ['Gap1', 'Gap2', 'Gap3', 'GapFS']
@@ -53,6 +53,11 @@ def constrained_optimization(thresholds, weight_prediction, current_data):
     DV_factor_values = {
         x: solver.NumVar(
             thresholds[x]['lb'], thresholds[x]['ub'], '''Suggested_Value_%s''' % (x)
+        ) for x in DV
+    }
+    DV_factor_is_change = {
+        x: solver.IntVar(
+            0, 1, '''Is_Change_%s''' % (x)
         ) for x in DV
     }
 
@@ -88,14 +93,14 @@ def constrained_optimization(thresholds, weight_prediction, current_data):
     # Constraints
 
     # Change limit is 0.003
-    solver.Add(DV_factor_values['Gap1'] - current_data['Gap1'] >= -0.003)
-    solver.Add(DV_factor_values['Gap1'] - current_data['Gap1'] <= 0.003)
-    solver.Add(DV_factor_values['Gap2'] - current_data['Gap2'] >= -0.003)
-    solver.Add(DV_factor_values['Gap2'] - current_data['Gap2'] <= 0.003)
-    solver.Add(DV_factor_values['Gap3'] - current_data['Gap3'] >= -0.003)
-    solver.Add(DV_factor_values['Gap3'] - current_data['Gap3'] <= 0.003)
-    solver.Add(DV_factor_values['GapFS'] - current_data['GapFS'] >= -0.003)
-    solver.Add(DV_factor_values['GapFS'] - current_data['GapFS'] <= 0.003)
+    solver.Add(DV_factor_values['Gap1'] - current_data['Gap1'] >= -0.001)
+    solver.Add(DV_factor_values['Gap1'] - current_data['Gap1'] <= 0.001)
+    solver.Add(DV_factor_values['Gap2'] - current_data['Gap2'] >= -0.001)
+    solver.Add(DV_factor_values['Gap2'] - current_data['Gap2'] <= 0.001)
+    solver.Add(DV_factor_values['Gap3'] - current_data['Gap3'] >= -0.001)
+    solver.Add(DV_factor_values['Gap3'] - current_data['Gap3'] <= 0.001)
+    solver.Add(DV_factor_values['GapFS'] - current_data['GapFS'] >= -0.001)
+    solver.Add(DV_factor_values['GapFS'] - current_data['GapFS'] <= 0.001)
 
     # Math needed to turn an ABS function into an integer linear programing one. So it can solve much quicker.
     solver.Add(OBJ_abs_weight_gap >= final_weight_gap)
@@ -107,14 +112,22 @@ def constrained_optimization(thresholds, weight_prediction, current_data):
     solver.Add(abs_3_FS_diff_change >= diff_3_FS_before - diff_3_FS_after)
     solver.Add(abs_3_FS_diff_change >= diff_3_FS_after - diff_3_FS_before)
 
+    # Good Manufacturing Practice
+    if service_level == 1:
+        if (weight_prediction > Control_UB and weight_prediction - Control_UB <= 0.15) \
+                or (weight_prediction < Control_LB and Control_LB - weight_prediction <= 0.15):
+            solver.Add(DV_factor_values['Gap1'] - current_data['Gap1'] == 0)
+            solver.Add(DV_factor_values['Gap2'] - current_data['Gap2'] == 0)
+            # None
+
     status = solver.Solve()
     if status == pywraplp.Solver.OPTIMAL:
         return DV_factor_values['Gap1'].solution_value(), DV_factor_values['Gap2'].solution_value(),\
             DV_factor_values['Gap3'].solution_value(),DV_factor_values['GapFS'].solution_value(), \
-            weight_after_change.solution_value()
+            weight_after_change.solution_value(), True
     else:
         return current_data['Gap1'], current_data['Gap2'], current_data['Gap3'], current_data['GapFS'], \
-            weight_prediction
+            weight_prediction, False
 
 #
 # def multi_factors_change(initial_weight, dic_initial_x, dic_k, dic_lb, dic_ub):
@@ -209,8 +222,8 @@ def map_data():
         df_curated_data = pd.read_csv(io.BytesIO(blob_data))
         # df_spc_data = db_service.get_spc_data(T, 'YNG_SPC_TReceive', 'YNG_SPC_TItem')
         # df_spc_data = pd.read_csv(input_data['filePath'] + 'curated_spc.csv')
-        file_path_last = input_data['filePath'][:20] + (
-                datetime.datetime.strptime(input_data['filePath'][20:], '%Y/%m/%d/%H/%M/%S/') - datetime.timedelta(seconds=15)
+        file_path_last = input_data['filePath'][:7] + (
+                datetime.datetime.strptime(input_data['filePath'][7:], '%Y/%m/%d/%H/%M/%S/') - datetime.timedelta(seconds=15)
             ).strftime('%Y/%m/%d/%H/%M/%S/')
         try:
             df_prev_merge = pd.read_csv(file_path_last + 'merge.csv')
@@ -332,25 +345,86 @@ def predict_weight_now(df_mapping, current_data):
 
     df_mapping['Date'] = [pd.Timestamp(x) for x in df_mapping['Date']]
     df_mapping = df_mapping.sort_values(by='Date', ascending=False, ignore_index=True)
-    w_prev = df_mapping['Weight'][0]
-    mw_prev = df_mapping['Modified_Weight'][0]
+
+    dic_name_en_cn = {
+        'FVPP': 'FVPP（FIVE激酷薄荷味-NCS）',
+        'FVSS': 'FVSS（FIVE酷酸草莓味-NCS）',
+        'FVWM': 'FVWM（FIVE奔涌西瓜-NCS）',
+        'FVBB': 'FVBB（FIVE魅幻蓝莓-NCS）',
+        'DMRC': 'DMRC（绿箭樱花薄荷）',
+        'EXSM': 'EXSM（益达沁凉薄荷-NCS）',
+        'DMPY': 'DMPY（绿箭金装薄荷）',
+        'DMLM': 'DMLM（绿箭青柠薄荷）',
+        'EXCW': 'EXCW（益达西瓜-NCS）',
+        'EXTP': 'EXTP（益达热带水果-NCS）',
+        'EBB': 'EBB（益达蓝莓-NCS）',
+        'WSP': 'WSP（白箭留兰香薄荷）',
+        'RPCM': 'RPCM（维能酷爽薄荷）',
+        'AUWM': 'AUWM（澳洲FIVE奔涌西瓜味）',
+        'DMRR': 'DMRR（真叶玫瑰薄荷）',
+        'DMRJ': 'DMRJ（茉莉薄荷）',
+        'EXPP': 'EXPP（益达冰凉薄荷味）',
+        'DMPE': 'DMPE 绿箭原味薄荷',
+        'RPSY': 'RPSY（维能劲爆麻辣）',
+        'RPWP': 'RPWP（维能西瓜红石榴）',
+        'DMLG': 'DMLG（柠檬草薄荷）',
+        'DMRM': 'DMRM（真叶薄荷）'
+    }
+
+    if 'Name_CN' in Thresholds:
+        name_cn = Thresholds['Name_CN']
+    else:
+        name_cn = dic_name_en_cn[SKU]
+
+    df_mapping = df_mapping.sort_values(by='Date', ascending=False).reset_index(drop=True)
+    if len(df_mapping) == 1:
+        actual_weight = df_mapping['Weight'][0]
+    elif len(df_mapping) > 1:
+        i = 1
+        while i <= len(df_mapping) - 1:
+            if df_mapping['Date'][i] - df_mapping['Date'][i-1] > datetime.timedelta(seconds=30):
+                break
+            i += 1
+        actual_weight = np.mean(df_mapping['Weight'][:i+1])
+    else:
+        actual_weight = Target_Weight
+
+    # df_mapping = df_mapping[df_mapping['Item']==name_cn]
+    df_mapping = df_mapping[df_mapping['Date'] >= ValidTimeStart]
+    print(df_mapping[['Weight', 'Date']])
+
+    print(df_mapping[['Weight', 'Modified_Weight', 'Date']])
+
+    if len(df_mapping) > 0:
+        w_prev = df_mapping['Weight'][0]
+        mw_prev = df_mapping['Modified_Weight'][0]
+    else:
+        w_prev = 35.23
+        mw_prev = 35.23
     t_end = datetime.datetime.strptime(input_data['fileLastTs'], "%Y-%m-%d %H:%M:%S")
+    df_5 = df_mapping[df_mapping['Date'] >= t_end - datetime.timedelta(minutes=5)]
     df_15 = df_mapping[df_mapping['Date']>=t_end - datetime.timedelta(minutes=15)]
     df_30 = df_mapping[df_mapping['Date']>=t_end - datetime.timedelta(minutes=30)]
-    if len(df_15) >= 1:
-        w_15 = np.mean(df_15['Weight'])
-        mw_15 = np.mean(df_15['Modified_Weight'])
-    else:
-        w_15 = w_prev
-        mw_15 = mw_prev
     if len(df_30) >= 1:
         w_30 = np.mean(df_30['Weight'])
         mw_30 = np.mean(df_30['Modified_Weight'])
     else:
         w_30 = w_prev
         mw_30 = mw_prev
+    if len(df_15) >= 1:
+        w_15 = np.mean(df_15['Weight'])
+        mw_15 = np.mean(df_15['Modified_Weight'])
+    else:
+        w_15 = w_30
+        mw_15 = mw_30
+    if len(df_5) >= 1:
+        w_5 = np.mean(df_5['Weight'])
+        mw_5 = np.mean(df_5['Modified_Weight'])
+    else:
+        w_5 = w_15
+        mw_5 = mw_15
 
-    return 0.6 * mw_prev + 0.3 * mw_15 + 0.1 * mw_30, w_prev
+    return 0.05 * mw_prev + 0.55 * mw_5 + 0.3 * mw_15 + 0.1 * mw_30, actual_weight
 
 
 def get_current_sku(file_path_last, Connection_Method):
@@ -373,14 +447,18 @@ def get_current_sku(file_path_last, Connection_Method):
     return dic_mapping[df_last_spc['Item'][0]]
 
 
+def list_to_datetime(x):
+    return datetime.datetime(x[0], x[1], x[2], x[3], x[4], x[5])
+
 
 def run(input_str):
 
     global Target_Weight, df_mapping, input_data, current_data, K_GapFS, K_Gap3, K_Gap1, K_Gap2, K_Temp1, K_Temp2, T, \
-        Connection_Method, Thresholds, SKU
+        Connection_Method, Thresholds, SKU, ValidTimeStart, Control_UB, Control_LB
 
     input_data = json.loads(input_str)
     SKU = input_data['SKU']
+
     with open('sku_config.json', 'r') as f:
         config_dict = json.load(f)
     Thresholds = config_dict[SKU]
@@ -388,6 +466,7 @@ def run(input_str):
     Control_UB = Thresholds['Weight_UB']
     Control_LB = Thresholds['Weight_LB']
     Target_Weight = 0.5 * (Control_LB + Control_UB)
+    ValidTimeStart = list_to_datetime(input_data['lastStartTime'])
 
     T = datetime.datetime(
         input_data['time'][0], input_data['time'][1], input_data['time'][2],
@@ -400,8 +479,13 @@ def run(input_str):
 
     if Connection_Method == 'Azure':
         Blob_Target = edge_blob.AzureBlobStorage(connection_string=edge_blob.BlobConfig.target_conn_str)
-        Blob_Target.upload_blob(edge_blob.BlobConfig.target_container_name, input_data['filePath'] + 'input_data.json',
+        Blob_Target.upload_blob(edge_blob.BlobConfig.target_container_name, input_data['filePath'] + 'azure_input_data.json',
                                 json.dumps(input_data))
+    else:
+        try:
+            edge_blob.save_dict_to_blob_json(input_data['filePath'] + 'edge_input_data.json', input_data)
+        except Exception as e:
+            print (e)
 
     # Load Models
     Model_GapFS = joblib.load('Models/Forming Roller 定型辊间隙.joblib')
@@ -418,14 +502,14 @@ def run(input_str):
     K_Temp1 = Model_Temp1.coef_[0]
 
     dic_lb_ub = {
-        'Gap1': {'ub': 0.12, 'lb': 0.1},
-        'Gap2': {'ub': 0.08, 'lb': 0.065},
-        'Gap3': {'ub': 0.075, 'lb': 0.06},
-        'GapFS': {'ub': 0.07, 'lb': 0.06},
+        'Gap1': {'ub': Thresholds['Gap1_UB'], 'lb': Thresholds['Gap1_LB']},
+        'Gap2': {'ub': Thresholds['Gap2_UB'], 'lb': Thresholds['Gap2_LB']},
+        'Gap3': {'ub': Thresholds['Gap3_UB'], 'lb': Thresholds['Gap3_LB']},
+        'GapFS': {'ub': Thresholds['GapFS_UB'], 'lb': Thresholds['GapFS_LB']},
         'Temp1': {'ub': -10.0, 'lb': -15.0},
         'Temp2': {'ub': -10.0, 'lb': -15.0},
         'TempExtruder': {'ub': 70, 'lb': 45},
-        'CrossScore': {'ub': 220, 'lb': 150}
+        'CrossScore': {'ub': Thresholds['CS_UB'], 'lb': Thresholds['CS_LB']}
     }
 
     azure_config = {
@@ -457,17 +541,24 @@ def run(input_str):
     print(weight_prediction)
 
     Suggestion_Dict = {
-        'code': 200, # 这期都是200，异常处理下一期做
-        'human_takeover': False,
+        'code': 200, # 这期都是200，因为异常工况在YNG是放在后端的
+        'human_takeover': False, # 是否需要人工接管
         'is_change': False, # 是否需要调整
         'Gap1': current_data['Gap1'], # 1号辊推荐间隙
+        'Gap1_is_change': False, # 1号辊是否调整
         'Gap2': current_data['Gap2'], # 2号辊推荐间隙
-        'Gap3': current_data['Gap3'], #  3号辊推荐间隙
+        'Gap2_is_change': False, # 2号辊是否调整
+        'Gap3': current_data['Gap3'], # 3号辊推荐间隙
+        'Gap3_is_change': False, # 3号辊是否调整
         'GapFS': current_data['GapFS'], # 定型辊推荐间隙，FS = final sizing
+        'GapFS_is_change': False, # 定型辊是否调整
         'CrossScore': current_data['CrossScore'], # 横刀速度
+        'CrossScore_is_change': False, # 横刀是否调整
         'TempLowerSetValue': current_data['TempLowerSetValue'], # 夹套水下部温度
+        'TempLowerSetValue_is_change': False, # 夹套水下部温度是否调整
         'TempUpperSetValue': current_data['TempUpperSetValue'], # 夹套水上部温度
-        'ActualWeight': actual_weight,
+        'TempUpperSetValue_is_change': False, # 夹套水上部温度是否调整
+        'ActualWeight': actual_weight, # 真实重量
         'WeightPredictionBeforeChange': weight_prediction, # 按照现有参数重量预测
         'WeightPredictionAfterChange': weight_prediction, # 按照推荐的参数重量预测
         'msg': ''
@@ -512,40 +603,60 @@ def run(input_str):
         Gaps_change_allowed = False
         CS_change_allowed = False
         Temprature_change_allowed = False
-        Suggestion_Dict['msg'] += '正在SPC测量中'
+        Suggestion_Dict['msg'] += '正在SPC测量中。'
+
+    # Lock if recent shut down
+    if dic_weight['DataTime'] < ValidTimeStart:
+        Gaps_change_allowed = False
+        CS_change_allowed = False
+        Temprature_change_allowed = False
+        Suggestion_Dict['msg'] += '最近有停机。'
 
 
     if weight_prediction > Control_UB or weight_prediction < Control_LB:
 
         Suggestion_Dict['msg'] += '重量异常。'
         # Change CrossScoring Rollers if Length is not within the range we want
-        if (dic_length_width['LengthOrThickness'] > Thresholds['LengthUB'] or \
-            dic_length_width['LengthOrThickness'] < Thresholds['LengthLB']) \
+        if (dic_length_width['LengthOrThickness'] > Thresholds['Length_UB'] or \
+            dic_length_width['LengthOrThickness'] < Thresholds['Length_LB']) \
                 and CS_change_allowed:
 
-            delta_cs = (Target_Weight - weight_prediction) * 50
+            delta_cs = (Target_Weight - weight_prediction) * (-50)
             delta_cs = fit_range(delta_cs, -1 * Thresholds['CS_Step_UB'], Thresholds['CS_Step_UB'])
             Suggestion_Dict['CrossScore'] = fit_range(
                 current_data['CrossScore'] + delta_cs, Thresholds['CS_LB'], Thresholds['CS_UB']
             )
-            Suggestion_Dict['WeightPredictionAfterChange'] = Suggestion_Dict['WeightPredictionBeforeChange'] + \
+            Suggestion_Dict['WeightPredictionAfterChange'] = Suggestion_Dict['WeightPredictionBeforeChange'] - \
                 0.02 * (Suggestion_Dict['CrossScore'] - current_data['CrossScore'])
             if Suggestion_Dict['WeightPredictionAfterChange'] != Suggestion_Dict['WeightPredictionBeforeChange']:
                 Suggestion_Dict['is_change'] = True
+                Suggestion_Dict['CrossScore_is_change'] = True
                 Suggestion_Dict['msg'] += '调整横刀速度'
 
         # If Length is OK, then change gaps
         elif Gaps_change_allowed:
 
             # 如果宽度没有问题，那么看能否通过做
-            New_Gap1, New_Gap2, New_Gap3, New_GapFS, New_PredWeight = constrained_optimization(
-                dic_lb_ub, weight_prediction, current_data
+            New_Gap1, New_Gap2, New_Gap3, New_GapFS, New_PredWeight, is_success = constrained_optimization(
+                dic_lb_ub, weight_prediction, current_data, 1
             )
+            if not is_success:
+                New_Gap1, New_Gap2, New_Gap3, New_GapFS, New_PredWeight, is_success = constrained_optimization(
+                    dic_lb_ub, weight_prediction, current_data, 2
+                )
             if New_PredWeight != weight_prediction:
-                Suggestion_Dict['Gap1'] = New_Gap1
-                Suggestion_Dict['Gap2'] = New_Gap2
-                Suggestion_Dict['Gap3'] = New_Gap3
-                Suggestion_Dict['GapFS'] = New_GapFS
+                if New_Gap1 != current_data['Gap1']:
+                    Suggestion_Dict['Gap1'] = New_Gap1
+                    Suggestion_Dict['Gap1_is_change'] = True
+                if New_Gap2 != current_data['Gap2']:
+                    Suggestion_Dict['Gap2'] = New_Gap2
+                    Suggestion_Dict['Gap2_is_change'] = True
+                if New_Gap3 != current_data['Gap3']:
+                    Suggestion_Dict['Gap3'] = New_Gap3
+                    Suggestion_Dict['Gap3_is_change'] = True
+                # Suggestion_Dict['Gap2'] = New_Gap2
+                # Suggestion_Dict['Gap3'] = New_Gap3
+                # Suggestion_Dict['GapFS'] = New_GapFS
                 Suggestion_Dict['WeightPredictionAfterChange'] = New_PredWeight
                 Suggestion_Dict['is_change'] = True
                 Suggestion_Dict['msg'] += '调整辊轮间隙。'
@@ -557,20 +668,20 @@ def run(input_str):
     # else:
     #     temp_lb = 48.519
     #     temp_ub = 50.845
-    temp_lb = Thresholds['Temp_LB']
-    temp_ub = Thresholds['Temp_UB']
+    temp_lb = Thresholds['Gum_Temp_LB']
+    temp_ub = Thresholds['Gum_Temp_UB']
 
     if Temprature_change_allowed:
 
         if current_data['TempExtruder'] > temp_ub:
             Suggestion_Dict['msg'] += '挤压机出口温度过高。'
             Suggestion_Dict['TempLowerSetValue'] = fit_range(
-                current_data['TempLowerRealValue'] - Thresholds['Temp_Step_UB'],
-                dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempLowerSetValue'] - Thresholds['Temp_Step_UB'],
+                Thresholds['Temp_LB'], Thresholds['Temp_UB']
             )
             Suggestion_Dict['TempUpperSetValue'] = fit_range(
-                current_data['TempUpperRealValue'] - Thresholds['Temp_Step_UB'],
-                dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempUpperSetValue'] - Thresholds['Temp_Step_UB'],
+                Thresholds['Temp_LB'], Thresholds['Temp_UB']
             )
             if Suggestion_Dict['TempLowerSetValue'] != current_data['TempLowerSetValue'] or \
                     Suggestion_Dict['TempUpperSetValue'] != current_data['TempUpperSetValue']:
@@ -580,17 +691,21 @@ def run(input_str):
         elif current_data['TempExtruder'] < temp_lb:
             Suggestion_Dict['msg'] += '挤压机出口温度过低。'
             Suggestion_Dict['TempLowerSetValue'] = fit_range(
-                current_data['TempLowerRealValue'] + Thresholds['Temp_Step_UB'],
-                dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempLowerSetValue'] + Thresholds['Temp_Step_UB'],
+                Thresholds['Temp_LB'], Thresholds['Temp_UB']
             )
             Suggestion_Dict['TempUpperSetValue'] = fit_range(
-                current_data['TempUpperRealValue'] + Thresholds['Temp_Step_UB'],
-                dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempUpperSetValue'] + Thresholds['Temp_Step_UB'],
+                Thresholds['Temp_LB'], Thresholds['Temp_UB']
             )
-            if Suggestion_Dict['TempLowerSetValue'] != current_data['TempLowerSetValue'] or \
-                    Suggestion_Dict['TempUpperSetValue'] != current_data['TempUpperSetValue']:
+            if Suggestion_Dict['TempLowerSetValue'] != current_data['TempLowerSetValue']:
                 Suggestion_Dict['is_change'] = True
-                Suggestion_Dict['msg'] += '调整夹套水温度。'
+                Suggestion_Dict['msg'] += '调整夹套水(下)温度。'
+                Suggestion_Dict['TempLowerSetValue_is_change'] = True
+            if Suggestion_Dict['TempUpperSetValue'] != current_data['TempUpperSetValue']:
+                Suggestion_Dict['is_change'] = True
+                Suggestion_Dict['msg'] += '调整夹套水(上)温度。'
+                Suggestion_Dict['TempUpperSetValue_is_change'] = True
 
     # 添加长度宽度厚度深度数据
     Suggestion_Dict['Length_Date'] = dic_length_width['DataTime'].strftime("%Y-%m-%d %H:%M:%S")
@@ -611,8 +726,13 @@ def run(input_str):
     #Suggestion_Dict['shift'] = ''.join([chr(int(code,16)) for code in shift_points[1:]]) 
     Suggestion_Dict['shift'] = dic_weight['shift'].strip()
     if Connection_Method == 'Azure':
-        Blob_Target.upload_blob(edge_blob.BlobConfig.target_container_name, input_data['filePath'] + 'output_data.json',
+        Blob_Target.upload_blob(edge_blob.BlobConfig.target_container_name, input_data['filePath'] + 'azure_output_data.json',
                                 json.dumps(Suggestion_Dict))
+    else:
+        try:
+            edge_blob.save_dict_to_blob_json(input_data['filePath'] + 'edge_output_data.json', Suggestion_Dict)
+        except Exception as e:
+            print (e)
     return json.dumps(Suggestion_Dict, ensure_ascii=False)
 
 
@@ -620,22 +740,40 @@ if __name__ == '__main__':
 
 
     # raw_data = sys.argv[1]
-    t = datetime.datetime(2024, 10, 7, 0, 0, 30)
+    t = datetime.datetime(2024, 11, 12, 8, 32, 0)
     # T = [t.year, t.month, t.day, t.hour, t.minute, t.second]
     T = t
-    while t <= datetime.datetime(2024, 10, 8, 23, 59, 45):
+    while t <= datetime.datetime(2024, 11, 12, 8, 32, 0):
         sku = get_current_sku(
-            "Curated Data/yngetl/" + (t - datetime.timedelta(seconds=15)).strftime('%Y/%m/%d/%H/%M/%S/'), 'Azure'
+            "yngetl/" + (t - datetime.timedelta(seconds=15)).strftime('%Y/%m/%d/%H/%M/%S/'), 'Azure'
         )
+        # sku = 'DMPE'
         raw_data = json.dumps({
             "time": datetime_to_list(t),
-            "filePath": "Curated Data/yngetl/" + (t - datetime.timedelta(seconds=15)).strftime('%Y/%m/%d/%H/%M/%S/'),
+            "filePath": "yngetl/" + (t).strftime('%Y/%m/%d/%H/%M/%S/'),
             # "filePath": (t - datetime.timedelta(seconds=15)).strftime('%Y/%m/%d/%H/%M/%S/'),
             "fileLastTs": t.strftime('%Y-%m-%d %H:%M:%S'),
             "connection": "Azure",
-            "SKU": sku
+            "SKU": sku,
+            "lastStartTime": datetime_to_list(t - datetime.timedelta(minutes=20))
         })
-        try:
+        raw_data = '''
+        {"time": [2024, 11, 12, 13, 36, 0], 
+        "filePath": "yngetl/2024/11/12/13/35/45/", 
+        "fileLastTs": "2024-11-12 13:36:00", 
+        "SKU": "DMPY", 
+        "lastStartTime": [2024, 11, 12, 13, 16, 54],
+        "connection": "Azure"}
+        '''
+        # raw_data = json.dumps({
+        #     "time": [2024, 11, 8, 8, 3, 0],
+        #     "filePath": "yngetl/2024/11/08/08/02/45/",
+        #     "fileLastTs": "2024-11-08 08:03:00",
+        #     "connection": "Azure",
+        #     "SKU": "AUWM",
+        #     "lastStartTime": [2024, 11, 8, 7, 40, 0]
+        # })
+        if True:
             output_json = run(raw_data)
 
             output_dict = json.loads(output_json)
@@ -644,9 +782,12 @@ if __name__ == '__main__':
             if output_dict['is_change']:
                 print(output_dict['msg'])
                 print(output_json)
-        except Exception as e:
-            print (e)
+                print(output_dict['WeightPredictionBeforeChange'])
+            else:
+                print(output_dict['msg'])
+        # except Exception as e:
+        #     print (e)
 
-        t += datetime.timedelta(seconds=15)
-        # break
+        t += datetime.timedelta(seconds=60)
+        break
 

@@ -321,9 +321,9 @@ def predict_weight_now(df_mapping, current_data):
     df_mapping['Gap3_Influence'] = df_mapping['Gap3_Influence'].fillna(0)
     df_mapping['GapFS_Influence'] = (current_data['GapFS'] - df_mapping['GapFS']) * K_GapFS
     df_mapping['GapFS_Influence'] = df_mapping['GapFS_Influence'].fillna(0)
-    df_mapping['Temp1_Influence'] = (current_data['Temp1'] - df_mapping['Temp1']) * K_Gap1
+    df_mapping['Temp1_Influence'] = (current_data['Temp1'] - df_mapping['Temp1']) * K_Temp1
     df_mapping['Temp1_Influence'] = df_mapping['Temp1_Influence'].fillna(0)
-    df_mapping['Temp2_Influence'] = (current_data['Temp2'] - df_mapping['Temp2']) * K_Gap1
+    df_mapping['Temp2_Influence'] = (current_data['Temp2'] - df_mapping['Temp2']) * K_Temp1
     df_mapping['Temp2_Influence'] = df_mapping['Temp2_Influence'].fillna(0)
 
     df_mapping['Modified_Weight'] = df_mapping['Weight'] + df_mapping['Gap1_Influence'] + \
@@ -353,16 +353,42 @@ def predict_weight_now(df_mapping, current_data):
     return 0.6 * mw_prev + 0.3 * mw_15 + 0.1 * mw_30, w_prev
 
 
+def get_current_sku(file_path_last, Connection_Method):
+
+    if Connection_Method == 'Azure':
+
+        Blob_Target = edge_blob.AzureBlobStorage(connection_string=edge_blob.BlobConfig.target_conn_str)
+        blob_data = Blob_Target.download_blob(edge_blob.BlobConfig.target_container_name,
+                                                  file_path_last + 'curated_spc_data.csv')
+        df_last_spc = pd.read_csv(io.BytesIO(blob_data))
+
+    else:
+        df_last_spc = edge_blob.read_csv_blob_to_dataframe(file_path_last + 'curated_spc_data.csv')
+
+    df_last_spc = df_last_spc.sort_values(by='DataTime', ascending=True).reset_index(drop=True)
+    df_mapping = pd.read_csv('sku_mapping.csv')
+    dic_mapping = {
+        row['SKU_CN']: row['SKU'] for i, row in df_mapping.iterrows()
+    }
+    return dic_mapping[df_last_spc['Item'][0]]
+
+
+
 def run(input_str):
 
     global Target_Weight, df_mapping, input_data, current_data, K_GapFS, K_Gap3, K_Gap1, K_Gap2, K_Temp1, K_Temp2, T, \
-        Connection_Method
-
-    Control_UB = 35.36
-    Control_LB = 35.1
-    Target_Weight = 35.23
+        Connection_Method, Thresholds, SKU
 
     input_data = json.loads(input_str)
+    SKU = input_data['SKU']
+    with open('sku_config.json', 'r') as f:
+        config_dict = json.load(f)
+    Thresholds = config_dict[SKU]
+
+    Control_UB = Thresholds['Weight_UB']
+    Control_LB = Thresholds['Weight_LB']
+    Target_Weight = 0.5 * (Control_LB + Control_UB)
+
     T = datetime.datetime(
         input_data['time'][0], input_data['time'][1], input_data['time'][2],
         input_data['time'][3], input_data['time'][4], input_data['time'][5]
@@ -371,6 +397,11 @@ def run(input_str):
     if 'connection' in input_data:
         if input_data['connection'] == 'Azure':
             Connection_Method = 'Azure'
+
+    if Connection_Method == 'Azure':
+        Blob_Target = edge_blob.AzureBlobStorage(connection_string=edge_blob.BlobConfig.target_conn_str)
+        Blob_Target.upload_blob(edge_blob.BlobConfig.target_container_name, input_data['filePath'] + 'input_data.json',
+                                json.dumps(input_data))
 
     # Load Models
     Model_GapFS = joblib.load('Models/Forming Roller 定型辊间隙.joblib')
@@ -455,6 +486,7 @@ def run(input_str):
     if dic_weight['DataTime'] > last_change_time['CrossScore']['TS']:
         CS_change_allowed = True
 
+
     # Lock for Gaps
     # if no recent value change within 15 minutes, and no change since last spc weighing, unlock
     most_recent_gap_change = np.max([
@@ -475,17 +507,26 @@ def run(input_str):
             dic_weight['DataTime'] > most_recent_temp_change:
         Temprature_change_allowed = True
 
+    # Lock if still weighing
+    if dic_weight['DataTime'] >= T - datetime.timedelta(seconds=30):
+        Gaps_change_allowed = False
+        CS_change_allowed = False
+        Temprature_change_allowed = False
+        Suggestion_Dict['msg'] += '正在SPC测量中'
+
+
     if weight_prediction > Control_UB or weight_prediction < Control_LB:
 
         Suggestion_Dict['msg'] += '重量异常。'
         # Change CrossScoring Rollers if Length is not within the range we want
-        if (dic_length_width['LengthOrThickness'] > 72.2 or dic_length_width['LengthOrThickness'] < 70.5) \
+        if (dic_length_width['LengthOrThickness'] > Thresholds['LengthUB'] or \
+            dic_length_width['LengthOrThickness'] < Thresholds['LengthLB']) \
                 and CS_change_allowed:
 
             delta_cs = (Target_Weight - weight_prediction) * 50
-            delta_cs = fit_range(delta_cs, -0.6, 0.6)
+            delta_cs = fit_range(delta_cs, -1 * Thresholds['CS_Step_UB'], Thresholds['CS_Step_UB'])
             Suggestion_Dict['CrossScore'] = fit_range(
-                current_data['CrossScore'] + delta_cs, dic_lb_ub['CrossScore']['lb'], dic_lb_ub['CrossScore']['ub']
+                current_data['CrossScore'] + delta_cs, Thresholds['CS_LB'], Thresholds['CS_UB']
             )
             Suggestion_Dict['WeightPredictionAfterChange'] = Suggestion_Dict['WeightPredictionBeforeChange'] + \
                 0.02 * (Suggestion_Dict['CrossScore'] - current_data['CrossScore'])
@@ -510,22 +551,26 @@ def run(input_str):
                 Suggestion_Dict['msg'] += '调整辊轮间隙。'
 
     # Change Temperature
-    if 'NCS' in dic_weight['Item']:
-        temp_lb = 45.787
-        temp_ub = 48.449
-    else:
-        temp_lb = 48.519
-        temp_ub = 50.845
+    # if 'NCS' in dic_weight['Item']:
+    #     temp_lb = 45.787
+    #     temp_ub = 48.449
+    # else:
+    #     temp_lb = 48.519
+    #     temp_ub = 50.845
+    temp_lb = Thresholds['Temp_LB']
+    temp_ub = Thresholds['Temp_UB']
 
     if Temprature_change_allowed:
 
         if current_data['TempExtruder'] > temp_ub:
             Suggestion_Dict['msg'] += '挤压机出口温度过高。'
             Suggestion_Dict['TempLowerSetValue'] = fit_range(
-                current_data['TempLowerRealValue'] - 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempLowerRealValue'] - Thresholds['Temp_Step_UB'],
+                dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
             )
             Suggestion_Dict['TempUpperSetValue'] = fit_range(
-                current_data['TempUpperRealValue'] - 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempUpperRealValue'] - Thresholds['Temp_Step_UB'],
+                dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
             )
             if Suggestion_Dict['TempLowerSetValue'] != current_data['TempLowerSetValue'] or \
                     Suggestion_Dict['TempUpperSetValue'] != current_data['TempUpperSetValue']:
@@ -535,10 +580,12 @@ def run(input_str):
         elif current_data['TempExtruder'] < temp_lb:
             Suggestion_Dict['msg'] += '挤压机出口温度过低。'
             Suggestion_Dict['TempLowerSetValue'] = fit_range(
-                current_data['TempLowerRealValue'] + 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempLowerRealValue'] + Thresholds['Temp_Step_UB'],
+                dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
             )
             Suggestion_Dict['TempUpperSetValue'] = fit_range(
-                current_data['TempUpperRealValue'] + 5, dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
+                current_data['TempUpperRealValue'] + Thresholds['Temp_Step_UB'],
+                dic_lb_ub['TempExtruder']['lb'], dic_lb_ub['TempExtruder']['ub']
             )
             if Suggestion_Dict['TempLowerSetValue'] != current_data['TempLowerSetValue'] or \
                     Suggestion_Dict['TempUpperSetValue'] != current_data['TempUpperSetValue']:
@@ -563,6 +610,9 @@ def run(input_str):
     #shift_points = shift_code.split('\\u')
     #Suggestion_Dict['shift'] = ''.join([chr(int(code,16)) for code in shift_points[1:]]) 
     Suggestion_Dict['shift'] = dic_weight['shift'].strip()
+    if Connection_Method == 'Azure':
+        Blob_Target.upload_blob(edge_blob.BlobConfig.target_container_name, input_data['filePath'] + 'output_data.json',
+                                json.dumps(Suggestion_Dict))
     return json.dumps(Suggestion_Dict, ensure_ascii=False)
 
 
@@ -570,30 +620,33 @@ if __name__ == '__main__':
 
 
     # raw_data = sys.argv[1]
-    t = datetime.datetime(2024, 10, 9, 9, 8, 45, 0)
-    while t <= datetime.datetime(2024, 10, 24, 15, 44, 59, 45):
+    t = datetime.datetime(2024, 10, 7, 0, 0, 30)
+    # T = [t.year, t.month, t.day, t.hour, t.minute, t.second]
+    T = t
+    while t <= datetime.datetime(2024, 10, 8, 23, 59, 45):
+        sku = get_current_sku(
+            "Curated Data/yngetl/" + (t - datetime.timedelta(seconds=15)).strftime('%Y/%m/%d/%H/%M/%S/'), 'Azure'
+        )
         raw_data = json.dumps({
             "time": datetime_to_list(t),
             "filePath": "Curated Data/yngetl/" + (t - datetime.timedelta(seconds=15)).strftime('%Y/%m/%d/%H/%M/%S/'),
             # "filePath": (t - datetime.timedelta(seconds=15)).strftime('%Y/%m/%d/%H/%M/%S/'),
             "fileLastTs": t.strftime('%Y-%m-%d %H:%M:%S'),
-            "connection": 'Azure'
-
-        #"time":  [2024, 8, 21, 10, 10, 0, 0],
-            #"fileFirstTs": "2024-07-91 16:55:16",
-            #"curTs": "2024-08-14 14:52:31",
-            #"filePath": "Local_Curated_Data/2024/08/21/10/10/00/",
-            #"fileLastTs": "2024-06-28 16:55:31"
+            "connection": "Azure",
+            "SKU": sku
         })
-        output_json = run(raw_data)
+        try:
+            output_json = run(raw_data)
 
-        output_dict = json.loads(output_json)
+            output_dict = json.loads(output_json)
 
-        print(output_dict['time'])
-        if output_dict['is_change']:
-            print(output_dict['msg'])
-            print(output_json)
+            print(output_dict['time'])
+            if output_dict['is_change']:
+                print(output_dict['msg'])
+                print(output_json)
+        except Exception as e:
+            print (e)
 
         t += datetime.timedelta(seconds=15)
-        break
+        # break
 

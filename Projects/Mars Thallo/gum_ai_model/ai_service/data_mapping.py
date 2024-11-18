@@ -92,7 +92,9 @@ def merge_OT_SPC(curated_parm, curated_spc):
                     'WidthOrDepth': 'NA',
                     'DataTime2': 'NA'
                 })
-        
+
+
+
         return pd.Series({
             'DataTime': row['DataTime'],
             'Load': row['Load'],
@@ -247,8 +249,12 @@ def merge_OT_SPC(curated_parm, curated_spc):
     # 使用 applymap 方法应用函数到整个 DataFrame
     merge = merge.applymap(convert_to_float)
 
+    spc_2 = spc_2.to_dict()
+    spc_2['LengthOrThickness'] = np.mean(
+        spc_20.sort_values(by='DataTime', ascending=False).reset_index(drop=True)['LengthOrThickness'][:5]
+    )
     # 返回结果
-    return merge, latest_dict, spc_0.to_dict(), spc_1.to_dict(), spc_2.to_dict()
+    return merge, latest_dict, spc_0.to_dict(), spc_1.to_dict(), spc_2
 
 
 def process_etl_data(now,
@@ -298,7 +304,11 @@ def process_etl_data(now,
     df_update_time = df_update_time[
         (df_update_time['Tag'] != df_update_time['Last_Tag']) | (df_update_time['Value'] != df_update_time['Last_Value'])
     ]
-    update_time_dict = df_update_time.groupby('Tag').agg({'TS': np.min}).to_dict(orient='index')
+
+    # update time，应该是去重（找到每个value的更新日期）后，再找最近一次更新的日期。
+    # 当30分钟内，有多次更新的时候，会有bug
+    # update_time_dict = df_update_time.groupby('Tag').agg({'TS': np.min}).to_dict(orient='index')
+    update_time_dict = df_update_time.groupby('Tag').agg({'TS': np.max}).to_dict(orient='index')
 
     # # Step 3: 筛选数据，去掉既不是最近30分钟又不是最近10次的数据
     # recent_30min = now - timedelta(minutes=30)
@@ -328,4 +338,5 @@ def process_etl_data(now,
     # print(spc_2)
 
     # 返回 merge_latest_dict 和 latest_dict
+
     return merge_new, merge_latest_dict, spc_0, spc_1, spc_2, update_time_dict

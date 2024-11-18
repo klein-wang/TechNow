@@ -4,6 +4,7 @@
         ,[sku]
         ,[shift]
         ,[data_time]
+        ,CAST([data_time] AS DATE) AS date
         ,[weight_ts]
         ,[actual_weight]
         ,[predicted_weight] - [actual_weight] as predicted_change
@@ -26,23 +27,15 @@
         ,[sr_recommend_extruder_temperature_up]
         ,[sr_recommend_cross_cutter_speed]
         ,CAST(FLOOR(CAST([sr_recommend_extruder_temperature_up] AS FLOAT)) AS INT) AS rounded_sr_recommend_extruder_temperature_up
-        ,LAG([sr_recommend_1_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_1_roller_gap
-        ,LAG([sr_recommend_2_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_2_roller_gap
-        ,LAG([sr_recommend_3_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_3_roller_gap
-        ,LAG([sr_recommend_forming_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_forming_roller_gap
-        ,LAG(CAST(FLOOR(CAST([sr_recommend_extruder_temperature_up] AS FLOAT)) AS INT)) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_extruder_temperature_up
-        ,LAG([sr_recommend_cross_cutter_speed]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS prev_sr_recommend_cross_cutter_speed
         ,LEAD([sr_recommend_1_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS next_sr_recommend_1_roller_gap
         ,LEAD([sr_recommend_2_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS next_sr_recommend_2_roller_gap
         ,LEAD([sr_recommend_3_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS next_sr_recommend_3_roller_gap
         ,LEAD([sr_recommend_forming_roller_gap]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS next_sr_recommend_forming_roller_gap
         ,LEAD(CAST(FLOOR(CAST([sr_recommend_extruder_temperature_up] AS FLOAT)) AS INT)) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS next_sr_recommend_extruder_temperature_up
         ,LEAD([sr_recommend_cross_cutter_speed]) OVER (PARTITION BY [sku] ORDER BY [data_time]) AS next_sr_recommend_cross_cutter_speed
-        ,CAST([data_time] AS DATE) AS date
     FROM [test-portaldb].[dbo].[yng_recommend_weight_data_log]
     WHERE [is_change] = '1'
-    --
-	AND [data_time] > '2024-11-06 21:00:00'  --AND [data_time] < '2024-11-06 11:52:00' 
+	AND [data_time] > '2024-11-04 08:00:00'  --AND [data_time] < '2024-11-06 11:52:00' 
 ),
 
 ComparisonData_new AS (
@@ -197,6 +190,7 @@ Combine_new AS (
 	WHERE c.recommend_group_idx = '1'
 )
 
+/*
 SELECT a.*
        ,spc.[FUser] AS Operator
 FROM Combine a
@@ -204,3 +198,15 @@ FROM Combine a
 LEFT JOIN [spc-datadb].[dbo].[TReceive] spc ON a.weight_ts = spc.FDate
 WHERE operator_status IN ('none')  -- none 未操作，accept 接受, p_accept 部分接受, reject 拒绝
 ORDER BY id
+*/
+
+SELECT 
+	'' AS metric_id,
+	CAST([data_time] AS DATE) AS datetime,
+	COUNT(CASE WHEN operator_status IN ('accept', 'p_accept') THEN 1 END) AS actual,
+	COUNT(operator_status) AS count,
+	'' AS batch_id,
+	shift
+FROM Combine
+GROUP BY CAST([data_time] AS DATE),shift
+ORDER BY CAST([data_time] AS DATE),shift

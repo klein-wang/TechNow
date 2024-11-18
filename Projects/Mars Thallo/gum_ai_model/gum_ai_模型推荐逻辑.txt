@@ -1,0 +1,33 @@
+模型推荐逻辑
+
+Note:
+- 辊轮&横刀在下一次新的spc测量前，不会再进行推荐调整
+
+\\ ai_weight
+先基于历史的模型 修正最新的重量 Modified_Weight 来加权推算 模型预测的重量 ai_weight
+- 0.05 * mw_prev + 0.55 * mw_5 + 0.3 * mw_15 + 0.1 * mw_30
+\\ ai_length
+最近5次长度的平均值
+spc_2['LengthOrThickness'] = np.mean(
+        spc_20.sort_values(by='DataTime', ascending=False).reset_index(drop=True)['LengthOrThickness'][:5]
+\\ OR 优化
+- 目标1:模型调整完后的weight_after_change 要尽量接近35.23（target_weight）
+- 目标2:4个辊轮，两两之间间隙差变化幅度最小 (e.g. (newgap1-newgap2) - (gap1-gap2)接近0 ）
+
+
+
+T1-200s spc称重(35.1g)时候 gap1=63 -> T1 最新的gap1=64 此时Modified_Weight=35.16g
+
+
+if ai_weight 超出范围[35.1,35.36] // 2.70-2.72 * 13 from SPC
+\\ length
+  if 口香糖长度超出范围[70.78,72.2]: 调整横刀速度(单次幅度不超过0.6rpm)
+  else 长度没问题
+  \\ weight
+    if 超出的delta < 0.15 (service_level == 1): 只调整3号辊、定型辊间隙 - 各调0.001(=现场手动按一下)
+    else 同时调整4个辊（1,2,3号辊、定型辊间隙）- 分别按照3:2:2:1的比例进行调整
+
+\\ temperature
+elif 胶温是否超出当前sku设定的温度范围
+  if 太高，则下调挤压机上下口的温度 3°（最终设定温度在[40,70]的范围）
+  if 太低，则上调挤压机上下口的温度 3°（最终设定温度在[40,70]的范围）
