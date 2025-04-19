@@ -8,11 +8,13 @@ def get_current_date():
 
 today = get_current_date()
 
-
+script_dir = os.path.dirname(os.path.abspath(__file__))
+input_dir = os.path.join(script_dir, f"news_summary_{today}.txt") 
+output_dir = os.path.join(script_dir, f'report_{today}.html') 
 
 html_content = ''
 
-with open('news_summary.txt') as f:
+with open(input_dir) as f:
     lines = f.readlines()
 
 current_company = ''
@@ -145,7 +147,7 @@ html = """
   </html>
 """
 
-with open(f'report_{today}.html', 'w') as f:
+with open(output_dir, 'w') as f:
 
   html = html.replace('{html_content}', html_content)
   html = html.replace('{today}', today)

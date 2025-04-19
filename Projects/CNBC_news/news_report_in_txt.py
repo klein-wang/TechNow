@@ -1,4 +1,5 @@
 # loading packages
+import os
 import re
 import pandas as pd
 from datetime import datetime
@@ -14,6 +15,11 @@ nlp = spacy.load('en_core_web_trf') # Loading Spacy's English model
 def extract_news(url):
 
     df_section = cnbc.extract_sections(url)
+    
+    if df_section.empty:
+        print("Warning: No sections found in the page.")
+        return pd.DataFrame()
+    
     dfs = []
     for i in range(5): # set section range to first 5 categories
         section = df_section.iloc[i, 0]
@@ -53,8 +59,10 @@ def group_by_company_names(df):
         
 # output news summary by company
 def output_report(df):
-
-    with open('news_summary.txt', 'w') as f:
+    today = datetime.now().strftime('%Y%m%d')
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    output_dir = os.path.join(script_dir, f"news_summary_{today}.txt") 
+    with open(output_dir, 'w') as f:
         # Iterate over each row of the dataframe
         for index, row in df.iterrows():
             # Get the company name

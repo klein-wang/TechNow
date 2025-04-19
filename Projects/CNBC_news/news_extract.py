@@ -1,3 +1,4 @@
+import os
 import re
 import pandas as pd
 import requests
@@ -14,11 +15,16 @@ def extract_sections(url):
     df = pd.DataFrame(columns=['Section', 'link'])
 
     # Send a request to the URL and get the HTML content 发送请求并获取 HTML 内容
-    response = requests.get(url)
+    headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 15_4_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+    'Accept-Language': 'en-US,en;q=0.9',
+    }
+    response = requests.get(url, headers=headers)
     html_content = response.content
 
     # Parse the HTML content using BeautifulSoup 解析 HTML 内容
     soup = BeautifulSoup(html_content, "html.parser")
+    # print(f'\n\n {soup},testing \n\n')
 
     # Find the list of articles in the section 找到文章列表
     section_list = soup.find_all("a", {"class": "nav-menu-button"})
@@ -46,7 +52,11 @@ def extract_cnbc_articles(url,section):
     df = pd.DataFrame(columns=['title', 'date', 'link', 'section'])
 
     # Send a request to the URL and get the HTML content 发送请求并获取 HTML 内容
-    response = requests.get(url)
+    headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 15_4_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+    'Accept-Language': 'en-US,en;q=0.9',
+    }
+    response = requests.get(url,headers=headers)
     html_content = response.content
 
     # Parse the HTML content using BeautifulSoup 解析 HTML 内容
@@ -98,17 +108,26 @@ def extract_cnbc_articles(url,section):
 # 程序的主要功能是从 CNBC 的技术新闻页面提取文章的标题、日期和链接，并将这些信息保存到一个 CSV 文件中
 # Invoke function 调用函数
 if __name__ == '__main__':
-    today = get_current_date()
+    today = datetime.now().strftime('%Y%m%d')
     url = "https://www.cnbc.com/"
     df = extract_sections(url)
+    # print(df)
+    
+    # Get the directory where the script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    output_dir = os.path.join(script_dir, 'Archive','excels')
+    output_filename = os.path.join(output_dir, f'output_{today}.xlsx')
+    
     num = 0
-    with pd.ExcelWriter(f'output_{today}.xlsx') as writer:
+    with pd.ExcelWriter(output_filename) as writer:
         # read first 5 sections in CNBC
-        for i in range(5):
-            section = df.iloc[i,0]
-            url_section = url[:-1] + df.iloc[i,1]
+        for i in range(min(5, len(df))):  # Safeguard against fewer than 5 sections
+            section = df.iloc[i, 0]
+            url_section = url[:-1] + df.iloc[i, 1]
 
-            df_section = extract_cnbc_articles(url_section,section)
-            df_section.to_excel(writer, sheet_name=section, index=False)
-            num = num + df_section.shape[0]
-    print(f'File "output_{today}.xlsx" is output, with total {num} news being crawled.')
+            df_section = extract_cnbc_articles(url_section, section)
+            df_section.to_excel(writer, sheet_name=section[:31], index=False)  # Excel sheet names max 31 chars
+            num += df_section.shape[0]
+    
+    print(f'File saved to: {output_filename}')
+    print(f'Total {num} news articles crawled.')
