@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣诞庆典</title>
+    <style>
+        /* 基础样式重置 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 页面整体样式 */
+        .christmas-page {
+            height: 100vh;
+            width: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a2e38 0%, #1a1a2e 100%);
+        }
+        
+        /* 视频背景容器 */
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7) contrast(1.2);
+        }
+        
+        /* 内容区域 */
+        .main-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+        }
+        
+        /* 雪花效果 */
+        .snowflake {
+            position: absolute;
+            color: white;
+            font-size: 1.5rem;
+            user-select: none;
+            z-index: 2;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .snowflake {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="christmas-page">
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="圣诞快乐.mp4" type="video/mp4">
+                您的浏览器不支持视频播放
+            </video>
+        </div>
+        
+        <div class="main-content">
+            <!-- 移除了所有文字内容 -->
+        </div>
+    </div>
+    
+    <script>
+        // 创建雪花效果
+        function createSnowflakes() {
+            const snowflakesContainer = document.createElement('div');
+            snowflakesContainer.className = 'snowflakes-container';
+            document.querySelector('.christmas-page').appendChild(snowflakesContainer);
+            
+            const snowflakeSymbols = ['❄', '❅', '❆', '•', '*'];
+            
+            for (let i = 0; i < 80; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+                
+                // 随机位置
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                
+                // 随机大小
+                const size = Math.random() * 1.5 + 0.8;
+                snowflake.style.fontSize = size + 'rem';
+                
+                // 随机透明度
+                snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+                
+                // 随机动画时长
+                const duration = Math.random() * 10 + 5;
+                snowflake.style.animationDuration = duration + 's';
+                
+                // 随机延迟
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                
+                snowflakesContainer.appendChild(snowflake);
+            }
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            createSnowflakes();
+        });
+    </script>
+</body>
+</html>

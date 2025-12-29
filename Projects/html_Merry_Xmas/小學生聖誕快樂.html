@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聖誕快樂</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        /* --- 基础重置 --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; overflow: hidden; background-color: #5d4037; }
+
+        /* --- 页面容器 --- */
+        .christmas-page {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            background: linear-gradient(to bottom, #3e2723 0%, #5d4037 40%, #8d6e63 80%, #ffccbc 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- 按钮栏 --- */
+        .controls {
+            position: absolute; top: 20px; right: 20px; z-index: 100;
+            display: flex; gap: 10px;
+        }
+        .btn {
+            background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #3e2723; padding: 10px 20px; border-radius: 30px;
+            cursor: pointer; font-size: 1rem; transition: all 0.3s;
+            font-weight: bold; display: flex; align-items: center; gap: 5px;
+        }
+        .btn:hover { background: rgba(255, 255, 255, 0.5); transform: translateY(-2px); }
+
+        /* --- 网易云播放器容器 --- */
+        #musicWrapper {
+            position: fixed;
+            top: 80px; 
+            left: 20px; 
+            z-index: 9999; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            border-radius: 10px;
+            width: 330px;
+            height: 86px;
+            background: rgba(255,255,255,0.8); 
+            padding: 5px; 
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+        
+        #musicWrapper iframe {
+            border-radius: 10px;
+            border: none;
+            display: block;
+        }
+
+        /* --- 场景区域 --- */
+        .scene {
+            position: relative;
+            display: flex; flex-direction: column; align-items: center;
+            animation: treeSway 6s ease-in-out infinite alternate;
+            transform-origin: bottom center;
+        }
+        @keyframes treeSway {
+            from { transform: rotate(-1deg); }
+            to { transform: rotate(1deg); }
+        }
+
+        /* --- 星星容器 --- */
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* --- 发光星星 --- */
+        .glowing-star {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: starTwinkle 2s infinite ease-in-out;
+            line-height: 1;
+        }
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.5; transform: scale(0.8) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(15deg); }
+        }
+
+        /* --- 新增：装饰灯容器 --- */
+        .decor-lights-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 998;
+        }
+
+        /* --- 装饰灯 --- */
+        .decor-light {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: lightGlow 1.5s infinite ease-in-out;
+        }
+        @keyframes lightGlow {
+            0%, 100% { opacity: 0.6; transform: scale(0.9); box-shadow: 0 0 5px currentColor, 0 0 10px currentColor; }
+            50% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor; }
+        }
+
+        /* --- 圣诞树 --- */
+        .tree-container {
+            position: relative; width: 600px; height: 900px;
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+            filter: drop-shadow(0 0 40px rgba(0,0,0,0.5));
+        }
+
+        /* 树叶通用样式 */
+        .tree-layer {
+            width: 0; height: 0;
+            border-left: solid transparent; border-right: solid transparent; border-bottom: solid currentColor;
+            position: absolute; z-index: 1;
+            border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;
+        }
+
+        /* 7层定义 */
+        .layer-7 { border-left-width: 40px; border-right-width: 40px; border-bottom-width: 80px; top: 20px; z-index: 7; color: #66bb6a; }
+        .layer-6 { border-left-width: 70px; border-right-width: 70px; border-bottom-width: 130px; top: 70px; z-index: 6; color: #4caf50; }
+        .layer-5 { border-left-width: 100px; border-right-width: 100px; border-bottom-width: 180px; top: 130px; z-index: 5; color: #43a047; }
+        .layer-4 { border-left-width: 140px; border-right-width: 140px; border-bottom-width: 230px; top: 200px; z-index: 4; color: #2e7d32; }
+        .layer-3 { border-left-width: 180px; border-right-width: 180px; border-bottom-width: 280px; top: 280px; z-index: 3; color: #1b5e20; }
+        .layer-2 { border-left-width: 220px; border-right-width: 220px; border-bottom-width: 330px; top: 370px; z-index: 2; color: #144a14; }
+        .layer-1 { border-left-width: 260px; border-right-width: 260px; border-bottom-width: 380px; top: 470px; z-index: 1; color: #0a2e0a; }
+
+        /* 樹幹 */
+        .tree-trunk {
+            width: 140px; height: 220px;
+            background: linear-gradient(90deg, #5d4037, #8d6e63, #5d4037);
+            border: 2px solid #3e2723;
+            border-radius: 8px; 
+            z-index: 0; 
+            position: absolute; 
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.6);
+        }
+
+        /* 頂部文字 */
+        .top-text {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2rem;
+            color: #fff;
+            z-index: 10;
+            text-shadow: 0 0 10px #ffeb3b, 2px 2px 4px rgba(0,0,0,0.5);
+            white-space: nowrap;
+            animation: floatText 3s ease-in-out infinite;
+        }
+        @keyframes floatText {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* 樹頂星星 */
+        .star {
+            font-size: 4rem; color: #ffeb3b; position: absolute; top: -20px; z-index: 10;
+            text-shadow: 0 0 20px #ff9800, 0 0 40px #ff9800;
+            animation: starGlow 2s infinite alternate;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        @keyframes starGlow {
+            from { transform: translateX(-50%) scale(1) rotate(0deg); }
+            to { transform: translateX(-50%) scale(1.1) rotate(15deg); }
+        }
+
+        /* 輪廓上的裝飾小星星 */
+        .outline-star {
+            position: absolute;
+            color: #fff9c4;
+            z-index: 100;
+            opacity: 1;
+            animation: twinkleStar 3s infinite ease-in-out;
+            font-size: 2.2rem;
+            text-shadow: 0 0 15px rgba(255,235,59,1), 0 0 30px rgba(255,193,7,0.8);
+            pointer-events: none;
+            font-weight: bold;
+            line-height: 1;
+        }
+        @keyframes twinkleStar {
+            0%, 100% { opacity: 0.6; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* --- 彩灯 --- */
+        .lights-wrapper {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 95;
+            transition: opacity 0.5s ease;
+        }
+        .lights-wrapper.hidden { opacity: 0; }
+        .light {
+            position: absolute; width: 10px; height: 10px; border-radius: 50%;
+            box-shadow: 0 0 10px currentColor;
+            animation: twinkle 2s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.4; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 15px currentColor; }
+        }
+
+        /* --- 装饰球 --- */
+        .ornament {
+            position: absolute;
+            font-size: 1.6rem;
+            z-index: 9;
+            filter: drop-shadow(2px 3px 2px rgba(0,0,0,0.3));
+            animation: ornamentBob 3s ease-in-out infinite;
+            user-select: none;
+        }
+        @keyframes ornamentBob {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-4px) rotate(3deg); }
+        }
+
+        /* --- 水果 --- */
+        .fruit {
+            position: absolute;
+            font-size: 1.8rem; 
+            z-index: 9;
+            filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.3));
+            animation: fruitBob 3s ease-in-out infinite;
+            user-select: none;
+        }
+        @keyframes fruitBob {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-3px) rotate(5deg); }
+        }
+
+        /* --- 樹上文字 --- */
+        .tree-text {
+            position: absolute;
+            top: 610px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.7rem;
+            color: #ffeb3b;
+            z-index: 105;
+            text-shadow: 2px 2px 0px #bf360c, 4px 4px 10px rgba(0,0,0,0.5);
+            letter-spacing: 3px;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        /* --- 底部装饰 --- */
+        .ground-decor {
+            position: absolute; bottom: -50px; width: 100%;
+            display: flex; justify-content: center; 
+            align-items: flex-end; 
+            z-index: 20; pointer-events: none;
+            gap: 20px;
+        }
+        .gift { 
+            font-size: 2.5rem; 
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.4)); 
+            animation: giftBounce 3s infinite; 
+        }
+        .gift.center { font-size: 3rem; animation-delay: 0.2s; }
+        @keyframes giftBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* 驯鹿 */
+        .reindeer-group {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            gap: 5px;
+            z-index: 15;
+        }
+        .reindeer {
+            font-size: 3.5rem;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.4));
+            position: relative;
+        }
+        
+        .reindeer-group.left { left: -110px; transform: scaleX(1); }
+        .reindeer-group.right { right: -110px; transform: scaleX(-1); }
+
+        .r1 { font-size: 4rem; z-index: 3; }
+        .r2 { font-size: 3.2rem; margin-bottom: -5px; z-index: 2; }
+        .r3 { font-size: 2.8rem; margin-bottom: -8px; z-index: 1; }
+
+        /* --- 雪花与枫叶 --- */
+        .particle {
+            position: absolute; pointer-events: none; z-index: 5;
+            animation: fall linear forwards;
+        }
+        .particle.maple { color: #d84315; font-size: 1.5rem; }
+        .particle.snow { color: #ffffff; opacity: 0.7; text-shadow: 0 0 2px rgba(255,255,255,0.5); }
+        @keyframes fall {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translate(var(--drift-x), 110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- 提示框 --- */
+        .toast {
+            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: #fff; color: #3e2723; padding: 12px 24px;
+            border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); font-size: 1rem;
+            opacity: 0; transition: all 0.4s; z-index: 200; font-weight: bold;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* --- 响应式 --- */
+        @media (max-width: 768px) {
+            .tree-container { transform: scale(0.5); margin-bottom: -400px; }
+            .tree-text { top: 600px; font-size: 3rem; }
+            .top-text { top: -50px; font-size: 1.5rem; }
+            
+            #musicWrapper {
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 330px;
+                height: 86px;
+                padding: 2px;
+            }
+            .reindeer-group.left { left: -50px; }
+            .reindeer-group.right { right: -50px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="christmas-page" id="page">
+        
+        <!-- 网易云播放器 -->
+        <div id="musicWrapper">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 
+                    src="https://music.163.com/outchain/player?type=2&id=26818416&auto=1&height=66"
+                    allow="autoplay"></iframe>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="toggleLights()">✨ 彩灯</button>
+            <button class="btn" onclick="toggleParticles()">❄️/🍁 飘落</button>
+        </div>
+
+        <div class="scene">
+            <!-- 星星容器，z-index 999 -->
+            <div class="stars-container" id="starsContainer"></div>
+
+            <!-- 新增：装饰灯容器，z-index 998 -->
+            <div class="decor-lights-container" id="decorLightsContainer"></div>
+
+            <div class="tree-container">
+                <!-- 顶部文字 -->
+                <div class="top-text">聖誕快樂</div>
+                
+                <!-- 樹頂星星 -->
+                <div class="star">★</div>
+                
+                <!-- 左邊馳鹿群 -->
+                <div class="reindeer-group left">
+                    <div class="reindeer r1">🦌</div>
+                    <div class="reindeer r2">🦌</div>
+                    <div class="reindeer r3">🦌</div>
+                </div>
+
+                <!-- 右邊馳鹿群 -->
+                <div class="reindeer-group right">
+                    <div class="reindeer r1">🦌</div>
+                    <div class="reindeer r2">🦌</div>
+                    <div class="reindeer r3">🦌</div>
+                </div>
+
+                <!-- 底部装饰 -->
+                <div class="ground-decor">
+                    <div class="gift">🎁</div>
+                    <div class="gift center">🧦</div>
+                    <div class="gift">🎁</div>
+                </div>
+
+                <!-- 樹葉 (7層) -->
+                <div class="tree-layer layer-7"></div>
+                <div class="tree-layer layer-6"></div>
+                <div class="tree-layer layer-5"></div>
+                <div class="tree-layer layer-4"></div>
+                <div class="tree-layer layer-3"></div>
+                <div class="tree-layer layer-2"></div>
+                <div class="tree-layer layer-1"></div>
+                
+                <!-- 樹幹 -->
+                <div class="tree-trunk"></div>
+
+                <!-- 樹上的文字 -->
+                <div class="tree-text">Merry Christmas to you</div>
+
+                <!-- 彩灯容器 -->
+                <div class="lights-wrapper" id="lightsLayer"></div>
+            </div>
+        </div>
+
+        <div id="particleContainer"></div>
+    </div>
+
+    <div id="toast" class="toast">提示信息</div>
+
+    <script>
+        // 原始水果列表
+        const rawFruits = ['🍑', '🍌', '🍊', '🍎', '🍓', '🍍', '🍒', '🥑', '🍉', '🍇', '🍏', '🥝', '🍐', '🥭', '🍬'];
+        
+        // 装饰球列表
+        const rawOrnaments = ['🔴', '🔵', '🟢', '🟡', '🟣', '🟠', '⭐', '🌟', '💫'];
+        
+        const config = {
+            isFalling: true,
+            particleRate: 150,
+            lightColors: ['#ff5252', '#ffb142', '#ff9f43', '#33d9b2', '#ffffff'],
+            decorLightColors: ['#ff5252', '#4fc3f7', '#ffd54f', '#81c784', '#ff8a65', '#ba68c8'],
+            fruits: [...rawFruits],
+            ornaments: [...rawOrnaments]
+        };
+
+        const dom = {
+            lightsLayer: document.getElementById('lightsLayer'),
+            particleContainer: document.getElementById('particleContainer'),
+            toast: document.getElementById('toast'),
+            treeContainer: document.querySelector('.tree-container'),
+            starsContainer: document.getElementById('starsContainer'),
+            decorLightsContainer: document.getElementById('decorLightsContainer')
+        };
+
+        let particleTimer = null;
+        let fruitIndex = 0;
+        let ornamentIndex = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // 生成星星 - 25颗，使用 ✨🌟
+        function createGlowingStars() {
+            dom.starsContainer.innerHTML = '';
+            const count = 25; // 减少到25颗
+            
+            // 星星符号池
+            const starSymbols = ['✨', '🌟', '⭐'];
+            
+            // 树的轮廓坐标
+            const starPositions = [
+                // 树顶部附近
+                { top: '8%', left: '45%' }, { top: '8%', left: '55%' },
+                { top: '12%', left: '38%' }, { top: '12%', left: '62%' },
+                
+                // 树中部
+                { top: '18%', left: '32%' }, { top: '18%', left: '68%' },
+                { top: '25%', left: '26%' }, { top: '25%', left: '74%' },
+                { top: '32%', left: '20%' }, { top: '32%', left: '80%' },
+                
+                // 树下部
+                { top: '40%', left: '14%' }, { top: '40%', left: '86%' },
+                { top: '48%', left: '10%' }, { top: '48%', left: '90%' },
+                { top: '55%', left: '6%' }, { top: '55%', left: '94%' },
+                
+                // 树底部
+                { top: '62%', left: '4%' }, { top: '62%', left: '96%' },
+                { top: '70%', left: '2%' }, { top: '70%', left: '98%' },
+                
+                // 额外的星星
+                { top: '15%', left: '42%' }, { top: '15%', left: '58%' },
+                { top: '35%', left: '18%' }, { top: '35%', left: '82%' },
+                { top: '52%', left: '5%' }, { top: '52%', left: '95%' }
+            ];
+
+            starPositions.forEach((pos, i) => {
+                const star = document.createElement('div');
+                star.classList.add('glowing-star');
+                
+                // 随机选择星星符号
+                star.textContent = starSymbols[Math.floor(Math.random() * starSymbols.length)];
+                
+                star.style.top = pos.top;
+                star.style.left = pos.left;
+                
+                // 随机大小
+                const size = 1.3 + Math.random() * 0.7;
+                star.style.fontSize = size + 'rem';
+                
+                // 随机动画延迟
+                star.style.animationDelay = (Math.random() * 3) + 's';
+                
+                dom.starsContainer.appendChild(star);
+            });
+        }
+
+        // 新增：生成装饰灯 - 30颗
+        function createDecorLights() {
+            dom.decorLightsContainer.innerHTML = '';
+            const count = 30;
+            
+            // 装饰灯位置 - 分布在树周围
+            const lightPositions = [
+                // 树顶部周围
+                { top: '10%', left: '43%' }, { top: '10%', left: '57%' },
+                { top: '14%', left: '36%' }, { top: '14%', left: '64%' },
+                
+                // 树中部周围
+                { top: '20%', left: '30%' }, { top: '20%', left: '70%' },
+                { top: '27%', left: '24%' }, { top: '27%', left: '76%' },
+                { top: '34%', left: '18%' }, { top: '34%', left: '82%' },
+                
+                // 树下部周围
+                { top: '42%', left: '12%' }, { top: '42%', left: '88%' },
+                { top: '50%', left: '8%' }, { top: '50%', left: '92%' },
+                { top: '57%', left: '4%' }, { top: '57%', left: '96%' },
+                
+                // 额外的装饰灯
+                { top: '17%', left: '34%' }, { top: '17%', left: '66%' },
+                { top: '30%', left: '22%' }, { top: '30%', left: '78%' },
+                { top: '45%', left: '10%' }, { top: '45%', left: '90%' },
+                { top: '53%', left: '5%' }, { top: '53%', left: '95%' },
+                { top: '60%', left: '3%' }, { top: '60%', left: '97%' },
+                { top: '65%', left: '1%' }, { top: '65%', left: '99%' }
+            ];
+
+            lightPositions.forEach((pos, i) => {
+                const light = document.createElement('div');
+                light.classList.add('decor-light');
+                
+                // 随机颜色
+                const color = config.decorLightColors[Math.floor(Math.random() * config.decorLightColors.length)];
+                light.style.color = color;
+                light.style.backgroundColor = color;
+                
+                light.style.top = pos.top;
+                light.style.left = pos.left;
+                
+                // 随机大小
+                const size = 6 + Math.random() * 4;
+                light.style.width = size + 'px';
+                light.style.height = size + 'px';
+                
+                // 随机动画延迟
+                light.style.animationDelay = (Math.random() * 2) + 's';
+                
+                dom.decorLightsContainer.appendChild(light);
+            });
+        }
+
+        // 1. 生成彩灯
+        function createLights() {
+            dom.lightsLayer.innerHTML = '';
+            const count = 90;
+            for(let i=0; i<count; i++) {
+                const l = document.createElement('div');
+                l.classList.add('light');
+                l.style.color = config.lightColors[Math.floor(Math.random() * config.lightColors.length)];
+                l.style.backgroundColor = l.style.color;
+                
+                let topPercent = Math.random() > 0.4 ? (Math.random() * 40 + 50) : (Math.random() * 40 + 10);
+                l.style.top = topPercent + '%';
+                const widthSpread = topPercent * 0.8; 
+                l.style.left = (50 + (Math.random() * widthSpread * 2 - widthSpread)) + '%';
+                l.style.animationDelay = (Math.random() * 2) + 's';
+                dom.lightsLayer.appendChild(l);
+            }
+        }
+
+        // 2. 生成樹外圍的輪廓星星
+        function createOutlineStars() {
+            const oldStars = dom.treeContainer.querySelectorAll('.outline-star');
+            oldStars.forEach(star => star.remove());
+
+            const count = 20;
+            const outlineCoords = [
+                { top: 20, left: 46 }, { top: 20, left: 54 }, 
+                { top: 80, left: 40 }, { top: 80, left: 60 }, 
+                { top: 150, left: 35 }, { top: 150, left: 65 }, 
+                { top: 230, left: 28 }, { top: 230, left: 72 }, 
+                { top: 320, left: 20 }, { top: 320, left: 80 }, 
+                { top: 420, left: 10 }, { top: 420, left: 90 }, 
+                { top: 500, left: 5 }, { top: 500, left: 95 },
+                { top: 600, left: 0 }, { top: 600, left: 100 },
+                { top: 700, left: -5 }, { top: 700, left: 105 },
+                { top: 750, left: -10 }, { top: 750, left: 110 }
+            ];
+
+            outlineCoords.forEach((pos, i) => {
+                const s = document.createElement('div');
+                s.classList.add('outline-star');
+                s.textContent = '✦';
+                
+                const randomX = (Math.random() * 4) - 2;
+                const randomY = (Math.random() * 4) - 2;
+                
+                s.style.top = `calc(${pos.top}px + ${randomY}px)`;
+                s.style.left = `calc(${pos.left}% + ${randomX}px)`;
+                s.style.animationDelay = (Math.random() * 2) + 's';
+                
+                const scale = 0.9 + Math.random() * 0.5;
+                s.style.transform = `scale(${scale})`;
+                
+                dom.treeContainer.appendChild(s);
+            });
+        }
+
+        // 3. 生成水果
+        function createFruits() {
+            const layers = document.querySelectorAll('.tree-layer');
+            const layerSettings = [
+                { minTop: 40, maxTop: 50, spread: 10 },
+                { minTop: 60, maxTop: 100, spread: 20 },
+                { minTop: 100, maxTop: 150, spread: 30 },
+                { minTop: 150, maxTop: 220, spread: 45 },
+                { minTop: 210, maxTop: 280, spread: 60 },
+                { minTop: 290, maxTop: 370, spread: 75 }
+            ];
+
+            fruitIndex = 0;
+
+            layers.forEach((layer, index) => {
+                const setting = layerSettings[index];
+                const numFruits = Math.floor(Math.random() * 2) + 1;
+
+                for(let i=0; i<numFruits; i++) {
+                    if (fruitIndex >= config.fruits.length) {
+                        config.fruits = shuffleArray([...rawFruits]);
+                        fruitIndex = 0;
+                    }
+
+                    const fruit = document.createElement('div');
+                    fruit.classList.add('fruit');
+                    fruit.textContent = config.fruits[fruitIndex++];
+                    
+                    const topVal = Math.floor(Math.random() * (setting.maxTop - setting.minTop)) + setting.minTop;
+                    const leftOffset = ((Math.random() * setting.spread * 2) - setting.spread) * 0.8;
+                    
+                    fruit.style.left = `calc(50% + ${leftOffset}px)`;
+                    fruit.style.top = `${topVal}px`;
+                    fruit.style.animationDelay = (Math.random() * 2) + 's';
+
+                    layer.appendChild(fruit);
+                }
+            });
+        }
+
+        // 4. 生成装饰球
+        function createOrnaments() {
+            const layers = document.querySelectorAll('.tree-layer');
+            const layerSettings = [
+                { minTop: 45, maxTop: 55, spread: 12 },
+                { minTop: 70, maxTop: 110, spread: 25 },
+                { minTop: 110, maxTop: 160, spread: 35 },
+                { minTop: 160, maxTop: 230, spread: 50 },
+                { minTop: 220, maxTop: 290, spread: 65 },
+                { minTop: 300, maxTop: 380, spread: 80 }
+            ];
+
+            ornamentIndex = 0;
+
+            layers.forEach((layer, index) => {
+                const setting = layerSettings[index];
+                const numOrnaments = Math.floor(Math.random() * 3) + 2;
+
+                for(let i=0; i<numOrnaments; i++) {
+                    if (ornamentIndex >= config.ornaments.length) {
+                        config.ornaments = shuffleArray([...rawOrnaments]);
+                        ornamentIndex = 0;
+                    }
+
+                    const ornament = document.createElement('div');
+                    ornament.classList.add('ornament');
+                    ornament.textContent = config.ornaments[ornamentIndex++];
+                    
+                    const topVal = Math.floor(Math.random() * (setting.maxTop - setting.minTop)) + setting.minTop;
+                    const leftOffset = ((Math.random() * setting.spread * 2) - setting.spread) * 0.8;
+                    
+                    ornament.style.left = `calc(50% + ${leftOffset}px)`;
+                    ornament.style.top = `${topVal}px`;
+                    ornament.style.animationDelay = (Math.random() * 2.5) + 's';
+
+                    layer.appendChild(ornament);
+                }
+            });
+        }
+
+        // 5. 生成飘落物
+        function particleLoop() {
+            if (!config.isFalling) return;
+
+            const el = document.createElement('div');
+            el.classList.add('particle');
+            const isMaple = Math.random() > 0.8;
+            el.classList.add(isMaple ? 'maple' : 'snow');
+
+            el.textContent = isMaple ? '🍁' : ['❄', '❅', '•'][Math.floor(Math.random() * 3)];
+
+            const startX = Math.random() * 200;
+            el.style.left = startX + 'vw';
+            el.style.top = '-50px';
+
+            const size = isMaple ? (Math.random() * 2.0 + 1.0) : (Math.random() * 1.8 + 0.7);
+            el.style.fontSize = size + 'rem';
+
+            const drift = (Math.random() * 500) - 150;
+            el.style.setProperty('--drift-x', `${drift}px`);
+
+            const duration = Math.random() * 7 + 8; 
+            el.style.animationDuration = duration + 's';
+
+            dom.particleContainer.appendChild(el);
+
+            setTimeout(() => { el.remove(); }, duration * 1000);
+
+            particleTimer = setTimeout(particleLoop, config.particleRate);
+        }
+
+        function toggleParticles() {
+            config.isFalling = !config.isFalling;
+            showToast(config.isFalling ? "飘落开始" : "飘落暂停");
+            
+            if (config.isFalling) {
+                dom.particleContainer.innerHTML = '';
+                particleLoop();
+            } else {
+                clearTimeout(particleTimer);
+                particleTimer = null;
+                dom.particleContainer.innerHTML = '';
+            }
+        }
+
+        function toggleLights() {
+            dom.lightsLayer.classList.toggle('hidden');
+            showToast(dom.lightsLayer.classList.contains('hidden') ? "彩灯已关闭" : "彩灯已开启");
+        }
+
+        function showToast(msg) {
+            dom.toast.textContent = msg;
+            dom.toast.classList.add('show');
+            setTimeout(() => dom.toast.classList.remove('show'), 2000);
+        }
+
+        window.onload = function() {
+            config.fruits = shuffleArray(config.fruits);
+            config.ornaments = shuffleArray(config.ornaments);
+            createGlowingStars(); // 25颗星星，使用 ✨🌟
+            createDecorLights(); // 30颗装饰灯
+            createLights();
+            createFruits();
+            createOrnaments();
+            createOutlineStars(); 
+            if (particleTimer) clearTimeout(particleTimer); // 清除可能存在的旧定时器
+            particleLoop(); // 强制重新开始
+        }
+    </script>
+</body>
+</html>
