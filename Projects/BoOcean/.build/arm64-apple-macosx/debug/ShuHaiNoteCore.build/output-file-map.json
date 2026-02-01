@@ -1,0 +1,33 @@
+{
+  "": {
+    "swift-dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/master.swiftdeps"
+  },
+  "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/Note+CoreDataClass.swift": {
+    "dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataClass.d",
+    "object": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataClass.swift.o",
+    "swiftmodule": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataClass~partial.swiftmodule",
+    "swift-dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataClass.swiftdeps",
+    "diagnostics": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataClass.dia"
+  },
+  "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/Note+CoreDataProperties.swift": {
+    "dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataProperties.d",
+    "object": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataProperties.swift.o",
+    "swiftmodule": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataProperties~partial.swiftmodule",
+    "swift-dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataProperties.swiftdeps",
+    "diagnostics": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataProperties.dia"
+  },
+  "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/NotesViewModel.swift": {
+    "dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/NotesViewModel.d",
+    "object": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/NotesViewModel.swift.o",
+    "swiftmodule": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/NotesViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/NotesViewModel.swiftdeps",
+    "diagnostics": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/NotesViewModel.dia"
+  },
+  "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/PersistenceController.swift": {
+    "dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/PersistenceController.d",
+    "object": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/PersistenceController.swift.o",
+    "swiftmodule": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/PersistenceController~partial.swiftmodule",
+    "swift-dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/PersistenceController.swiftdeps",
+    "diagnostics": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/PersistenceController.dia"
+  }
+}

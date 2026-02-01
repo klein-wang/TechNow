@@ -1,53 +1,64 @@
 import SwiftUI
 
 struct NotesListView: View {
-    @StateObject private var viewModel = NotesViewModel()
+    @ObservedObject var viewModel: NotesViewModel
     @State private var selectedTag: String = "全部"
     @State private var searchText = ""
-    
+
     var filteredNotes: [Note] {
         viewModel.notes.filter { note in
             if selectedTag == "全部" { return true }
-            return note.tags.contains(selectedTag)
+            if let tags = note.tags as? [String] {
+                return tags.contains(selectedTag)
+            }
+            return false
         }.filter { note in
             if searchText.isEmpty { return true }
-            return note.bookTitle.localizedCaseInsensitiveContains(searchText) ||
-                   note.content.localizedCaseInsensitiveContains(searchText) ||
-                   note.quote.localizedCaseInsensitiveContains(searchText)
+            let book = note.bookTitle ?? ""
+            let content = note.content ?? ""
+            let quote = note.quote ?? ""
+            return book.localizedCaseInsensitiveContains(searchText) ||
+                   content.localizedCaseInsensitiveContains(searchText) ||
+                   quote.localizedCaseInsensitiveContains(searchText)
         }
     }
 
     var body: some View {
-        NavigationView {
-            List(filteredNotes) { note in
+        List {
+            ForEach(filteredNotes, id: \ .objectID) { note in
                 NavigationLink(destination: NoteDetailView(note: note)) {
                     VStack(alignment: .leading) {
-                        Text(note.bookTitle).font(.headline)
-                        Text(note.quote).font(.subheadline).italic()
+                        Text(note.bookTitle ?? "未知书名").font(.headline)
+                        Text(note.quote ?? "").font(.subheadline).italic()
                         HStack {
-                            ForEach(note.tags, id: \.self) { tag in
-                                Text(tag).font(.caption).padding(4).background(Color.blue.opacity(0.2)).cornerRadius(8)
+                            if let tags = note.tags as? [String] {
+                                ForEach(tags, id: \ .self) { tag in
+                                    Text(tag).font(.caption).padding(4).background(Color.blue.opacity(0.2)).cornerRadius(8)
+                                }
                             }
                         }
                     }
                 }
             }
-            .searchable(text: $searchText)
-            .navigationTitle("我的笔记")
-            .toolbar {
-                NavigationLink("添加") {
-                    AddNoteView()
-                }
+            .onDelete { idx in
+                viewModel.deleteNote(at: idx)
             }
-            .picker("标签", selection: $selectedTag) {
-                ForEach(viewModel.uniqueTags, id: \.self) { tag in
-                    Text(tag).tag(tag)
-                }
-            }
-            .pickerStyle(SegmentedPickerStyle())
         }
+        .searchable(text: $searchText)
+        .navigationTitle("我的笔记")
+        .toolbar {
+            NavigationLink(destination: AddNoteView(viewModel: viewModel)) {
+                Text("添加")
+            }
+        }
+        .picker("标签", selection: $selectedTag) {
+            ForEach(viewModel.uniqueTags, id: \ .self) { tag in
+                Text(tag).tag(tag)
+            }
+        }
+        .pickerStyle(SegmentedPickerStyle())
         .onAppear {
-            viewModel.loadNotes()  // 从Core Data加载
+            viewModel.loadNotes()
         }
     }
 }

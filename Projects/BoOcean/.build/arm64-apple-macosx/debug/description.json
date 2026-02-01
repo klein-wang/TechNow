@@ -1,0 +1,683 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.xctest/Contents/MacOS/ShuHaiNoteCorePackageTests",
+      "packagePath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean",
+      "productName" : "ShuHaiNoteCorePackageTests"
+    }
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.ShuHaiNoteCore-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/sources",
+      "importPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/Note+CoreDataClass.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/Note+CoreDataProperties.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/NotesViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/PersistenceController.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ShuHaiNoteCore",
+      "moduleOutputPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules/ShuHaiNoteCore.swiftmodule",
+      "objects" : [
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataClass.swift.o",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataProperties.swift.o",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/NotesViewModel.swift.o",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/PersistenceController.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx12.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/include/ShuHaiNoteCore-Swift.h",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g"
+      ],
+      "outputFileMapPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataClass.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataProperties.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/NotesViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/PersistenceController.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules/ShuHaiNoteCore.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/Note+CoreDataClass.swift",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/Note+CoreDataProperties.swift",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/NotesViewModel.swift",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/PersistenceController.swift"
+      ],
+      "tempsPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.ShuHaiNoteCorePackageTests-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/sources",
+      "importPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules/ShuHaiNoteCoreTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ShuHaiNoteCorePackageTests",
+      "moduleOutputPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules/ShuHaiNoteCorePackageTests.swiftmodule",
+      "objects" : [
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx12.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/include/ShuHaiNoteCorePackageTests-Swift.h",
+        "-color-diagnostics",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g"
+      ],
+      "outputFileMapPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules/ShuHaiNoteCorePackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.ShuHaiNoteCoreTests-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCoreTests.build/sources",
+      "importPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Tests/NotesTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules/ShuHaiNoteCore.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCoreTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ShuHaiNoteCoreTests",
+      "moduleOutputPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules/ShuHaiNoteCoreTests.swiftmodule",
+      "objects" : [
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCoreTests.build/NotesTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g"
+      ],
+      "outputFileMapPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCoreTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCoreTests.build/NotesTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules/ShuHaiNoteCoreTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Tests/NotesTests.swift"
+      ],
+      "tempsPath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCoreTests.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "ShuHaiNoteCore" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ShuHaiNoteCore",
+      "-c",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/Note+CoreDataClass.swift",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/Note+CoreDataProperties.swift",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/NotesViewModel.swift",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/PersistenceController.swift",
+      "-I",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx12.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/include/ShuHaiNoteCore-Swift.h",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "ShuHaiNoteCorePackageTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ShuHaiNoteCorePackageTests",
+      "-c",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.derived/runner.swift",
+      "-I",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx12.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/include/ShuHaiNoteCorePackageTests-Swift.h",
+      "-color-diagnostics",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "ShuHaiNoteCoreTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ShuHaiNoteCoreTests",
+      "-c",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Tests/NotesTests.swift",
+      "-I",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "ShuHaiNoteCore" : [
+
+    ],
+    "ShuHaiNoteCorePackageTests" : [
+      "ShuHaiNoteCoreTests",
+      "ShuHaiNoteCore"
+    ],
+    "ShuHaiNoteCoreTests" : [
+      "ShuHaiNoteCore"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+    "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.derived/runner.swift" : {
+      "inputs" : [
+
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/Note+CoreDataClass.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/Note+CoreDataProperties.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/NotesViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Sources/ShuHaiNoteCore/PersistenceController.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/sources"
+    },
+    "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/sources"
+    },
+    "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataClass.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/Note+CoreDataProperties.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/NotesViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCore.build/PersistenceController.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCoreTests.build/NotesTests.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.product/Objects.LinkFileList"
+    },
+    "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCoreTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/Tests/NotesTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCoreTests.build/sources"
+    },
+    "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

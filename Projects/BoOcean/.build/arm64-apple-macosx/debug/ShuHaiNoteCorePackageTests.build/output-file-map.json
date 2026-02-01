@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/master.swiftdeps"
+  },
+  "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.derived/runner.swift": {
+    "dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/runner.d",
+    "object": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/runner.swiftdeps",
+    "diagnostics": "/Users/yuanchenwang/Documents/GitHub/TechNow/Projects/BoOcean/.build/arm64-apple-macosx/debug/ShuHaiNoteCorePackageTests.build/runner.dia"
+  }
+}
