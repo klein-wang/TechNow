@@ -1,0 +1,21 @@
+/* Localizable.strings file for the 书海笔记 iOS app */
+
+"app_title" = "书海笔记";
+"add_note" = "添加笔记";
+"save" = "保存";
+"edit" = "编辑";
+"delete" = "删除";
+"quote" = "金句";
+"tags" = "标签";
+"search" = "搜索";
+"no_notes" = "暂无笔记";
+"today_quote" = "今日金句";
+"all" = "全部";
+"motivational" = "励志";
+"philosophy" = "哲学";
+"technology" = "科技";
+"note_details" = "笔记详情";
+"book_title" = "书名";
+"content" = "内容";
+"quote_placeholder" = "请输入金句";
+"tags_placeholder" = "用逗号分隔标签";

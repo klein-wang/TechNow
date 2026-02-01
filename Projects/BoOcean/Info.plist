@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleName</key>
+	<string>书海笔记</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.shuhainote</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UISupportedInterfaceOrientations~iphone</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocalizableString</key>
+	<string>Localizable.strings</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>需要访问您的照片库以便分享笔记。</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>我们希望能够为您提供个性化的体验。</string>
+</dict>
+</plist>
