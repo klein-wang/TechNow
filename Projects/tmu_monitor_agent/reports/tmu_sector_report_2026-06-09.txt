@@ -1,0 +1,37 @@
+TMU Sector Monitor - Daily Report
+========================================
+
+EXECUTIVE SUMMARY
+-------------------
+Top sector by sentiment: Technology (Monitor) [agg=0.62]
+
+SECTOR BREAKDOWN
+----------------
+- Technology: Monitor [agg=0.62]
+
+TOP STORIES
+-----------
+
+Technology - Bullish
+  • NVDA: AI transparency/regulation proposals
+    URL: https://www.cnbc.com/technology/
+  • MSFT: AI transparency/regulation proposals
+    URL: https://www.cnbc.com/technology/
+Technology - Bearish
+  • MSFT: AI transparency/regulation proposals
+    URL: {'ticker': 'MSFT', 'sector': 'Technology', 'title': 'Cloud demand and AI roadmap keep momentum', 'summary': 'Investors respond positively to cloud growth and AI infrastructure plans.', 'url': 'https://www.cnbc.com/technology/', 'sentiment_score': 0.62, 'key_catalyst': 'AI transparency/regulation proposals', 'sector_impact': 'Regulatory may increase compliance costs but also clarifies adoption', 'confidence': 'high'}
+  • AAPL: AI transparency/regulation proposals
+    URL: {'ticker': 'AAPL', 'sector': 'Technology', 'title': 'AI regulation headlines spark tech sector debate', 'summary': 'New policy proposals around AI transparency could impact product roadmaps and compliance costs.', 'url': 'https://www.cnbc.com/technology/', 'sentiment_score': 0.62, 'key_catalyst': 'AI transparency/regulation proposals', 'sector_impact': 'Regulatory may increase compliance costs but also clarifies adoption', 'confidence': 'high'}
+
+RECOMMENDATIONS
+-----------------
+
+Technology: Monitor
+  Rationale:
+    Aggregate sentiment: 0.62
+    Bullish catalysts:
+      - AI transparency/regulation proposals
+      - AI transparency/regulation proposals
+    Bearish catalysts:
+      - AI transparency/regulation proposals
+      - AI transparency/regulation proposals

@@ -1,0 +1,30 @@
+[project]
+name = "tmu-sector-monitor-agent"
+version = "0.1.0"
+description = "TMU Sector Monitor Agent: ingest TMU-related news, derive sentiment/catalysts, and generate daily .txt reports."
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "BlackboxAI" }]
+
+dependencies = [
+  "requests>=2.32.0",
+  "pydantic>=2.8.0",
+  "APScheduler>=3.10.4",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2.0",
+  "ruff>=0.6.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "B", "I"]
+ignore = []
+

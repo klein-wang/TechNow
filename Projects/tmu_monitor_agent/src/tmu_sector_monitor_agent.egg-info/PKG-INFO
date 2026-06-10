@@ -1,0 +1,48 @@
+Metadata-Version: 2.4
+Name: tmu-sector-monitor-agent
+Version: 0.1.0
+Summary: TMU Sector Monitor Agent: ingest TMU-related news, derive sentiment/catalysts, and generate daily .txt reports.
+Author: BlackboxAI
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.32.0
+Requires-Dist: pydantic>=2.8.0
+Requires-Dist: APScheduler>=3.10.4
+Provides-Extra: dev
+Requires-Dist: pytest>=8.2.0; extra == "dev"
+Requires-Dist: ruff>=0.6.0; extra == "dev"
+
+# TMU Sector Monitor Agent
+
+Python backend that ingests TMU-related news (Yahoo placeholder), derives sentiment/catalysts (LLM placeholder), applies rule-based recommendation logic, and generates a daily `.txt` report.
+
+## Quickstart
+
+### 1) Create venv
+```bat
+py -m venv .venv
+.\.venv\Scripts\activate
+```
+
+### 2) Install deps
+```bat
+pip install -e .
+pip install ".[dev]"
+```
+
+### 3) Run once
+```bat
+python -m src.main --report-dir reports
+```
+
+### 4) Run scheduler (daily)
+```bat
+python -m src.main --schedule
+```
+
+## Notes
+- Yahoo News integration is implemented as a **best-effort** placeholder using a lightweight endpoint pattern.
+- The LLM sentiment extraction is currently a stub returning deterministic scores.
+- Replace `src/nlp/sentiment_llm.py` with an actual LLM call when ready.
+

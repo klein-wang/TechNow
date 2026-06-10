@@ -1,0 +1,57 @@
+TMU Sector Monitor - Daily Report
+========================================
+
+EXECUTIVE SUMMARY
+-------------------
+Top sector by sentiment: Media (Accumulate) [agg=0.78]
+
+SECTOR BREAKDOWN
+----------------
+- Media: Accumulate [agg=0.78]
+- Utilities: Monitor [agg=-0.12] (LOW CONFIDENCE)
+
+TOP STORIES
+-----------
+
+Media - Bullish
+  • DIS: Subscriber growth and margin resilience
+    URL: https://www.cnbc.com/2026/06/04/lululemon-lulu-earnings-q1-2026.html
+Media - Bearish
+  • DIS: Subscriber growth and margin resilience
+    Title: Lululemon cuts outlook, citing 'negative' commentary and disappointing product launches
+    URL: https://www.cnbc.com/2026/06/04/lululemon-lulu-earnings-q1-2026.html
+
+Utilities - Bullish
+  • SO: Capex/grid modernization announcements
+    URL: https://www.cnbc.com/2026/06/09/orlando-bravo-saaspocalypse-over-ai-software.html
+  • SO: Capex/grid modernization announcements
+    URL: https://www.cnbc.com/2026/06/09/orlando-bravo-saaspocalypse-over-ai-software.html
+Utilities - Bearish
+  • SO: Capex/grid modernization announcements
+    Title: The 'SaaSpocalypse' is over, says private equity giant Thoma Bravo. Here's why it sees an AI boom for software
+    URL: https://www.cnbc.com/2026/06/09/orlando-bravo-saaspocalypse-over-ai-software.html
+  • SO: Capex/grid modernization announcements
+    Title: The 'SaaSpocalypse' is over, says private equity giant Thoma Bravo. Here's why it sees an AI boom for software
+    URL: https://www.cnbc.com/2026/06/09/orlando-bravo-saaspocalypse-over-ai-software.html
+
+RECOMMENDATIONS
+-----------------
+
+Media: Accumulate
+  Rationale:
+    Aggregate sentiment: 0.78
+    Bullish catalysts:
+      - Subscriber growth and margin resilience
+    Bearish catalysts:
+      - Subscriber growth and margin resilience
+
+Utilities: Monitor
+  Rationale:
+    Aggregate sentiment: -0.12
+    Confidence check: Flagged for human review.
+    Bullish catalysts:
+      - Capex/grid modernization announcements
+      - Capex/grid modernization announcements
+    Bearish catalysts:
+      - Capex/grid modernization announcements
+      - Capex/grid modernization announcements

@@ -1,0 +1,8 @@
+config
+ingestion
+main
+mapping
+nlp
+pipeline
+recommendation
+reporting
