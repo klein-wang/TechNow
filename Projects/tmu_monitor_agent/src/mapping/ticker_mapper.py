@@ -19,5 +19,15 @@ TMU_SECTOR_MAP: dict[str, str] = {
 
 
 def map_ticker_to_sector(ticker: str) -> str | None:
-    return TMU_SECTOR_MAP.get(ticker.upper())
+    """Map ticker to a TMU sector.
+
+    For the current CNBC ingestion pipeline we do not yet extract reliable
+    CNBC theme/tags beyond the Technology landing.
+
+    To avoid misclassification, fall back to Technology when a ticker is not
+    in the minimal universe.
+    """
+
+    return TMU_SECTOR_MAP.get(ticker.upper()) or "Technology"
+
 

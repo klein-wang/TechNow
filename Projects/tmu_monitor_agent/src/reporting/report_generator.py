@@ -15,7 +15,9 @@ def write_report(result: AgentRunResult, out_path: str) -> None:
     top = sorted(result.recommendations, key=lambda r: r.aggregate_sentiment, reverse=True)
     if top:
         best = top[0]
-        lines.append(f"Top sector by sentiment: {best.sector} ({best.recommendation}) [agg={best.aggregate_sentiment:.2f}]")
+        lines.append(
+            f"Top sector by sentiment: {best.sector} ({best.recommendation}) [agg={best.aggregate_sentiment:.2f}]"
+        )
     else:
         lines.append("No sector data available for today.")
 
@@ -61,8 +63,6 @@ def write_report(result: AgentRunResult, out_path: str) -> None:
             if url:
                 lines.append(f"    URL: {url}")
 
-
-
     # Specific recommendations
     lines.append("\nRECOMMENDATIONS")
     lines.append("-----------------")
@@ -78,6 +78,34 @@ def write_report(result: AgentRunResult, out_path: str) -> None:
         lines.append("    Bearish catalysts:")
         for _, cat in r.bearish_stories:
             lines.append(f"      - {cat}")
+
+    # Holistic appendix: all ingested (scraped) & mapped articles
+    lines.append("\nALL INGESTED ARTICLES")
+    lines.append("----------------------")
+
+    for it in sorted(
+        result.items,
+        key=lambda x: (
+            x.get("sector", ""),
+            x.get("ticker", ""),
+            x.get("date", ""),
+            x.get("url", ""),
+        ),
+    ):
+        tkr = it.get("ticker") or ""
+        sector = it.get("sector") or ""
+        title = it.get("title") or ""
+        summary = it.get("summary") or ""
+        url = it.get("url") or ""
+
+        lines.append(f"[{sector}] {tkr}")
+        if title:
+            lines.append(f"  Title: {title}")
+        if summary:
+            lines.append(f"  Summary: {summary}")
+        if url:
+            lines.append(f"  URL: {url}")
+        lines.append("  " + "-" * 40)
 
     content = "\n".join(lines).rstrip() + "\n"
     with open(out_path, "w", encoding="utf-8") as f:

@@ -23,16 +23,16 @@ Media - Bearish
 
 Utilities - Bullish
   • SO: Capex/grid modernization announcements
-    URL: https://www.cnbc.com/2026/06/09/orlando-bravo-saaspocalypse-over-ai-software.html
+    URL: https://www.cnbc.com/2026/06/08/jim-cramer-says-sovereign-ai-is-nvidias-powerful-new-growth-driver.html
   • SO: Capex/grid modernization announcements
-    URL: https://www.cnbc.com/2026/06/09/orlando-bravo-saaspocalypse-over-ai-software.html
+    URL: https://www.cnbc.com/2026/06/08/jim-cramer-says-sovereign-ai-is-nvidias-powerful-new-growth-driver.html
 Utilities - Bearish
   • SO: Capex/grid modernization announcements
-    Title: The 'SaaSpocalypse' is over, says private equity giant Thoma Bravo. Here's why it sees an AI boom for software
-    URL: https://www.cnbc.com/2026/06/09/orlando-bravo-saaspocalypse-over-ai-software.html
+    Title: Jim Cramer says sovereign AI is Nvidia's powerful new growth driver
+    URL: https://www.cnbc.com/2026/06/08/jim-cramer-says-sovereign-ai-is-nvidias-powerful-new-growth-driver.html
   • SO: Capex/grid modernization announcements
-    Title: The 'SaaSpocalypse' is over, says private equity giant Thoma Bravo. Here's why it sees an AI boom for software
-    URL: https://www.cnbc.com/2026/06/09/orlando-bravo-saaspocalypse-over-ai-software.html
+    Title: Jim Cramer says sovereign AI is Nvidia's powerful new growth driver
+    URL: https://www.cnbc.com/2026/06/08/jim-cramer-says-sovereign-ai-is-nvidias-powerful-new-growth-driver.html
 
 RECOMMENDATIONS
 -----------------
@@ -55,3 +55,91 @@ Utilities: Monitor
     Bearish catalysts:
       - Capex/grid modernization announcements
       - Capex/grid modernization announcements
+
+ALL INGESTED ARTICLES
+----------------------
+[Media] DIS
+  Title: Lululemon cuts outlook, citing 'negative' commentary and disappointing product launches
+  Summary: Lululemon cuts outlook, citing 'negative' commentary and disappointing product launches (2026/06/04)
+  URL: https://www.cnbc.com/2026/06/04/lululemon-lulu-earnings-q1-2026.html
+  ----------------------------------------
+[Utilities] NEE
+  Title: How ‘Backrooms’ producer Peter Chernin thinks Hollywood needs to change
+  Summary: How ‘Backrooms’ producer Peter Chernin thinks Hollywood needs to change (2026/06/06)
+  URL: https://www.cnbc.com/2026/06/06/backrooms-peter-chernin-hollywood.html
+  ----------------------------------------
+[Utilities] NEE
+  Title: GLP-1 pioneers Novo and Lilly compete on pills, prepare to pitch seniors
+  Summary: GLP-1 pioneers Novo and Lilly compete on pills, prepare to pitch seniors (2026/06/08)
+  URL: https://www.cnbc.com/2026/06/08/novo-nordisk-eli-lilly-obesity-pills-medicare-coverage.html
+  ----------------------------------------
+[Utilities] SO
+  Title: Sell in May? Don't get taken in by seasonal trading patterns
+  Summary: Sell in May? Don't get taken in by seasonal trading patterns (2025/04/30)
+  URL: https://www.cnbc.com/2025/04/30/sell-in-may-dont-get-taken-in-by-seasonal-trading-patterns.html
+  ----------------------------------------
+[Utilities] SO
+  Title: Dulux maker soars after rejecting rival’s $14.5 billion bid oil below $100
+  Summary: Dulux maker soars after rejecting rival’s $14.5 billion bid oil below $100 (2026/05/27)
+  URL: https://www.cnbc.com/2026/05/27/european-markets-stoxx-600-ftse-dax-cac-iran-news.html
+  ----------------------------------------
+[Utilities] SO
+  Title: Eli Manning weighs in on Giants QB Jaxson Dart's Trump rally fallout
+  Summary: Eli Manning weighs in on Giants QB Jaxson Dart's Trump rally fallout (2026/06/04)
+  URL: https://www.cnbc.com/2026/06/04/eli-manning-giants-jaxson-dart-trump.html
+  ----------------------------------------
+[Utilities] SO
+  Title: Soaring stocks created 2 million new millionaires around the world last year
+  Summary: Soaring stocks created 2 million new millionaires around the world last year (2026/06/04)
+  URL: https://www.cnbc.com/2026/06/04/stocks-new-millionaires.html
+  ----------------------------------------
+[Utilities] SO
+  Title: South Korea stocks fall over 5% as tech heavyweights follow plunge in Wall Street's AI-linked names
+  Summary: South Korea stocks fall over 5% as tech heavyweights follow plunge in Wall Street's AI-linked names (2026/06/05)
+  URL: https://www.cnbc.com/2026/06/05/asia-markets-today-nikkei-225-kospi-hang-seng-index-csi-300-nifty50.html
+  ----------------------------------------
+[Utilities] SO
+  Title: Record Broadway season is the latest sign of consumers splurging on experiences
+  Summary: Record Broadway season is the latest sign of consumers splurging on experiences (2026/06/05)
+  URL: https://www.cnbc.com/2026/06/05/broadway-record-ticket-sales.html
+  ----------------------------------------
+[Utilities] SO
+  Title: Family offices invest in sports, from pickleball leagues to smart soccer balls
+  Summary: Family offices invest in sports, from pickleball leagues to smart soccer balls (2026/06/05)
+  URL: https://www.cnbc.com/2026/06/05/family-office-sport-investments.html
+  ----------------------------------------
+[Utilities] SO
+  Title: South Korea nominates Han as first female prime minister in two decades
+  Summary: South Korea nominates Han as first female prime minister in two decades (2026/06/07)
+  URL: https://www.cnbc.com/2026/06/07/south-korea-nominates-han-seongsook-to-be-next-prime-minister.html
+  ----------------------------------------
+[Utilities] SO
+  Title: Top Wall Street analysts recommend these 3 dividend stocks for solid returns
+  Summary: Top Wall Street analysts recommend these 3 dividend stocks for solid returns (2026/06/07)
+  URL: https://www.cnbc.com/2026/06/07/top-analysts-recommend-these-3-dividend-stocks-for-solid-returns.html
+  ----------------------------------------
+[Utilities] SO
+  Title: Jim Cramer says sovereign AI is Nvidia's powerful new growth driver
+  Summary: Jim Cramer says sovereign AI is Nvidia's powerful new growth driver (2026/06/08)
+  URL: https://www.cnbc.com/2026/06/08/jim-cramer-says-sovereign-ai-is-nvidias-powerful-new-growth-driver.html
+  ----------------------------------------
+[Utilities] SO
+  Title: Lavazza launches single-serve tablets to make espresso in the U.S.
+  Summary: Lavazza launches single-serve tablets to make espresso in the U.S. (2026/06/08)
+  URL: https://www.cnbc.com/2026/06/08/lavazza-launches-single-serve-tablets-to-make-espresso.html
+  ----------------------------------------
+[Utilities] SO
+  Title: SoftBank drops 6% as tech stock sell-off accelerates in Asia
+  Summary: SoftBank drops 6% as tech stock sell-off accelerates in Asia (2026/06/08)
+  URL: https://www.cnbc.com/2026/06/08/softbank-samsung-tech-ai-stocks-asia-fall.html
+  ----------------------------------------
+[Utilities] SO
+  Title: Upstart chipmakers keep challenging Nvidia. Microsoft-backed D-Matrix is next
+  Summary: Upstart chipmakers keep challenging Nvidia. Microsoft-backed D-Matrix is next (2026/06/09)
+  URL: https://www.cnbc.com/2026/06/09/nvidia-d-matrix-chip-production-microsoft.html
+  ----------------------------------------
+[Utilities] SO
+  Title: $70 billion immigration funding package passes in House in a win for Johnson
+  Summary: $70 billion immigration funding package passes in House in a win for Johnson (2026/06/09)
+  URL: https://www.cnbc.com/2026/06/09/trump-ice-congress-fisa-immigration-funding.html
+  ----------------------------------------
