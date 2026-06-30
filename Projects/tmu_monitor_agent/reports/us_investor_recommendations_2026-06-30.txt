@@ -1,0 +1,112 @@
+US Stock Investor Recommendation Report
+=======================================
+
+Top picks
+----------
+NOW: score=0.858 label=strong factors={m:0.89, q:1.00, v:0.83, r:0.56}
+ASML: score=0.722 label=strong factors={m:0.67, q:0.89, v:0.89, r:0.22}
+SAP: score=0.703 label=strong factors={m:0.72, q:0.94, v:0.61, r:0.33}
+SNOW: score=0.592 label=high risk factors={m:0.22, q:0.83, v:1.00, r:0.17}
+MSFT: score=0.583 label=high risk factors={m:1.00, q:0.61, v:0.33, r:0.11}
+NVDA: score=0.578 label=medium factors={m:0.56, q:0.50, v:0.44, r:1.00}
+AMZN: score=0.575 label=medium factors={m:0.78, q:0.44, v:0.67, r:0.28}
+ORCL: score=0.525 label=high risk factors={m:0.94, q:0.78, v:0.00, r:0.06}
+AMD: score=0.519 label=low factors={m:0.28, q:0.22, v:0.94, r:0.89}
+AVGO: score=0.506 label=low factors={m:0.83, q:0.33, v:0.22, r:0.67}
+
+All recommendations
+---------------------
+NOW | strong | 0.858 | flags=-
+ASML | strong | 0.722 | flags=-
+SAP | strong | 0.703 | flags=-
+SNOW | high risk | 0.592 | flags=high_risk_overlay
+MSFT | high risk | 0.583 | flags=high_risk_overlay
+NVDA | medium | 0.578 | flags=-
+AMZN | medium | 0.575 | flags=-
+ORCL | high risk | 0.525 | flags=high_risk_overlay
+AMD | low | 0.519 | flags=-
+AVGO | low | 0.506 | flags=-
+TSM | low | 0.481 | flags=-
+CWD | low | 0.461 | flags=-
+INTC | low | 0.436 | flags=-
+DDOG | low | 0.433 | flags=-
+AAPL | low | 0.431 | flags=-
+GOOGL | neutral | 0.372 | flags=-
+META | neutral | 0.339 | flags=-
+ADBE | neutral | 0.267 | flags=-
+CRM | high risk | 0.119 | flags=high_risk_overlay
+
+Narratives (top 5)
+------------------
+
+NOW | strong | score=0.858
+Bull case:
+- Price momentum is favorable across recent windows.
+- Margins and free-cash-flow characteristics look supportive.
+- Valuation is attractive on multiples / FCF yield proxy.
+Bear case:
+- Downside could emerge if macro conditions tighten.
+Key risks:
+- Monitor macro/interest-rate sensitivity.
+Further to be checked:
+- Confirm factor stability over the next 1-2 rebalances.
+Watchlist:
+- Recent earnings revisions / guidance changes.
+
+ASML | strong | score=0.722
+Bull case:
+- Price momentum is favorable across recent windows.
+- Margins and free-cash-flow characteristics look supportive.
+- Valuation is attractive on multiples / FCF yield proxy.
+Bear case:
+- Downside could emerge if macro conditions tighten.
+Key risks:
+- Higher volatility / regulatory overhang risk profile.
+Further to be checked:
+- Validate regulatory exposure and near-term event calendar.
+- Check drawdown behavior under market stress.
+Watchlist:
+- Recent earnings revisions / guidance changes.
+
+SAP | strong | score=0.703
+Bull case:
+- Price momentum is favorable across recent windows.
+- Margins and free-cash-flow characteristics look supportive.
+- Valuation is attractive on multiples / FCF yield proxy.
+Bear case:
+- Downside could emerge if macro conditions tighten.
+Key risks:
+- Higher volatility / regulatory overhang risk profile.
+Further to be checked:
+- Validate regulatory exposure and near-term event calendar.
+- Check drawdown behavior under market stress.
+Watchlist:
+- Recent earnings revisions / guidance changes.
+
+SNOW | high risk | score=0.592
+Bull case:
+- Margins and free-cash-flow characteristics look supportive.
+- Valuation is attractive on multiples / FCF yield proxy.
+Bear case:
+- Momentum is neutral-to-weak versus benchmarks.
+Key risks:
+- Higher volatility / regulatory overhang risk profile.
+Further to be checked:
+- Validate regulatory exposure and near-term event calendar.
+- Check drawdown behavior under market stress.
+Watchlist:
+- Relative strength vs QQQ/XLK (trend confirmation).
+
+MSFT | high risk | score=0.583
+Bull case:
+- Price momentum is favorable across recent windows.
+- Margins and free-cash-flow characteristics look supportive.
+Bear case:
+- Valuation offers less support (higher multiples / lower yield proxy).
+Key risks:
+- Higher volatility / regulatory overhang risk profile.
+Further to be checked:
+- Validate regulatory exposure and near-term event calendar.
+- Check drawdown behavior under market stress.
+Watchlist:
+- Recent earnings revisions / guidance changes.

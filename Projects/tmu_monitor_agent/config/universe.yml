@@ -1,0 +1,78 @@
+# Investor recommendation universe + factor inputs
+# Note: Data fields are used by the model modules. Data ingestion can be stubbed initially.
+
+universe:
+  mega_cap:
+    - AAPL
+    - MSFT
+    - GOOGL
+    - META
+    - AMZN
+  semiconductors:
+    - NVDA
+    - AMD
+    - AVGO
+    - INTC
+    - TSM
+    - ASML
+  software_saas:
+    - CRM
+    - NOW
+    - ADBE
+    - SNOW
+    - ORCL
+    - SAP
+    - DDOG
+    - CWD
+  benchmarks:
+    - QQQ
+    - XLK
+    - SMH
+
+model:
+  momentum:
+    returns_windows:
+      - 20d   # ~1 month trading days
+      - 60d   # ~3 months trading days
+    moving_averages:
+      - 50d
+      - 100d
+  quality:
+    margins:
+      - gross_margin
+      - operating_margin
+      - free_cash_flow_margin
+  valuation:
+    metrics:
+      - pe
+      - ev_to_sales
+      - ev_to_ebitda
+      - free_cash_flow_yield
+  risk:
+    volatility_window:
+      - 60d
+    regulatory_risk:
+      # placeholder scoring derived from news topic presence later
+      enabled: true
+
+scoring:
+  weights:
+    momentum: 0.30
+    quality: 0.30
+    valuation: 0.25
+    risk: 0.15
+  # Final label mapping uses score percentiles or thresholds (implemented in code)
+  labels:
+    strong: {min: 0.70}
+    medium: {min: 0.55}
+    low: {min: 0.40}
+    neutral: {min: 0.20}
+    avoid_wait: {max: 0.20}
+    high_risk: {risk_min: 0.80}
+
+report:
+  # Output format to generate per-run artifacts
+  horizon_days: 90
+  include_factor_table: true
+  include_llm_narrative: true
+
