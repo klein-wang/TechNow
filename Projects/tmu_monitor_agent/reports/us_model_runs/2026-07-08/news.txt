@@ -1,0 +1,58 @@
+CNBC Ingested News Items
+==========================
+
+Items ingested: 15
+
+DIS | CNBC Daily Open: Dispatch from NATO, U.S. strikes Iran and Le Pen is back | CNBC Daily Open: Dispatch from NATO, U.S. strikes Iran and Le Pen is back (2026/07/08)
+  url: https://www.cnbc.com/2026/07/08/dispatch-from-nato-us-strikes-iran-and-le-pen-is-back.html
+DIS | Netflix, Disney, YouTube interested in U.S. broadcast rights to 2030, 2034 World Cup: Sources | Netflix, Disney, YouTube interested in U.S. broadcast rights to 2030, 2034 World Cup: Sources (2026/07/07)
+  url: https://www.cnbc.com/video/2026/07/07/netflix-disney-youtube-interested-in-u-s-broadcast-rights-to-2030-2034-world-cup-sources.html
+SO | Final Trades: Nvidia, Toast, Microsoft and ServiceNow | Final Trades: Nvidia, Toast, Microsoft and ServiceNow (2026/07/07)
+  url: https://www.cnbc.com/video/2026/07/07/final-trades-nvidia-toast-microsoft-and-servicenow.html
+SO | Solstice CEO defends its $14.5B acquisition after the stock plunges 15% | Solstice CEO defends its $14.5B acquisition after the stock plunges 15% (2026/07/06)
+  url: https://www.cnbc.com/2026/07/06/solstice-ceo-defends-acquisition-element-solutions-stock-plunges.html
+SO | South Korea stocks fall over 5% as tech heavyweights follow plunge in Wall Street's AI-linked names | South Korea stocks fall over 5% as tech heavyweights follow plunge in Wall Street's AI-linked names (2026/06/05)
+  url: https://www.cnbc.com/2026/06/05/asia-markets-today-nikkei-225-kospi-hang-seng-index-csi-300-nifty50.html
+SO | Dulux maker soars after rejecting rival’s $14.5 billion bid oil below $100 | Dulux maker soars after rejecting rival’s $14.5 billion bid oil below $100 (2026/05/27)
+  url: https://www.cnbc.com/2026/05/27/european-markets-stoxx-600-ftse-dax-cac-iran-news.html
+SO | Sell in May? Don't get taken in by seasonal trading patterns | Sell in May? Don't get taken in by seasonal trading patterns (2025/04/30)
+  url: https://www.cnbc.com/2025/04/30/sell-in-may-dont-get-taken-in-by-seasonal-trading-patterns.html
+DIS | Netflix, Disney and YouTube interested in FIFA World Cup U.S. rights package could reach $2 billion | Netflix, Disney and YouTube interested in FIFA World Cup U.S. rights package could reach $2 billion (2026/07/07)
+  url: https://www.cnbc.com/2026/07/07/fifa-world-cup-media-rights-netflix-disney-youtube.html
+SO | Record heat, crowds drive offseason boom in international travel | Record heat, crowds drive offseason boom in international travel (2026/07/06)
+  url: https://www.cnbc.com/2026/07/06/travel-off-season-boom-in-flights-airlines-hotels.html
+SO | Inside the corporate scramble to sponsor Trump’s ‘Freedom 250’ celebration | Inside the corporate scramble to sponsor Trump’s ‘Freedom 250’ celebration (2026/07/03)
+  url: https://www.cnbc.com/2026/07/03/trump-freedom-250-america250-corporate-sponsors-access.html
+SO | Samsung-backed AI chip firm Rebellions targets IPO in South Korea next year, CEO tells CNBC | Samsung-backed AI chip firm Rebellions targets IPO in South Korea next year, CEO tells CNBC (2026/07/08)
+  url: https://www.cnbc.com/2026/07/08/rebellions-ipo-south-korea-ai-chips.html
+SO | Apple begins testing CXMT chips for devices sold in China, FT says | Apple begins testing CXMT chips for devices sold in China, FT says (2026/07/08)
+  url: https://www.cnbc.com/2026/07/08/apple-begins-testing-cxmt-chips-for-devices-sold-in-china-ft-says-.html
+SO | Microsoft cuts 4,800 jobs, as Xbox unit downsizes and plans to spin off four gaming studios | Microsoft cuts 4,800 jobs, as Xbox unit downsizes and plans to spin off four gaming studios (2026/07/06)
+  url: https://www.cnbc.com/2026/07/06/microsoft-cuts-2point1percent-of-employees-as-xbox-unit-plans-to-spin-studios.html
+DIS | Alibaba bans Anthropic for employees after 'distillation attack' accusation | Alibaba bans Anthropic for employees after 'distillation attack' accusation (2026/07/06)
+  url: https://www.cnbc.com/2026/07/06/alibaba-anthropic-ai-ban-claude-china.html
+DIS | Weather disrupts some July 4 celebrations Trump says he will still speak in DC | Weather disrupts some July 4 celebrations Trump says he will still speak in DC (2026/07/04)
+  url: https://www.cnbc.com/2026/07/04/trump-to-mark-us-250th-anniversary-with-campaign-style-rally.html
+
+Derived News Signals (stub)
+=============================
+
+AAPL | regulatory_topic_present=False | regulatory_risk_score=0.197
+MSFT | regulatory_topic_present=False | regulatory_risk_score=0.220
+GOOGL | regulatory_topic_present=False | regulatory_risk_score=0.025
+META | regulatory_topic_present=False | regulatory_risk_score=0.182
+AMZN | regulatory_topic_present=False | regulatory_risk_score=0.001
+NVDA | regulatory_topic_present=False | regulatory_risk_score=0.127
+AMD | regulatory_topic_present=False | regulatory_risk_score=0.226
+AVGO | regulatory_topic_present=False | regulatory_risk_score=0.107
+INTC | regulatory_topic_present=False | regulatory_risk_score=0.147
+TSM | regulatory_topic_present=False | regulatory_risk_score=0.152
+ASML | regulatory_topic_present=False | regulatory_risk_score=0.099
+CRM | regulatory_topic_present=False | regulatory_risk_score=0.098
+NOW | regulatory_topic_present=False | regulatory_risk_score=0.188
+ADBE | regulatory_topic_present=False | regulatory_risk_score=0.195
+SNOW | regulatory_topic_present=False | regulatory_risk_score=0.072
+ORCL | regulatory_topic_present=False | regulatory_risk_score=0.249
+SAP | regulatory_topic_present=False | regulatory_risk_score=0.076
+DDOG | regulatory_topic_present=False | regulatory_risk_score=0.243
+CWD | regulatory_topic_present=False | regulatory_risk_score=0.186

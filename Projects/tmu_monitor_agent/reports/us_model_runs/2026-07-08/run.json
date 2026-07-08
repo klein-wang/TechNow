@@ -1,0 +1,1192 @@
+{
+  "run_date": "2026-07-08",
+  "config_path": "config/universe.yml",
+  "universe": [
+    "AAPL",
+    "MSFT",
+    "GOOGL",
+    "META",
+    "AMZN",
+    "NVDA",
+    "AMD",
+    "AVGO",
+    "INTC",
+    "TSM",
+    "ASML",
+    "CRM",
+    "NOW",
+    "ADBE",
+    "SNOW",
+    "ORCL",
+    "SAP",
+    "DDOG",
+    "CWD"
+  ],
+  "inputs": {
+    "price_series_last_10_closes": {
+      "AAPL": [
+        81.62254868559887,
+        79.38301313609986,
+        79.98386481672014,
+        75.9884883275708,
+        76.38390406883626,
+        74.91199779836352,
+        75.14648226006882,
+        75.41394001336948,
+        76.01235789036076,
+        76.92770954455686
+      ],
+      "MSFT": [
+        159.72126360980124,
+        154.3748867088417,
+        161.1917092663123,
+        156.68471315445728,
+        163.946099336976,
+        165.66200062515543,
+        164.9190085973508,
+        167.89074946105873,
+        162.93339728468473,
+        161.41373953455613
+      ],
+      "GOOGL": [
+        302.29230614476444,
+        300.3554391598471,
+        291.209202275713,
+        304.00935251334056,
+        301.899119776316,
+        302.2031571930195,
+        304.17720111226316,
+        309.0850422563981,
+        312.52418334902694,
+        311.50921661397547
+      ],
+      "META": [
+        102.0126560199573,
+        101.8404020514279,
+        101.993070880863,
+        102.78376857370681,
+        102.0168181313608,
+        100.92405957067973,
+        102.19294248729639,
+        101.1168560164903,
+        102.2906279394767,
+        98.04236104283623
+      ],
+      "AMZN": [
+        227.32554047862956,
+        233.56324822946289,
+        240.71908121588604,
+        243.4692269469414,
+        251.50513316739637,
+        253.21365112128905,
+        260.52980080444087,
+        265.04230559108464,
+        273.6884370632796,
+        276.0890039095366
+      ],
+      "NVDA": [
+        122.80075923542942,
+        124.66145309158895,
+        128.66598926488464,
+        129.8156085514451,
+        134.6020464002653,
+        139.8936699077516,
+        145.21318708693804,
+        146.4739702249818,
+        147.59472362640133,
+        147.53421538275268
+      ],
+      "AMD": [
+        192.64078546875191,
+        193.64391948328324,
+        198.62904953646503,
+        196.4058484863602,
+        198.20763940087605,
+        194.88375970780334,
+        196.0278838865941,
+        200.74207516081975,
+        200.2174426142816,
+        210.6891629533447
+      ],
+      "AVGO": [
+        58.87950508017461,
+        59.03676931937666,
+        56.525513515528246,
+        58.18666525209034,
+        58.34177463594277,
+        60.321650463586224,
+        58.96106213900049,
+        60.47493023197932,
+        58.757332814281455,
+        58.28288225419809
+      ],
+      "INTC": [
+        99.46625250291657,
+        97.74344825175534,
+        97.76632122742473,
+        93.96698037416711,
+        96.18005169349046,
+        96.92804870369355,
+        98.49479967213706,
+        96.72203089332476,
+        98.63720363905377,
+        97.95577250668485
+      ],
+      "TSM": [
+        63.986288560647914,
+        64.43968641690822,
+        64.41607232188495,
+        68.52267150361499,
+        65.2621099646354,
+        65.99004472582502,
+        66.81901001480236,
+        67.35116977551225,
+        65.73168479878994,
+        63.510121860830935
+      ],
+      "ASML": [
+        185.3921701369612,
+        181.9979246070456,
+        180.51836550866662,
+        183.3245660615945,
+        179.3114697002659,
+        174.84732795481833,
+        169.00963533396836,
+        167.82858075225684,
+        164.8804070942291,
+        160.95628491543243
+      ],
+      "CRM": [
+        244.54292773652642,
+        255.46291946792687,
+        267.1289870014107,
+        270.0626491010416,
+        264.056810228802,
+        269.1195812616307,
+        273.22215022440787,
+        277.47709257684204,
+        279.1108948894627,
+        269.44967251994467
+      ],
+      "NOW": [
+        94.14899169491505,
+        94.20111120716115,
+        91.56744149214049,
+        95.45044266483991,
+        95.22200327277943,
+        97.20829922934578,
+        99.49760989764125,
+        93.3124896269025,
+        87.39250198072111,
+        87.11551291465834
+      ],
+      "ADBE": [
+        179.6707737786378,
+        184.75638201338083,
+        184.37954434903057,
+        185.9182369949791,
+        184.2501921493887,
+        189.20021661848034,
+        197.8486423437612,
+        199.23715696727643,
+        194.64943335362702,
+        194.49058632490832
+      ],
+      "SNOW": [
+        56.07636129478372,
+        54.44590784742484,
+        53.84966713208783,
+        52.86116248138259,
+        54.49564796421001,
+        56.00147586413247,
+        53.972075770013326,
+        53.946100940652066,
+        54.486902161161375,
+        54.54024974695535
+      ],
+      "ORCL": [
+        70.19166713108075,
+        72.68319317331763,
+        70.47843969242192,
+        71.73057573196304,
+        69.93611692523402,
+        68.20823760237121,
+        70.606328342427,
+        73.831185356522,
+        76.51524022846142,
+        76.12497437119775
+      ],
+      "SAP": [
+        176.49338985298724,
+        170.93653007223404,
+        168.4321054157981,
+        157.7375480652025,
+        161.06493651648194,
+        159.7328322784943,
+        159.83165298454165,
+        152.5038742794526,
+        154.60914143268056,
+        156.78051352152704
+      ],
+      "DDOG": [
+        78.0710137269483,
+        75.56567994201642,
+        74.19382889027084,
+        74.68138190393334,
+        72.97465289430731,
+        71.34807619628162,
+        68.96277317107602,
+        73.0396243625868,
+        74.38900175154238,
+        77.12277988632607
+      ],
+      "CWD": [
+        234.7078454187908,
+        231.33818149253665,
+        231.53633162373652,
+        240.78751519023086,
+        240.5756916353333,
+        236.99529486869258,
+        221.5331550441588,
+        219.18133548366112,
+        222.71392000379146,
+        213.61163250514264
+      ]
+    },
+    "cnbc_news_items": [
+      {
+        "ticker": "DIS",
+        "title": "CNBC Daily Open: Dispatch from NATO, U.S. strikes Iran and Le Pen is back",
+        "summary": "CNBC Daily Open: Dispatch from NATO, U.S. strikes Iran and Le Pen is back (2026/07/08)",
+        "url": "https://www.cnbc.com/2026/07/08/dispatch-from-nato-us-strikes-iran-and-le-pen-is-back.html"
+      },
+      {
+        "ticker": "DIS",
+        "title": "Netflix, Disney, YouTube interested in U.S. broadcast rights to 2030, 2034 World Cup: Sources",
+        "summary": "Netflix, Disney, YouTube interested in U.S. broadcast rights to 2030, 2034 World Cup: Sources (2026/07/07)",
+        "url": "https://www.cnbc.com/video/2026/07/07/netflix-disney-youtube-interested-in-u-s-broadcast-rights-to-2030-2034-world-cup-sources.html"
+      },
+      {
+        "ticker": "SO",
+        "title": "Final Trades: Nvidia, Toast, Microsoft and ServiceNow",
+        "summary": "Final Trades: Nvidia, Toast, Microsoft and ServiceNow (2026/07/07)",
+        "url": "https://www.cnbc.com/video/2026/07/07/final-trades-nvidia-toast-microsoft-and-servicenow.html"
+      },
+      {
+        "ticker": "SO",
+        "title": "Solstice CEO defends its $14.5B acquisition after the stock plunges 15%",
+        "summary": "Solstice CEO defends its $14.5B acquisition after the stock plunges 15% (2026/07/06)",
+        "url": "https://www.cnbc.com/2026/07/06/solstice-ceo-defends-acquisition-element-solutions-stock-plunges.html"
+      },
+      {
+        "ticker": "SO",
+        "title": "South Korea stocks fall over 5% as tech heavyweights follow plunge in Wall Street's AI-linked names",
+        "summary": "South Korea stocks fall over 5% as tech heavyweights follow plunge in Wall Street's AI-linked names (2026/06/05)",
+        "url": "https://www.cnbc.com/2026/06/05/asia-markets-today-nikkei-225-kospi-hang-seng-index-csi-300-nifty50.html"
+      },
+      {
+        "ticker": "SO",
+        "title": "Dulux maker soars after rejecting rival’s $14.5 billion bid oil below $100",
+        "summary": "Dulux maker soars after rejecting rival’s $14.5 billion bid oil below $100 (2026/05/27)",
+        "url": "https://www.cnbc.com/2026/05/27/european-markets-stoxx-600-ftse-dax-cac-iran-news.html"
+      },
+      {
+        "ticker": "SO",
+        "title": "Sell in May? Don't get taken in by seasonal trading patterns",
+        "summary": "Sell in May? Don't get taken in by seasonal trading patterns (2025/04/30)",
+        "url": "https://www.cnbc.com/2025/04/30/sell-in-may-dont-get-taken-in-by-seasonal-trading-patterns.html"
+      },
+      {
+        "ticker": "DIS",
+        "title": "Netflix, Disney and YouTube interested in FIFA World Cup U.S. rights package could reach $2 billion",
+        "summary": "Netflix, Disney and YouTube interested in FIFA World Cup U.S. rights package could reach $2 billion (2026/07/07)",
+        "url": "https://www.cnbc.com/2026/07/07/fifa-world-cup-media-rights-netflix-disney-youtube.html"
+      },
+      {
+        "ticker": "SO",
+        "title": "Record heat, crowds drive offseason boom in international travel",
+        "summary": "Record heat, crowds drive offseason boom in international travel (2026/07/06)",
+        "url": "https://www.cnbc.com/2026/07/06/travel-off-season-boom-in-flights-airlines-hotels.html"
+      },
+      {
+        "ticker": "SO",
+        "title": "Inside the corporate scramble to sponsor Trump’s ‘Freedom 250’ celebration",
+        "summary": "Inside the corporate scramble to sponsor Trump’s ‘Freedom 250’ celebration (2026/07/03)",
+        "url": "https://www.cnbc.com/2026/07/03/trump-freedom-250-america250-corporate-sponsors-access.html"
+      },
+      {
+        "ticker": "SO",
+        "title": "Samsung-backed AI chip firm Rebellions targets IPO in South Korea next year, CEO tells CNBC",
+        "summary": "Samsung-backed AI chip firm Rebellions targets IPO in South Korea next year, CEO tells CNBC (2026/07/08)",
+        "url": "https://www.cnbc.com/2026/07/08/rebellions-ipo-south-korea-ai-chips.html"
+      },
+      {
+        "ticker": "SO",
+        "title": "Apple begins testing CXMT chips for devices sold in China, FT says",
+        "summary": "Apple begins testing CXMT chips for devices sold in China, FT says (2026/07/08)",
+        "url": "https://www.cnbc.com/2026/07/08/apple-begins-testing-cxmt-chips-for-devices-sold-in-china-ft-says-.html"
+      },
+      {
+        "ticker": "SO",
+        "title": "Microsoft cuts 4,800 jobs, as Xbox unit downsizes and plans to spin off four gaming studios",
+        "summary": "Microsoft cuts 4,800 jobs, as Xbox unit downsizes and plans to spin off four gaming studios (2026/07/06)",
+        "url": "https://www.cnbc.com/2026/07/06/microsoft-cuts-2point1percent-of-employees-as-xbox-unit-plans-to-spin-studios.html"
+      },
+      {
+        "ticker": "DIS",
+        "title": "Alibaba bans Anthropic for employees after 'distillation attack' accusation",
+        "summary": "Alibaba bans Anthropic for employees after 'distillation attack' accusation (2026/07/06)",
+        "url": "https://www.cnbc.com/2026/07/06/alibaba-anthropic-ai-ban-claude-china.html"
+      },
+      {
+        "ticker": "DIS",
+        "title": "Weather disrupts some July 4 celebrations Trump says he will still speak in DC",
+        "summary": "Weather disrupts some July 4 celebrations Trump says he will still speak in DC (2026/07/04)",
+        "url": "https://www.cnbc.com/2026/07/04/trump-to-mark-us-250th-anniversary-with-campaign-style-rally.html"
+      }
+    ]
+  },
+  "signals": {
+    "momentum": {
+      "AAPL": {
+        "ret_20d": -0.11245325907397352,
+        "ret_60d": -0.28028826034015963,
+        "price_to_ma_50d": 0.7629045677465058,
+        "price_to_ma_100d": 0.6751878069120307
+      },
+      "MSFT": {
+        "ret_20d": 0.0653723388834695,
+        "ret_60d": 0.019926562753827648,
+        "price_to_ma_50d": 1.0626204457059036,
+        "price_to_ma_100d": 1.0741896015125483
+      },
+      "GOOGL": {
+        "ret_20d": 0.13037305812218758,
+        "ret_60d": 0.5695233169542919,
+        "price_to_ma_50d": 1.1971728246318452,
+        "price_to_ma_100d": 1.4210951543353538
+      },
+      "META": {
+        "ret_20d": -0.023256312106942123,
+        "ret_60d": -0.11350475637890933,
+        "price_to_ma_50d": 0.9485899272088089,
+        "price_to_ma_100d": 0.9174493549354225
+      },
+      "AMZN": {
+        "ret_20d": 0.5150942833747592,
+        "ret_60d": 0.5807458692630441,
+        "price_to_ma_50d": 1.4010680387236523,
+        "price_to_ma_100d": 1.5100995905941055
+      },
+      "NVDA": {
+        "ret_20d": 0.1913388271994909,
+        "ret_60d": -0.07796872310693703,
+        "price_to_ma_50d": 1.054368347506325,
+        "price_to_ma_100d": 1.0160960795700933
+      },
+      "AMD": {
+        "ret_20d": -0.03817670266915285,
+        "ret_60d": -0.05913798685374694,
+        "price_to_ma_50d": 0.9787429809332437,
+        "price_to_ma_100d": 1.0122402372820452
+      },
+      "AVGO": {
+        "ret_20d": -0.05384124742091545,
+        "ret_60d": -0.23534351281701682,
+        "price_to_ma_50d": 0.9099939242354298,
+        "price_to_ma_100d": 0.7297107760438685
+      },
+      "INTC": {
+        "ret_20d": 0.02855467413498536,
+        "ret_60d": -0.04132010363022942,
+        "price_to_ma_50d": 0.9927342871235473,
+        "price_to_ma_100d": 0.9127511230532295
+      },
+      "TSM": {
+        "ret_20d": -0.0024415172448591926,
+        "ret_60d": -0.06947089464812573,
+        "price_to_ma_50d": 1.0153639081297465,
+        "price_to_ma_100d": 0.9045071929025814
+      },
+      "ASML": {
+        "ret_20d": -0.14473490799650224,
+        "ret_60d": 0.08652733128665102,
+        "price_to_ma_50d": 0.8834940969814136,
+        "price_to_ma_100d": 0.9686631597697862
+      },
+      "CRM": {
+        "ret_20d": 0.14183493261658286,
+        "ret_60d": 0.3408544525439261,
+        "price_to_ma_50d": 1.1755852740105455,
+        "price_to_ma_100d": 1.32019521889165
+      },
+      "NOW": {
+        "ret_20d": -0.15612594791140888,
+        "ret_60d": -0.209121400276014,
+        "price_to_ma_50d": 0.8329763274092146,
+        "price_to_ma_100d": 0.7658442484561943
+      },
+      "ADBE": {
+        "ret_20d": 0.002700720803838763,
+        "ret_60d": -0.038223861044727414,
+        "price_to_ma_50d": 1.0438184078289756,
+        "price_to_ma_100d": 1.0626808552948763
+      },
+      "SNOW": {
+        "ret_20d": -0.0634135125538342,
+        "ret_60d": -0.3094446455419235,
+        "price_to_ma_50d": 0.8828635312646255,
+        "price_to_ma_100d": 0.7442679629013123
+      },
+      "ORCL": {
+        "ret_20d": -0.12349663449789783,
+        "ret_60d": -0.4210134565626311,
+        "price_to_ma_50d": 0.8736977887340324,
+        "price_to_ma_100d": 0.6909947636833348
+      },
+      "SAP": {
+        "ret_20d": -0.10112569258377291,
+        "ret_60d": -0.26829571725583734,
+        "price_to_ma_50d": 0.8900687519056916,
+        "price_to_ma_100d": 0.8170849349119852
+      },
+      "DDOG": {
+        "ret_20d": -0.07809102367876897,
+        "ret_60d": -0.26560302201705566,
+        "price_to_ma_50d": 0.8945177525078497,
+        "price_to_ma_100d": 0.7445629033646728
+      },
+      "CWD": {
+        "ret_20d": -0.05667178110392468,
+        "ret_60d": 0.03338331380457693,
+        "price_to_ma_50d": 0.9615787788685105,
+        "price_to_ma_100d": 1.0426837594624725
+      }
+    },
+    "quality": {
+      "AAPL": {
+        "gross_margin": 0.5187618237778582,
+        "operating_margin": 0.3653317972534538,
+        "free_cash_flow_margin": 0.34381421592981554
+      },
+      "MSFT": {
+        "gross_margin": 0.5075179151162026,
+        "operating_margin": 0.40176276624066687,
+        "free_cash_flow_margin": 0.22256794520985587
+      },
+      "GOOGL": {
+        "gross_margin": 0.4266542069397397,
+        "operating_margin": 0.0894921945420876,
+        "free_cash_flow_margin": 0.3270943386184229
+      },
+      "META": {
+        "gross_margin": 0.40260184565397755,
+        "operating_margin": 0.3417401682947456,
+        "free_cash_flow_margin": 0.2802874555430948
+      },
+      "AMZN": {
+        "gross_margin": 0.455811184805025,
+        "operating_margin": 0.05193768418458516,
+        "free_cash_flow_margin": 0.3253338036721383
+      },
+      "NVDA": {
+        "gross_margin": 0.7033524200964378,
+        "operating_margin": 0.2537759258020595,
+        "free_cash_flow_margin": 0.3476131875741599
+      },
+      "AMD": {
+        "gross_margin": 0.4141590661493538,
+        "operating_margin": 0.4117573659964983,
+        "free_cash_flow_margin": 0.10310213113754553
+      },
+      "AVGO": {
+        "gross_margin": 0.5068304724479913,
+        "operating_margin": 0.22133918056467744,
+        "free_cash_flow_margin": 0.10290450114133537
+      },
+      "INTC": {
+        "gross_margin": 0.650271905338409,
+        "operating_margin": 0.2850350065041673,
+        "free_cash_flow_margin": 0.12545829705212794
+      },
+      "TSM": {
+        "gross_margin": 0.663656765210211,
+        "operating_margin": 0.29245215376068373,
+        "free_cash_flow_margin": 0.23789615571412145
+      },
+      "ASML": {
+        "gross_margin": 0.41029694860464,
+        "operating_margin": 0.20827062605437374,
+        "free_cash_flow_margin": 0.27989843105961026
+      },
+      "CRM": {
+        "gross_margin": 0.5436764607629694,
+        "operating_margin": 0.20680208845913367,
+        "free_cash_flow_margin": 0.11606863031203214
+      },
+      "NOW": {
+        "gross_margin": 0.4687158574938527,
+        "operating_margin": 0.35056038688723457,
+        "free_cash_flow_margin": 0.0415942688423883
+      },
+      "ADBE": {
+        "gross_margin": 0.5484440057671183,
+        "operating_margin": 0.36122305380863545,
+        "free_cash_flow_margin": 0.13360514348547775
+      },
+      "SNOW": {
+        "gross_margin": 0.5857286458980768,
+        "operating_margin": 0.16574011321986742,
+        "free_cash_flow_margin": 0.047030647680769644
+      },
+      "ORCL": {
+        "gross_margin": 0.40215671762264926,
+        "operating_margin": 0.4491461659351439,
+        "free_cash_flow_margin": 0.05490577215801053
+      },
+      "SAP": {
+        "gross_margin": 0.6124323949568549,
+        "operating_margin": 0.17228016965145154,
+        "free_cash_flow_margin": 0.15199220775218775
+      },
+      "DDOG": {
+        "gross_margin": 0.4038017705547177,
+        "operating_margin": 0.4384996935690428,
+        "free_cash_flow_margin": 0.028098257217275033
+      },
+      "CWD": {
+        "gross_margin": 0.4518513041472718,
+        "operating_margin": 0.3478011596572371,
+        "free_cash_flow_margin": 0.0900929260058397
+      }
+    },
+    "valuation": {
+      "AAPL": {
+        "pe": 26.73286412657206,
+        "ev_to_sales": 2.2760282085688184,
+        "ev_to_ebitda": 34.552870201331686,
+        "free_cash_flow_yield": 0.0960912228795716
+      },
+      "MSFT": {
+        "pe": 69.978949348311,
+        "ev_to_sales": 4.165886400636824,
+        "ev_to_ebitda": 39.421919298086245,
+        "free_cash_flow_yield": 0.040753571609931954
+      },
+      "GOOGL": {
+        "pe": 38.506713881771844,
+        "ev_to_sales": 5.6424516111975205,
+        "ev_to_ebitda": 12.186536930504605,
+        "free_cash_flow_yield": 0.08677208469980241
+      },
+      "META": {
+        "pe": 55.668548099096895,
+        "ev_to_sales": 6.39405161061552,
+        "ev_to_ebitda": 16.91508029123019,
+        "free_cash_flow_yield": 0.04288355088374445
+      },
+      "AMZN": {
+        "pe": 51.60836313748115,
+        "ev_to_sales": 15.927190848113558,
+        "ev_to_ebitda": 17.27214317432755,
+        "free_cash_flow_yield": 0.0926860457774937
+      },
+      "NVDA": {
+        "pe": 62.61918386679466,
+        "ev_to_sales": 3.416312486151302,
+        "ev_to_ebitda": 24.74632329029393,
+        "free_cash_flow_yield": 0.09398868530220189
+      },
+      "AMD": {
+        "pe": 52.83121034846673,
+        "ev_to_sales": 6.051099262473143,
+        "ev_to_ebitda": 27.841600155744796,
+        "free_cash_flow_yield": 0.035096977815153634
+      },
+      "AVGO": {
+        "pe": 39.22597278619745,
+        "ev_to_sales": 9.018152448122658,
+        "ev_to_ebitda": 38.7285523406178,
+        "free_cash_flow_yield": 0.06785761171502243
+      },
+      "INTC": {
+        "pe": 38.318289057939104,
+        "ev_to_sales": 6.5052590298966,
+        "ev_to_ebitda": 40.22812354830595,
+        "free_cash_flow_yield": 0.02360816764397825
+      },
+      "TSM": {
+        "pe": 49.53170783162596,
+        "ev_to_sales": 3.1481465839466205,
+        "ev_to_ebitda": 20.596667832923202,
+        "free_cash_flow_yield": 0.024059930631511694
+      },
+      "ASML": {
+        "pe": 23.861359015779826,
+        "ev_to_sales": 11.195579190191145,
+        "ev_to_ebitda": 24.499139452860174,
+        "free_cash_flow_yield": 0.10966428407493899
+      },
+      "CRM": {
+        "pe": 36.35417883296121,
+        "ev_to_sales": 8.494750872718823,
+        "ev_to_ebitda": 22.74862224119972,
+        "free_cash_flow_yield": 0.13731227438197946
+      },
+      "NOW": {
+        "pe": 51.030259236304985,
+        "ev_to_sales": 6.188016105797724,
+        "ev_to_ebitda": 29.430791818366245,
+        "free_cash_flow_yield": 0.04256067290807171
+      },
+      "ADBE": {
+        "pe": 38.37678784751598,
+        "ev_to_sales": 4.4012737371670605,
+        "ev_to_ebitda": 6.924268088715155,
+        "free_cash_flow_yield": 0.10634232702610405
+      },
+      "SNOW": {
+        "pe": 46.03944817208675,
+        "ev_to_sales": 1.6728941877107153,
+        "ev_to_ebitda": 9.376930159154343,
+        "free_cash_flow_yield": 0.05715675584025451
+      },
+      "ORCL": {
+        "pe": 14.377941531584709,
+        "ev_to_sales": 7.027586825956684,
+        "ev_to_ebitda": 29.03175619640004,
+        "free_cash_flow_yield": 0.13564863720649553
+      },
+      "SAP": {
+        "pe": 59.441203273975084,
+        "ev_to_sales": 6.973932375135412,
+        "ev_to_ebitda": 24.191707446343532,
+        "free_cash_flow_yield": 0.02368398642158872
+      },
+      "DDOG": {
+        "pe": 39.11123058116378,
+        "ev_to_sales": 5.3106214666626546,
+        "ev_to_ebitda": 31.429963248880505,
+        "free_cash_flow_yield": 0.11201761412551435
+      },
+      "CWD": {
+        "pe": 13.925186753967031,
+        "ev_to_sales": 2.171386180542399,
+        "ev_to_ebitda": 20.938251816862454,
+        "free_cash_flow_yield": 0.030232392154727054
+      }
+    },
+    "risk": {
+      "AAPL": {
+        "volatility_60d_ann": 0.38277742146705385,
+        "regulatory_risk_score": 0.19708237328340864
+      },
+      "MSFT": {
+        "volatility_60d_ann": 0.3903511557304476,
+        "regulatory_risk_score": 0.2198517289004168
+      },
+      "GOOGL": {
+        "volatility_60d_ann": 0.2702242232351871,
+        "regulatory_risk_score": 0.024682621588804743
+      },
+      "META": {
+        "volatility_60d_ann": 0.29851235903692735,
+        "regulatory_risk_score": 0.18233760518421602
+      },
+      "AMZN": {
+        "volatility_60d_ann": 0.4215974586002687,
+        "regulatory_risk_score": 0.0012110526153657208
+      },
+      "NVDA": {
+        "volatility_60d_ann": 0.5209258093208682,
+        "regulatory_risk_score": 0.1273599536262872
+      },
+      "AMD": {
+        "volatility_60d_ann": 0.45015805620487137,
+        "regulatory_risk_score": 0.22609835374781143
+      },
+      "AVGO": {
+        "volatility_60d_ann": 0.5047566027397707,
+        "regulatory_risk_score": 0.1070869878529234
+      },
+      "INTC": {
+        "volatility_60d_ann": 0.43144920041851503,
+        "regulatory_risk_score": 0.14689687906510454
+      },
+      "TSM": {
+        "volatility_60d_ann": 0.44230738611582754,
+        "regulatory_risk_score": 0.15153259610042732
+      },
+      "ASML": {
+        "volatility_60d_ann": 0.45494114050979295,
+        "regulatory_risk_score": 0.09891914128398357
+      },
+      "CRM": {
+        "volatility_60d_ann": 0.347294612160524,
+        "regulatory_risk_score": 0.09800130528695855
+      },
+      "NOW": {
+        "volatility_60d_ann": 0.6103332217335313,
+        "regulatory_risk_score": 0.1878502418045216
+      },
+      "ADBE": {
+        "volatility_60d_ann": 0.4654177234057712,
+        "regulatory_risk_score": 0.19451440863039715
+      },
+      "SNOW": {
+        "volatility_60d_ann": 0.29874600781886357,
+        "regulatory_risk_score": 0.07233757076241715
+      },
+      "ORCL": {
+        "volatility_60d_ann": 0.5003006209997822,
+        "regulatory_risk_score": 0.24946635370946493
+      },
+      "SAP": {
+        "volatility_60d_ann": 0.36288689580563105,
+        "regulatory_risk_score": 0.07642510603215721
+      },
+      "DDOG": {
+        "volatility_60d_ann": 0.4476817072392799,
+        "regulatory_risk_score": 0.24281230848065172
+      },
+      "CWD": {
+        "volatility_60d_ann": 0.35975311660372294,
+        "regulatory_risk_score": 0.1861257247857732
+      }
+    },
+    "news_signals": {
+      "AAPL": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.19708237328340864
+      },
+      "MSFT": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.2198517289004168
+      },
+      "GOOGL": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.024682621588804743
+      },
+      "META": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.18233760518421602
+      },
+      "AMZN": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.0012110526153657208
+      },
+      "NVDA": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.1273599536262872
+      },
+      "AMD": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.22609835374781143
+      },
+      "AVGO": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.1070869878529234
+      },
+      "INTC": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.14689687906510454
+      },
+      "TSM": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.15153259610042732
+      },
+      "ASML": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.09891914128398357
+      },
+      "CRM": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.09800130528695855
+      },
+      "NOW": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.1878502418045216
+      },
+      "ADBE": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.19451440863039715
+      },
+      "SNOW": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.07233757076241715
+      },
+      "ORCL": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.24946635370946493
+      },
+      "SAP": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.07642510603215721
+      },
+      "DDOG": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.24281230848065172
+      },
+      "CWD": {
+        "regulatory_topic_present": false,
+        "regulatory_risk_score": 0.1861257247857732
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "ticker": "ADBE",
+      "score": 0.6972222222222221,
+      "label": "medium",
+      "factors": {
+        "momentum": 0.7222222222222222,
+        "quality": 0.7222222222222222,
+        "valuation": 0.8888888888888888,
+        "risk": 0.2777777777777778
+      },
+      "risk_flags": [],
+      "llm_narrative": {
+        "input_prompt": "Given the following quantitative signals for ADBE:\n- score: 0.6972222222222221\n- label: medium\n- factors: {'momentum': 0.7222222222222222, 'quality': 0.7222222222222222, 'valuation': 0.8888888888888888, 'risk': 0.2777777777777778}\n\nSummarize:\n1. bull case\n2. bear case\n3. key risks\n4. further to be checked\n5. stock watchlist / catalysts to monitor\n\nKeep it concise (bullet points).",
+        "bull_case": [
+          "Price momentum is favorable across recent windows.",
+          "Margins and free-cash-flow characteristics look supportive.",
+          "Valuation is attractive on multiples / FCF yield proxy."
+        ],
+        "bear_case": [
+          "Downside could emerge if macro conditions tighten."
+        ],
+        "key_risks": [
+          "Higher volatility / regulatory overhang risk profile."
+        ],
+        "further_to_be_checked": [
+          "Validate regulatory exposure and near-term event calendar.",
+          "Check drawdown behavior under market stress."
+        ],
+        "watchlist": [
+          "Recent earnings revisions / guidance changes."
+        ],
+        "llm_provider": null
+      }
+    },
+    {
+      "ticker": "NVDA",
+      "score": 0.6944444444444444,
+      "label": "medium",
+      "factors": {
+        "momentum": 0.7777777777777778,
+        "quality": 1.0,
+        "valuation": 0.2777777777777778,
+        "risk": 0.6111111111111112
+      },
+      "risk_flags": [],
+      "llm_narrative": {
+        "input_prompt": "Given the following quantitative signals for NVDA:\n- score: 0.6944444444444444\n- label: medium\n- factors: {'momentum': 0.7777777777777778, 'quality': 1.0, 'valuation': 0.2777777777777778, 'risk': 0.6111111111111112}\n\nSummarize:\n1. bull case\n2. bear case\n3. key risks\n4. further to be checked\n5. stock watchlist / catalysts to monitor\n\nKeep it concise (bullet points).",
+        "bull_case": [
+          "Price momentum is favorable across recent windows.",
+          "Margins and free-cash-flow characteristics look supportive."
+        ],
+        "bear_case": [
+          "Valuation offers less support (higher multiples / lower yield proxy)."
+        ],
+        "key_risks": [
+          "Monitor macro/interest-rate sensitivity."
+        ],
+        "further_to_be_checked": [
+          "Confirm factor stability over the next 1-2 rebalances."
+        ],
+        "watchlist": [
+          "Recent earnings revisions / guidance changes."
+        ],
+        "llm_provider": null
+      }
+    },
+    {
+      "ticker": "GOOGL",
+      "score": 0.6833333333333333,
+      "label": "medium",
+      "factors": {
+        "momentum": 0.9444444444444444,
+        "quality": 0.16666666666666666,
+        "valuation": 0.8333333333333334,
+        "risk": 0.9444444444444444
+      },
+      "risk_flags": [],
+      "llm_narrative": {
+        "input_prompt": "Given the following quantitative signals for GOOGL:\n- score: 0.6833333333333333\n- label: medium\n- factors: {'momentum': 0.9444444444444444, 'quality': 0.16666666666666666, 'valuation': 0.8333333333333334, 'risk': 0.9444444444444444}\n\nSummarize:\n1. bull case\n2. bear case\n3. key risks\n4. further to be checked\n5. stock watchlist / catalysts to monitor\n\nKeep it concise (bullet points).",
+        "bull_case": [
+          "Price momentum is favorable across recent windows.",
+          "Valuation is attractive on multiples / FCF yield proxy."
+        ],
+        "bear_case": [
+          "Quality metrics are not compelling versus peers."
+        ],
+        "key_risks": [
+          "Monitor macro/interest-rate sensitivity."
+        ],
+        "further_to_be_checked": [
+          "Confirm factor stability over the next 1-2 rebalances."
+        ],
+        "watchlist": [
+          "Recent earnings revisions / guidance changes."
+        ],
+        "llm_provider": null
+      }
+    },
+    {
+      "ticker": "CRM",
+      "score": 0.65,
+      "label": "medium",
+      "factors": {
+        "momentum": 0.8888888888888888,
+        "quality": 0.3333333333333333,
+        "valuation": 0.6666666666666666,
+        "risk": 0.7777777777777778
+      },
+      "risk_flags": [],
+      "llm_narrative": {
+        "input_prompt": "Given the following quantitative signals for CRM:\n- score: 0.65\n- label: medium\n- factors: {'momentum': 0.8888888888888888, 'quality': 0.3333333333333333, 'valuation': 0.6666666666666666, 'risk': 0.7777777777777778}\n\nSummarize:\n1. bull case\n2. bear case\n3. key risks\n4. further to be checked\n5. stock watchlist / catalysts to monitor\n\nKeep it concise (bullet points).",
+        "bull_case": [
+          "Price momentum is favorable across recent windows.",
+          "Valuation is attractive on multiples / FCF yield proxy."
+        ],
+        "bear_case": [
+          "Quality metrics are not compelling versus peers."
+        ],
+        "key_risks": [
+          "Monitor macro/interest-rate sensitivity."
+        ],
+        "further_to_be_checked": [
+          "Confirm factor stability over the next 1-2 rebalances."
+        ],
+        "watchlist": [
+          "Recent earnings revisions / guidance changes."
+        ],
+        "llm_provider": null
+      }
+    },
+    {
+      "ticker": "CWD",
+      "score": 0.625,
+      "label": "medium",
+      "factors": {
+        "momentum": 0.6666666666666666,
+        "quality": 0.3888888888888889,
+        "valuation": 1.0,
+        "risk": 0.3888888888888889
+      },
+      "risk_flags": [],
+      "llm_narrative": {
+        "input_prompt": "Given the following quantitative signals for CWD:\n- score: 0.625\n- label: medium\n- factors: {'momentum': 0.6666666666666666, 'quality': 0.3888888888888889, 'valuation': 1.0, 'risk': 0.3888888888888889}\n\nSummarize:\n1. bull case\n2. bear case\n3. key risks\n4. further to be checked\n5. stock watchlist / catalysts to monitor\n\nKeep it concise (bullet points).",
+        "bull_case": [
+          "Price momentum is favorable across recent windows.",
+          "Valuation is attractive on multiples / FCF yield proxy."
+        ],
+        "bear_case": [
+          "Quality metrics are not compelling versus peers."
+        ],
+        "key_risks": [
+          "Higher volatility / regulatory overhang risk profile."
+        ],
+        "further_to_be_checked": [
+          "Validate regulatory exposure and near-term event calendar.",
+          "Check drawdown behavior under market stress."
+        ],
+        "watchlist": [
+          "Recent earnings revisions / guidance changes."
+        ],
+        "llm_provider": null
+      }
+    },
+    {
+      "ticker": "TSM",
+      "score": 0.6,
+      "label": "medium",
+      "factors": {
+        "momentum": 0.4444444444444444,
+        "quality": 0.8888888888888888,
+        "valuation": 0.5,
+        "risk": 0.5
+      },
+      "risk_flags": [],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "ASML",
+      "score": 0.586111111111111,
+      "label": "medium",
+      "factors": {
+        "momentum": 0.5,
+        "quality": 0.4444444444444444,
+        "valuation": 0.7777777777777778,
+        "risk": 0.7222222222222222
+      },
+      "risk_flags": [],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "AMZN",
+      "score": 0.5805555555555555,
+      "label": "medium",
+      "factors": {
+        "momentum": 1.0,
+        "quality": 0.1111111111111111,
+        "valuation": 0.3888888888888889,
+        "risk": 1.0
+      },
+      "risk_flags": [],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "INTC",
+      "score": 0.5416666666666667,
+      "label": "low",
+      "factors": {
+        "momentum": 0.6111111111111112,
+        "quality": 0.7777777777777778,
+        "valuation": 0.16666666666666666,
+        "risk": 0.5555555555555556
+      },
+      "risk_flags": [],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "MSFT",
+      "score": 0.525,
+      "label": "high risk",
+      "factors": {
+        "momentum": 0.8333333333333334,
+        "quality": 0.8333333333333334,
+        "valuation": 0.0,
+        "risk": 0.16666666666666666
+      },
+      "risk_flags": [
+        "high_risk_overlay"
+      ],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "META",
+      "score": 0.4944444444444444,
+      "label": "low",
+      "factors": {
+        "momentum": 0.3888888888888889,
+        "quality": 0.6666666666666666,
+        "valuation": 0.4444444444444444,
+        "risk": 0.4444444444444444
+      },
+      "risk_flags": [],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "AAPL",
+      "score": 0.4861111111111111,
+      "label": "low",
+      "factors": {
+        "momentum": 0.05555555555555555,
+        "quality": 0.9444444444444444,
+        "valuation": 0.6111111111111112,
+        "risk": 0.2222222222222222
+      },
+      "risk_flags": [],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "SAP",
+      "score": 0.40555555555555556,
+      "label": "low",
+      "factors": {
+        "momentum": 0.2777777777777778,
+        "quality": 0.6111111111111112,
+        "valuation": 0.05555555555555555,
+        "risk": 0.8333333333333334
+      },
+      "risk_flags": [],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "ORCL",
+      "score": 0.38611111111111107,
+      "label": "high risk",
+      "factors": {
+        "momentum": 0.0,
+        "quality": 0.5,
+        "valuation": 0.9444444444444444,
+        "risk": 0.0
+      },
+      "risk_flags": [
+        "high_risk_overlay"
+      ],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "AMD",
+      "score": 0.37777777777777777,
+      "label": "high risk",
+      "factors": {
+        "momentum": 0.5555555555555556,
+        "quality": 0.5555555555555556,
+        "valuation": 0.1111111111111111,
+        "risk": 0.1111111111111111
+      },
+      "risk_flags": [
+        "high_risk_overlay"
+      ],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "SNOW",
+      "score": 0.3472222222222222,
+      "label": "neutral",
+      "factors": {
+        "momentum": 0.1111111111111111,
+        "quality": 0.0,
+        "valuation": 0.7222222222222222,
+        "risk": 0.8888888888888888
+      },
+      "risk_flags": [],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "AVGO",
+      "score": 0.3,
+      "label": "neutral",
+      "factors": {
+        "momentum": 0.3333333333333333,
+        "quality": 0.05555555555555555,
+        "valuation": 0.3333333333333333,
+        "risk": 0.6666666666666666
+      },
+      "risk_flags": [],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "DDOG",
+      "score": 0.2972222222222222,
+      "label": "high risk",
+      "factors": {
+        "momentum": 0.2222222222222222,
+        "quality": 0.2777777777777778,
+        "valuation": 0.5555555555555556,
+        "risk": 0.05555555555555555
+      },
+      "risk_flags": [
+        "high_risk_overlay"
+      ],
+      "llm_narrative": null
+    },
+    {
+      "ticker": "NOW",
+      "score": 0.2222222222222222,
+      "label": "neutral",
+      "factors": {
+        "momentum": 0.16666666666666666,
+        "quality": 0.2222222222222222,
+        "valuation": 0.2222222222222222,
+        "risk": 0.3333333333333333
+      },
+      "risk_flags": [],
+      "llm_narrative": null
+    }
+  ],
+  "generated_at": "2026-07-08T16:11:30.998452"
+}

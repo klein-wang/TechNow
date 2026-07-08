@@ -1,0 +1,108 @@
+US Stock Investor Recommendation Report
+=======================================
+
+Top picks
+----------
+ADBE: score=0.697 label=medium factors={m:0.72, q:0.72, v:0.89, r:0.28}
+NVDA: score=0.694 label=medium factors={m:0.78, q:1.00, v:0.28, r:0.61}
+GOOGL: score=0.683 label=medium factors={m:0.94, q:0.17, v:0.83, r:0.94}
+CRM: score=0.650 label=medium factors={m:0.89, q:0.33, v:0.67, r:0.78}
+CWD: score=0.625 label=medium factors={m:0.67, q:0.39, v:1.00, r:0.39}
+TSM: score=0.600 label=medium factors={m:0.44, q:0.89, v:0.50, r:0.50}
+ASML: score=0.586 label=medium factors={m:0.50, q:0.44, v:0.78, r:0.72}
+AMZN: score=0.581 label=medium factors={m:1.00, q:0.11, v:0.39, r:1.00}
+INTC: score=0.542 label=low factors={m:0.61, q:0.78, v:0.17, r:0.56}
+MSFT: score=0.525 label=high risk factors={m:0.83, q:0.83, v:0.00, r:0.17}
+
+All recommendations
+---------------------
+ADBE | medium | 0.697 | flags=-
+NVDA | medium | 0.694 | flags=-
+GOOGL | medium | 0.683 | flags=-
+CRM | medium | 0.650 | flags=-
+CWD | medium | 0.625 | flags=-
+TSM | medium | 0.600 | flags=-
+ASML | medium | 0.586 | flags=-
+AMZN | medium | 0.581 | flags=-
+INTC | low | 0.542 | flags=-
+MSFT | high risk | 0.525 | flags=high_risk_overlay
+META | low | 0.494 | flags=-
+AAPL | low | 0.486 | flags=-
+SAP | low | 0.406 | flags=-
+ORCL | high risk | 0.386 | flags=high_risk_overlay
+AMD | high risk | 0.378 | flags=high_risk_overlay
+SNOW | neutral | 0.347 | flags=-
+AVGO | neutral | 0.300 | flags=-
+DDOG | high risk | 0.297 | flags=high_risk_overlay
+NOW | neutral | 0.222 | flags=-
+
+Narratives (top 5)
+------------------
+
+ADBE | medium | score=0.697
+Bull case:
+- Price momentum is favorable across recent windows.
+- Margins and free-cash-flow characteristics look supportive.
+- Valuation is attractive on multiples / FCF yield proxy.
+Bear case:
+- Downside could emerge if macro conditions tighten.
+Key risks:
+- Higher volatility / regulatory overhang risk profile.
+Further to be checked:
+- Validate regulatory exposure and near-term event calendar.
+- Check drawdown behavior under market stress.
+Watchlist:
+- Recent earnings revisions / guidance changes.
+
+NVDA | medium | score=0.694
+Bull case:
+- Price momentum is favorable across recent windows.
+- Margins and free-cash-flow characteristics look supportive.
+Bear case:
+- Valuation offers less support (higher multiples / lower yield proxy).
+Key risks:
+- Monitor macro/interest-rate sensitivity.
+Further to be checked:
+- Confirm factor stability over the next 1-2 rebalances.
+Watchlist:
+- Recent earnings revisions / guidance changes.
+
+GOOGL | medium | score=0.683
+Bull case:
+- Price momentum is favorable across recent windows.
+- Valuation is attractive on multiples / FCF yield proxy.
+Bear case:
+- Quality metrics are not compelling versus peers.
+Key risks:
+- Monitor macro/interest-rate sensitivity.
+Further to be checked:
+- Confirm factor stability over the next 1-2 rebalances.
+Watchlist:
+- Recent earnings revisions / guidance changes.
+
+CRM | medium | score=0.650
+Bull case:
+- Price momentum is favorable across recent windows.
+- Valuation is attractive on multiples / FCF yield proxy.
+Bear case:
+- Quality metrics are not compelling versus peers.
+Key risks:
+- Monitor macro/interest-rate sensitivity.
+Further to be checked:
+- Confirm factor stability over the next 1-2 rebalances.
+Watchlist:
+- Recent earnings revisions / guidance changes.
+
+CWD | medium | score=0.625
+Bull case:
+- Price momentum is favorable across recent windows.
+- Valuation is attractive on multiples / FCF yield proxy.
+Bear case:
+- Quality metrics are not compelling versus peers.
+Key risks:
+- Higher volatility / regulatory overhang risk profile.
+Further to be checked:
+- Validate regulatory exposure and near-term event calendar.
+- Check drawdown behavior under market stress.
+Watchlist:
+- Recent earnings revisions / guidance changes.
