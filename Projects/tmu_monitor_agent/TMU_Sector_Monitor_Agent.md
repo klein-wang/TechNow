@@ -10,7 +10,7 @@ We propose a modular, event-driven Python architecture that leverages Large Lang
 
 ### Core Components
 1.  **Data Ingestion Module:**
-    *   Utilizes APIs (e.g., **Finnhub**, **Yahoo Finance**, or **GNews**) to fetch headlines and summaries for US tickers within the TMU sectors.
+    *   Utilizes APIs (e.g., **Finnhub**, **Yahoo Finance**, or **GNews**) to fetch headlines and summaries for US tickers within the TMU sectors. 
     *   Implements a filtering layer to exclude irrelevant news, focusing strictly on sector-specific keywords (e.g., "AI regulation" for Tech, "Streaming subscriber" for Media, "Grid infrastructure" for Utilities) [28][31].
 2.  **NLP & Sentiment Engine:**
     *   Integrates a fine-tuned LLM (e.g., **Llama 3** or **GPT-4**) via an API or local deployment.
