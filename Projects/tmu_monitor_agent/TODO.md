@@ -1,15 +1,20 @@
 # TODO
 
-## Pivot: US Stock Investor Recommendation Model (alongside existing TMU monitor)
+## Completed
+- Run US Stock Investor Recommendation Model report (today) -> `reports/us_investor_recommendations_2026-07-08.txt`
 
-- [ ] Step 1: Add configuration + universe definition: `config/universe.yml`
-- [ ] Step 2: Create ingestion layer stubs/modules: `src/data/market_data.py`, `src/data/fundamentals.py`, `src/data/news.py`
-- [ ] Step 3: Create signal modules: `src/signals/momentum.py`, `src/signals/quality.py`, `src/signals/valuation.py`, `src/signals/risk.py`
-- [ ] Step 4: Create scoring/labeling: `src/scoring/score.py`
-- [ ] Step 5: Create reporting + alerting: `src/reports/report.py`, `src/alerts/alert_handling.py`
-- [ ] Step 6: Create LLM narrative adapter (prompt-first) with deterministic fallback: `src/llm/narrative.py`
-- [x] Step 7: Add model entrypoint: `src/main.py` (new, non-breaking to current TMU)
-- [x] Step 8: Add documentation: `US_Stock_Investor_Recommendation_Model.md`
-- [x] Step 9: Run `python -m src.main --report-dir reports` to generate a first report (using stubs)
-
+## Next
+- Add auditability artifacts:
+  - Create a per-run folder under `reports/us_model_runs/<YYYY-MM-DD>/`
+  - Persist the last 10 days of price closes per ticker
+  - Persist internal calculation inputs/outputs per ticker:
+    - momentum signals (ret_20d, ret_60d, price_to_ma_50d, price_to_ma_100d)
+    - quality signals (gross/operating/FCF margins)
+    - valuation signals (pe, ev_to_sales, ev_to_ebitda, fcf_yield)
+    - risk signals (volatility_60d_ann, regulatory_risk_score)
+    - final normalized factor percentiles (momentum/quality/valuation/risk)
+    - final score, label, risk_flags
+  - Store the same data as JSON (machine-readable) and optionally a human-readable text appendix.
+- Update `src/scoring/score.py` to return extra audit data (raw factors + percentiles) without breaking existing API.
+- Update `src/main.py` to write audit artifacts alongside the report.
 

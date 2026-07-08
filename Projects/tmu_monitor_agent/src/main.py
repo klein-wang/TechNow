@@ -11,6 +11,8 @@ import yaml
 from src.data.fundamentals import fetch_fundamentals
 from src.data.market_data import fetch_price_series
 from src.data.news import fetch_external_news_signals
+from src.ingestion.cnbc_technology_news import fetch_cnbc_technology_news
+
 from src.llm.narrative import generate_narrative
 from src.reports.report import build_text_report
 from src.scoring.score import score_universe
@@ -19,8 +21,19 @@ from src.signals.quality import compute_quality_signals
 from src.signals.risk import compute_risk_signals
 from src.signals.valuation import compute_valuation_signals
 
+import json
+
+
+def safe_last_n(seq, n: int):
+    if seq is None:
+        return []
+    if len(seq) <= n:
+        return list(seq)
+    return list(seq[-n:])
+
 
 def _load_universe(config_path: str) -> List[str]:
+
     cfg = yaml.safe_load(open(config_path, "r", encoding="utf-8"))
     u = cfg.get("universe", {})
     tickers = []
@@ -56,7 +69,17 @@ def main() -> None:
     # data
     price_series = fetch_price_series(universe, days=120)
     fundamentals = fetch_fundamentals(universe)
+
+    # Raw news (CNBC scraping) + derived news signals (stub)
+    cnbc_news_items = fetch_cnbc_technology_news()
     news_signals = fetch_external_news_signals(universe)
+
+
+    # audit/run folder
+    run_date = datetime.now().strftime("%Y-%m-%d")
+    run_dir = os.path.join(report_dir, "us_model_runs", run_date)
+    os.makedirs(run_dir, exist_ok=True)
+
 
     # signals
     mom = compute_momentum_signals(price_series)
@@ -65,7 +88,9 @@ def main() -> None:
     risk = compute_risk_signals(price_series, news_signals)
 
     # scoring
-    recs, _meta = score_universe(
+    recs, meta = score_universe(
+
+
         universe=universe,
         momentum=mom,
         quality=qual,
@@ -136,7 +161,82 @@ def main() -> None:
     with open(out_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
 
+    # Audit artifacts (inputs + intermediate signals + last-10 closes)
+    audit = {
+        "run_date": run_date,
+        "config_path": config_path,
+        "universe": universe,
+        "inputs": {
+            "price_series_last_10_closes": {t: safe_last_n(ps.closes, 10) for t, ps in price_series.items()},
+            "cnbc_news_items": cnbc_news_items,
+        },
+        "signals": {
+            "momentum": {t: asdict(mom[t]) for t in mom},
+            "quality": {t: asdict(qual[t]) for t in qual},
+            "valuation": {t: asdict(val[t]) for t in val},
+            "risk": {t: asdict(risk[t]) for t in risk},
+            "news_signals": {t: asdict(news_signals[t]) for t in news_signals},
+        },
+        "recommendations": [
+            {
+                "ticker": r.ticker,
+                "score": r.score,
+                "label": r.label,
+                "factors": r.factors,
+                "risk_flags": r.risk_flags,
+                "llm_narrative": r.llm_narrative,
+            }
+            for r in recs
+        ],
+        "generated_at": datetime.now().isoformat(),
+    }
+
+    # Supplementary news report (plain text, for quick audit)
+    news_lines: list[str] = []
+    news_lines.append("CNBC Ingested News Items")
+    news_lines.append("==========================")
+    news_lines.append("")
+    news_lines.append(f"Items ingested: {len(cnbc_news_items)}")
+    news_lines.append("")
+
+    for item in cnbc_news_items:
+        ticker = item.get("ticker", "")
+        title = (item.get("title") or "").strip()
+        summary = (item.get("summary") or "").strip()
+        url = (item.get("url") or "").strip()
+        news_lines.append(f"{ticker} | {title} | {summary}")
+        if url:
+            news_lines.append(f"  url: {url}")
+
+    news_lines.append("")
+    news_lines.append("Derived News Signals (stub)")
+    news_lines.append("=============================")
+    news_lines.append("")
+    for t in universe:
+        if t not in news_signals:
+            continue
+        ns = news_signals[t]
+        news_lines.append(
+            f"{t} | regulatory_topic_present={ns.regulatory_topic_present} | "
+            f"regulatory_risk_score={ns.regulatory_risk_score:.3f}"
+        )
+
+    news_path = os.path.join(run_dir, "news.txt")
+    with open(news_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(news_lines))
+
+
+    report_audit_path = os.path.join(run_dir, "report.txt")
+    with open(report_audit_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+
+    audit_path = os.path.join(run_dir, "run.json")
+    with open(audit_path, "w", encoding="utf-8") as f:
+        json.dump(audit, f, ensure_ascii=False, indent=2, default=str)
+
     print(f"US model report written: {out_path}")
+    print(f"US model audit written: {audit_path}")
+
 
 
 if __name__ == "__main__":
