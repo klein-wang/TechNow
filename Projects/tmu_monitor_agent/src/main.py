@@ -74,11 +74,18 @@ def main() -> None:
     cnbc_news_items = fetch_cnbc_technology_news()
     news_signals = fetch_external_news_signals(universe)
 
-
-    # audit/run folder
+    # Audit/run folder
     run_date = datetime.now().strftime("%Y-%m-%d")
     run_dir = os.path.join(report_dir, "us_model_runs", run_date)
     os.makedirs(run_dir, exist_ok=True)
+
+    # provider status (best-effort; today we only know via series length)
+    price_lengths = {t: len(ps.closes) for t, ps in price_series.items()}
+    min_price_len = min(price_lengths.values()) if price_lengths else 0
+    # Keep key names stable for audit consumers.
+    price_provider_hint = "yfinance" if min_price_len >= 60 else "stub_or_partial"
+
+
 
 
     # signals
@@ -169,7 +176,11 @@ def main() -> None:
         "inputs": {
             "price_series_last_10_closes": {t: safe_last_n(ps.closes, 10) for t, ps in price_series.items()},
             "cnbc_news_items": cnbc_news_items,
+            "price_provider_hint": price_provider_hint,
+            "price_lengths": price_lengths,
+            "min_price_len": min_price_len,
         },
+
         "signals": {
             "momentum": {t: asdict(mom[t]) for t in mom},
             "quality": {t: asdict(qual[t]) for t in qual},
